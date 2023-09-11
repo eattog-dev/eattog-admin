@@ -1,8 +1,27 @@
-export class RestauranteDto {
+import { IsNumber, IsString } from 'class-validator';
+
+export class RestauranteDTO {
+    @IsString()
     imagem: string;
-    nome: string;
+
+    @IsString()
+    logo: string;
+
+    @IsString()
+    titulo: string;
+
+    @IsNumber()
     avaliacao: number;
-    categoria: string;
-    distancia: number;
-    delivery: string;
+
+    @IsString()
+    tipoRefeicao: string;
+
+    @IsString()
+    distancia: string;
+
+    @IsString()
+    tipoRetirada: string;
+
+    @IsString()
+    descricao: string;
 }

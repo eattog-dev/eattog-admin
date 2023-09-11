@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,7 @@ export class UserService {
         novoUser.email = user.email;
         novoUser.cpf = user.cpf;
         novoUser.numero_celular = user.numero_celular;
-        novoUser.senha = user.senha;
+        novoUser.senha = bcrypt.hashSync(user.senha, 8);
 
         return this.usersRepository.save(novoUser);
     }
@@ -44,4 +45,10 @@ export class UserService {
     deleteUser(id: number): Promise<DeleteResult> {
         return this.usersRepository.delete(id);
     }
+
+    async findByEmail(email: string): Promise<UserEntity> {
+        return this.usersRepository.findOne({ where: { email: email } });
+    }
+
+
 }

@@ -37,42 +37,42 @@ let RestauranteController = exports.RestauranteController = class RestauranteCon
     }
 };
 __decorate([
-    (0, common_1.Get)(''),
+    (0, common_1.Get)('/restaurantes'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "getRestaurantes", null);
 __decorate([
-    (0, common_1.Post)(''),
+    (0, common_1.Post)('criar/restaurante'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDto]),
+    __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDTO]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "createRestaurante", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('restaurante/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "getRestaurante", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Put)('atualizar/restaurante/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDto]),
+    __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDTO]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "editRestaurante", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)('deletar/restaurante/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "deleteRestaurante", null);
 exports.RestauranteController = RestauranteController = __decorate([
-    (0, common_1.Controller)('restaurantes'),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [restaurante_service_1.RestauranteService])
 ], RestauranteController);
 //# sourceMappingURL=restaurante.controller.js.map

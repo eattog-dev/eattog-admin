@@ -1,1 +1,1 @@
-{"version":3,"file":"prato.dto.js","sourceRoot":"","sources":["../../../src/pratos/dto/prato.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,QAAQ;CAKpB;AALD,4BAKC"}
+{"version":3,"file":"prato.dto.js","sourceRoot":"","sources":["../../../src/pratos/dto/prato.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAqE;AAErE,MAAa,QAAQ;CAepB;AAfD,4BAeC;AAbG;IADC,IAAA,0BAAQ,GAAE;;sCACE;AAGb;IADC,IAAA,0BAAQ,GAAE;;uCACG;AAGd;IADC,IAAA,0BAAQ,GAAE;;wCACI;AAGf;IADC,IAAA,yBAAO,GAAE;;8CACa;AAGvB;IADC,IAAA,uBAAK,GAAE;;6CACY"}

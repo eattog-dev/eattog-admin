@@ -1,3 +1,9 @@
+import { AvaliacaoModule } from './avaliacao/avaliacao.module';
+import { TipoEntregaModule } from './tipo-entrega/tipo-entrega.module';
+import { TipoEntregaController } from './tipo-entrega/tipo-entrega.controller';
+import { CategoriaModule } from './categoria/categoria.module';
+import { CategoriaController } from './categoria/categoria.controller';
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,6 +14,10 @@ import { RestauranteModule } from './restaurante/restaurante.module';
 
 @Module({
   imports: [
+    AvaliacaoModule,
+    TipoEntregaModule,
+    CategoriaModule,
+    AuthModule,
     UserModule,
     PratoModule,
     RestauranteModule,
@@ -22,7 +32,9 @@ import { RestauranteModule } from './restaurante/restaurante.module';
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
+  controllers: [
+    TipoEntregaController,
+    CategoriaController, AppController],
   providers: [AppService],
 })
 export class AppModule { }

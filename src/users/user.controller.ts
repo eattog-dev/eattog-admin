@@ -4,26 +4,26 @@ import { UserEntity } from './user.entity';
 import { UserService } from './user.service'
 import { DeleteResult } from 'typeorm';
 
-@Controller('users')
+@Controller()
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
-  @Get('')
+  @Get('/usuarios')
   getUsers(): Promise<UserEntity[]> {
     return this.userService.getUsers();
   }
 
-  @Post('')
+  @Post('criar/usuario')
   createUser(@Body() user: UserDto): Promise<UserEntity> {
     return this.userService.createUser(user);
   }
 
-  @Get(':id')
+  @Get('usuario/:id')
   getUser(@Param('id') id: number): Promise<UserEntity> {
     return this.userService.getUser(id);
   }
 
-  @Put(':id')
+  @Put('atualizar/usuario/:id')
   editUser(
     @Param('id') id: number,
     @Body() user: UserDto
@@ -31,7 +31,7 @@ export class UserController {
     return this.userService.editUser(id, user);
   }
 
-  @Delete(':id')
+  @Delete('deletar/usuario/:id')
   deleteUser(@Param('id') id: number): Promise<DeleteResult> {
     return this.userService.deleteUser(id);
   }

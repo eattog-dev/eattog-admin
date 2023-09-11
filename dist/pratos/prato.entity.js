@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PratoEntity = void 0;
 const typeorm_1 = require("typeorm");
+const class_validator_1 = require("class-validator");
+const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 let PratoEntity = exports.PratoEntity = class PratoEntity {
 };
 __decorate([
@@ -19,17 +21,30 @@ __decorate([
 ], PratoEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 255 }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], PratoEntity.prototype, "nome", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], PratoEntity.prototype, "valor", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
+], PratoEntity.prototype, "imagem", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => restaurante_entity_1.RestauranteEntity, restaurante => restaurante.pratos),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", restaurante_entity_1.RestauranteEntity)
+], PratoEntity.prototype, "restaurante", void 0);
+__decorate([
+    (0, typeorm_1.Column)('simple-array'),
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
 ], PratoEntity.prototype, "ingredientes", void 0);
 exports.PratoEntity = PratoEntity = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('pratos')
 ], PratoEntity);
 //# sourceMappingURL=prato.entity.js.map

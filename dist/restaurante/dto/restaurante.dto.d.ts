@@ -1,8 +1,10 @@
-export declare class RestauranteDto {
+export declare class RestauranteDTO {
     imagem: string;
-    nome: string;
+    logo: string;
+    titulo: string;
     avaliacao: number;
-    categoria: string;
-    distancia: number;
-    delivery: string;
+    tipoRefeicao: string;
+    distancia: string;
+    tipoRetirada: string;
+    descricao: string;
 }

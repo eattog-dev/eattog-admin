@@ -15,50 +15,49 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PratoController = void 0;
 const common_1 = require("@nestjs/common");
 const prato_dto_1 = require("./dto/prato.dto");
-const prato_entity_1 = require("./prato.entity");
 const prato_service_1 = require("./prato.service");
 let PratoController = exports.PratoController = class PratoController {
     constructor(pratoService) {
         this.pratoService = pratoService;
     }
-    getPratos() {
+    async getPratos() {
         return this.pratoService.getPratos();
     }
-    createPrato(prato) {
-        return this.pratoService.createPrato(prato);
+    async createPrato(pratoDto) {
+        return this.pratoService.createPrato(pratoDto);
     }
-    getPrato(id) {
+    async getPrato(id) {
         return this.pratoService.getPrato(id);
     }
-    editPrato(id, prato) {
-        return this.pratoService.editPrato(id, prato);
+    async editPrato(id, pratoDto) {
+        return this.pratoService.editPrato(id, pratoDto);
     }
-    deletePrato(id) {
+    async deletePrato(id) {
         return this.pratoService.deletePrato(id);
     }
 };
 __decorate([
-    (0, common_1.Get)(''),
+    (0, common_1.Get)('pratos'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratos", null);
 __decorate([
-    (0, common_1.Post)(''),
+    (0, common_1.Post)('criar/prato'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [prato_entity_1.PratoEntity]),
+    __metadata("design:paramtypes", [prato_dto_1.PratoDto]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "createPrato", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPrato", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Put)('atualizar/prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -66,14 +65,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "editPrato", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)('deletar/prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "deletePrato", null);
 exports.PratoController = PratoController = __decorate([
-    (0, common_1.Controller)('pratos'),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [prato_service_1.PratoService])
 ], PratoController);
 //# sourceMappingURL=prato.controller.js.map

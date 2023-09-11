@@ -37,27 +37,27 @@ let UserController = exports.UserController = class UserController {
     }
 };
 __decorate([
-    (0, common_1.Get)(''),
+    (0, common_1.Get)('/usuarios'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUsers", null);
 __decorate([
-    (0, common_1.Post)(''),
+    (0, common_1.Post)('criar/usuario'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('usuario/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUser", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Put)('atualizar/usuario/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -65,14 +65,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "editUser", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)('deletar/usuario/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "deleteUser", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)('users'),
+    (0, common_1.Controller)(),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map
