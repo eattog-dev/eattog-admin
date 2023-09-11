@@ -21,33 +21,40 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
     constructor(restauranteRepository) {
         this.restauranteRepository = restauranteRepository;
     }
-    getRestaurantes() {
+    async getRestaurantes() {
         return this.restauranteRepository.find();
     }
-    createRestaurante(restaurante) {
+    async createRestaurante(RestauranteDTO) {
         const novoRestaurante = new restaurante_entity_1.RestauranteEntity();
-        novoRestaurante.imagem = restaurante.imagem;
-        novoRestaurante.nome = restaurante.nome;
-        novoRestaurante.avaliacao = restaurante.avaliacao;
-        novoRestaurante.categoria = restaurante.categoria;
-        novoRestaurante.distancia = restaurante.distancia;
-        novoRestaurante.delivery = restaurante.delivery;
+        novoRestaurante.imagem = RestauranteDTO.imagem;
+        novoRestaurante.logo = RestauranteDTO.logo;
+        novoRestaurante.titulo = RestauranteDTO.titulo;
+        novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
+        novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
+        novoRestaurante.distancia = RestauranteDTO.distancia;
+        novoRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
+        novoRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(novoRestaurante);
     }
-    getRestaurante(id) {
+    async getRestaurante(id) {
         return this.restauranteRepository.findOneBy({ id: id });
     }
-    async editRestaurante(id, restaurante) {
+    async editRestaurante(id, RestauranteDTO) {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
-        atualizarRestaurante.imagem = restaurante.imagem;
-        atualizarRestaurante.nome = restaurante.nome;
-        atualizarRestaurante.avaliacao = restaurante.avaliacao;
-        atualizarRestaurante.categoria = restaurante.categoria;
-        atualizarRestaurante.distancia = restaurante.distancia;
-        atualizarRestaurante.delivery = restaurante.delivery;
+        if (!atualizarRestaurante) {
+            return undefined;
+        }
+        atualizarRestaurante.imagem = RestauranteDTO.imagem;
+        atualizarRestaurante.logo = RestauranteDTO.logo;
+        atualizarRestaurante.titulo = RestauranteDTO.titulo;
+        atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
+        atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
+        atualizarRestaurante.distancia = RestauranteDTO.distancia;
+        atualizarRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
+        atualizarRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(atualizarRestaurante);
     }
-    deleteRestaurante(id) {
+    async deleteRestaurante(id) {
         return this.restauranteRepository.delete(id);
     }
 };

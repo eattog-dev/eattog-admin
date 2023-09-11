@@ -16,38 +16,49 @@ exports.PratoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const prato_entity_1 = require("./prato.entity");
+const restauranteEntity = require("../restaurante/restaurante.entity");
 const typeorm_2 = require("typeorm");
 let PratoService = exports.PratoService = class PratoService {
-    constructor(pratosRepository) {
+    constructor(pratosRepository, restauranteRepository) {
         this.pratosRepository = pratosRepository;
+        this.restauranteRepository = restauranteRepository;
     }
-    getPratos() {
+    async getPratos() {
         return this.pratosRepository.find();
     }
-    createPrato(prato) {
+    async createPrato(pratoDto) {
         const novoPrato = new prato_entity_1.PratoEntity();
-        novoPrato.nome = prato.nome;
-        novoPrato.valor = prato.valor;
-        novoPrato.ingredientes = prato.ingredientes;
+        novoPrato.nome = pratoDto.nome;
+        novoPrato.valor = pratoDto.valor;
+        novoPrato.imagem = pratoDto.imagem;
+        novoPrato.ingredientes = pratoDto.ingredientes;
+        novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         return this.pratosRepository.save(novoPrato);
     }
-    getPrato(id) {
+    async getPrato(id) {
         return this.pratosRepository.findOneBy({ id: id });
     }
-    async editPrato(id, prato) {
+    async editPrato(id, pratoDto) {
         const atualizarPrato = await this.pratosRepository.findOneBy({ id: id });
-        atualizarPrato.nome = prato.nome;
-        atualizarPrato.valor = prato.valor;
-        atualizarPrato.ingredientes = prato.ingredientes;
+        if (!atualizarPrato) {
+            return undefined;
+        }
+        atualizarPrato.nome = pratoDto.nome;
+        atualizarPrato.valor = pratoDto.valor;
+        atualizarPrato.imagem = pratoDto.imagem;
+        atualizarPrato.ingredientes = pratoDto.ingredientes;
+        atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         return this.pratosRepository.save(atualizarPrato);
     }
-    deletePrato(id) {
+    async deletePrato(id) {
         return this.pratosRepository.delete(id);
     }
 };
 exports.PratoService = PratoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(prato_entity_1.PratoEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(restauranteEntity.RestauranteEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], PratoService);
 //# sourceMappingURL=prato.service.js.map

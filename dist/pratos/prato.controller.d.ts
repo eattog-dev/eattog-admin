@@ -6,8 +6,8 @@ export declare class PratoController {
     private readonly pratoService;
     constructor(pratoService: PratoService);
     getPratos(): Promise<PratoEntity[]>;
-    createPrato(prato: PratoEntity): Promise<PratoEntity>;
+    createPrato(pratoDto: PratoDto): Promise<PratoEntity>;
     getPrato(id: number): Promise<PratoEntity>;
-    editPrato(id: number, prato: PratoDto): Promise<PratoEntity>;
+    editPrato(id: number, pratoDto: PratoDto): Promise<PratoEntity>;
     deletePrato(id: number): Promise<DeleteResult>;
 }

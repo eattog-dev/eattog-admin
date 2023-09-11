@@ -1,9 +1,13 @@
+import { PratoEntity } from 'src/pratos/prato.entity';
 export declare class RestauranteEntity {
     id: number;
     imagem: string;
-    nome: string;
+    logo: string;
+    titulo: string;
     avaliacao: number;
-    categoria: string;
-    distancia: number;
-    delivery: string;
+    tipoRefeicao: string;
+    distancia: string;
+    tipoRetirada: string;
+    descricao: string;
+    pratos: PratoEntity[];
 }

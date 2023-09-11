@@ -12,13 +12,14 @@ const prato_controller_1 = require("./prato.controller");
 const prato_entity_1 = require("./prato.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const prato_service_1 = require("./prato.service");
+const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 let PratoModule = exports.PratoModule = class PratoModule {
 };
 exports.PratoModule = PratoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([prato_entity_1.PratoEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([prato_entity_1.PratoEntity, restaurante_entity_1.RestauranteEntity])],
         controllers: [prato_controller_1.PratoController],
-        providers: [prato_service_1.PratoService],
+        providers: [prato_service_1.PratoService]
     })
 ], PratoModule);
 //# sourceMappingURL=prato.module.js.map

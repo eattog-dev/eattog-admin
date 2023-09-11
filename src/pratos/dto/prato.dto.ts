@@ -1,6 +1,18 @@
+import { IsString, IsNumber, IsArray, IsInt } from 'class-validator';
+
 export class PratoDto {
+    @IsString()
     nome: string;
+
+    @IsNumber()
     valor: number;
-    ingredientes: string;
-    // depois colocar o id do restaurante que pertence a este prato
+
+    @IsString()
+    imagem: string;
+
+    @IsArray()
+    ingredientes: string[];
+
+    @IsInt()
+    restaurante: number;
 }

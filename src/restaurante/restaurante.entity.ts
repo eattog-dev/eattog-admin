@@ -1,25 +1,35 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { PratoEntity } from 'src/pratos/prato.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity('restaurantes')
 export class RestauranteEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ length: 255 })
+    @Column({ type: 'varchar', length: 255 })
     imagem: string;
 
-    @Column({ length: 155 })
-    nome: string;
+    @Column({ type: 'varchar', length: 255 })
+    logo: string;
 
-    @Column()
+    @Column({ type: 'varchar', length: 255 })
+    titulo: string;
+
+    @Column({ type: 'decimal', precision: 5, scale: 2 })
     avaliacao: number;
 
-    @Column()
-    categoria: string;
+    @Column({ type: 'varchar', length: 255 })
+    tipoRefeicao: string;
 
-    @Column()
-    distancia: number;
+    @Column({ type: 'varchar', length: 255 })
+    distancia: string;
 
-    @Column()
-    delivery: string;
+    @Column({ type: 'varchar', length: 255 })
+    tipoRetirada: string;
+
+    @Column({ type: 'text' })
+    descricao: string;
+
+    @OneToMany(() => PratoEntity, (prato) => prato.restaurante)
+    pratos: PratoEntity[]
 }

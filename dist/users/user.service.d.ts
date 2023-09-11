@@ -9,4 +9,5 @@ export declare class UserService {
     getUser(id: number): Promise<UserEntity>;
     editUser(id: number, user: UserDto): Promise<UserEntity>;
     deleteUser(id: number): Promise<DeleteResult>;
+    findByEmail(email: string): Promise<UserEntity>;
 }

@@ -1,37 +1,37 @@
 import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common';
-import { RestauranteDto } from './dto/restaurante.dto'; 
-import { RestauranteEntity } from './restaurante.entity'; 
-import { RestauranteService } from './restaurante.service'; 
+import { RestauranteDTO } from './dto/restaurante.dto';
+import { RestauranteEntity } from './restaurante.entity';
+import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
 
-@Controller('restaurantes')
+@Controller()
 export class RestauranteController {
   constructor(private readonly restauranteService: RestauranteService) { }
 
-  @Get('')
+  @Get('/restaurantes')
   getRestaurantes(): Promise<RestauranteEntity[]> {
     return this.restauranteService.getRestaurantes();
   }
 
-  @Post('')
-  createRestaurante(@Body() restaurante: RestauranteDto): Promise<RestauranteEntity> {
+  @Post('criar/restaurante')
+  createRestaurante(@Body() restaurante: RestauranteDTO): Promise<RestauranteEntity> {
     return this.restauranteService.createRestaurante(restaurante);
   }
 
-  @Get(':id')
+  @Get('restaurante/:id')
   getRestaurante(@Param('id') id: number): Promise<RestauranteEntity> {
     return this.restauranteService.getRestaurante(id);
   }
 
-  @Put(':id')
+  @Put('atualizar/restaurante/:id')
   editRestaurante(
     @Param('id') id: number,
-    @Body() restaurante: RestauranteDto
+    @Body() restaurante: RestauranteDTO
   ): Promise<RestauranteEntity> {
     return this.restauranteService.editRestaurante(id, restaurante);
   }
 
-  @Delete(':id')
+  @Delete('deletar/restaurante/:id')
   deleteRestaurante(@Param('id') id: number): Promise<DeleteResult> {
     return this.restauranteService.deleteRestaurante(id);
   }

@@ -4,36 +4,35 @@ import { PratoEntity } from './prato.entity';
 import { PratoService } from './prato.service';
 import { DeleteResult } from 'typeorm';
 
-@Controller('pratos')
+@Controller()
 export class PratoController {
     constructor(private readonly pratoService: PratoService) { }
 
-    @Get('')
-    getPratos(): Promise<PratoEntity[]> {
+    @Get('pratos')
+    async getPratos(): Promise<PratoEntity[]> {
         return this.pratoService.getPratos();
     }
 
-    @Post('')
-    createPrato(@Body() prato: PratoEntity): Promise<PratoEntity> {
-        return this.pratoService.createPrato(prato);
+    @Post('criar/prato')
+    async createPrato(@Body() pratoDto: PratoDto): Promise<PratoEntity> {
+        return this.pratoService.createPrato(pratoDto);
     }
 
-    @Get(':id')
-    getPrato(@Param('id') id: number): Promise<PratoEntity> {
+    @Get('prato/:id')
+    async getPrato(@Param('id') id: number): Promise<PratoEntity> {
         return this.pratoService.getPrato(id);
     }
 
-    @Put(':id')
-    editPrato(
+    @Put('atualizar/prato/:id')
+    async editPrato(
         @Param('id') id: number,
-        @Body() prato: PratoDto
+        @Body() pratoDto: PratoDto
     ): Promise<PratoEntity> {
-        return this.pratoService.editPrato(id, prato);
+        return this.pratoService.editPrato(id, pratoDto);
     }
 
-    @Delete(':id')
-    deletePrato(@Param('id') id: number): Promise<DeleteResult> {
+    @Delete('deletar/prato/:id')
+    async deletePrato(@Param('id') id: number): Promise<DeleteResult> {
         return this.pratoService.deletePrato(id);
     }
-
 }

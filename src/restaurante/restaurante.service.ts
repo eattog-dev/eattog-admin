@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestauranteEntity } from './restaurante.entity';
 import { DeleteResult, Repository } from 'typeorm';
-import { RestauranteDto } from './dto/restaurante.dto';
+import { RestauranteDTO } from './dto/restaurante.dto';
 
 @Injectable()
 export class RestauranteService {
@@ -11,39 +11,45 @@ export class RestauranteService {
         private restauranteRepository: Repository<RestauranteEntity>
     ) { }
 
-    getRestaurantes(): Promise<RestauranteEntity[]> {
+    async getRestaurantes(): Promise<RestauranteEntity[]> {
         return this.restauranteRepository.find();
     }
 
-    createRestaurante(restaurante: RestauranteDto): Promise<RestauranteEntity> {
-        const novoRestaurante = new RestauranteEntity()
-        novoRestaurante.imagem = restaurante.imagem;
-        novoRestaurante.nome = restaurante.nome;
-        novoRestaurante.avaliacao = restaurante.avaliacao;
-        novoRestaurante.categoria = restaurante.categoria;
-        novoRestaurante.distancia = restaurante.distancia;
-        novoRestaurante.delivery = restaurante.delivery;
-
+    async createRestaurante(RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity> {
+        const novoRestaurante = new RestauranteEntity();
+        novoRestaurante.imagem = RestauranteDTO.imagem;
+        novoRestaurante.logo = RestauranteDTO.logo;
+        novoRestaurante.titulo = RestauranteDTO.titulo;
+        novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
+        novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
+        novoRestaurante.distancia = RestauranteDTO.distancia;
+        novoRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
+        novoRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(novoRestaurante);
     }
 
-    getRestaurante(id: number): Promise<RestauranteEntity> {
+    async getRestaurante(id: number): Promise<RestauranteEntity | undefined> {
         return this.restauranteRepository.findOneBy({ id: id });
     }
 
-    async editRestaurante(id: number, restaurante: RestauranteDto): Promise<RestauranteEntity> {
+    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity | undefined> {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
-        atualizarRestaurante.imagem = restaurante.imagem;
-        atualizarRestaurante.nome = restaurante.nome;
-        atualizarRestaurante.avaliacao = restaurante.avaliacao;
-        atualizarRestaurante.categoria = restaurante.categoria;
-        atualizarRestaurante.distancia = restaurante.distancia;
-        atualizarRestaurante.delivery = restaurante.delivery;
+        if (!atualizarRestaurante) {
+            return undefined;
+        }
+        atualizarRestaurante.imagem = RestauranteDTO.imagem;
+        atualizarRestaurante.logo = RestauranteDTO.logo;
+        atualizarRestaurante.titulo = RestauranteDTO.titulo;
+        atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
+        atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
+        atualizarRestaurante.distancia = RestauranteDTO.distancia;
+        atualizarRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
+        atualizarRestaurante.descricao = RestauranteDTO.descricao;
 
         return this.restauranteRepository.save(atualizarRestaurante);
     }
 
-    deleteRestaurante(id: number): Promise<DeleteResult> {
+    async deleteRestaurante(id: number): Promise<DeleteResult> {
         return this.restauranteRepository.delete(id);
     }
 }

@@ -1,5 +1,7 @@
 export declare class PratoDto {
     nome: string;
     valor: number;
-    ingredientes: string;
+    imagem: string;
+    ingredientes: string[];
+    restaurante: number;
 }

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestauranteEntity = void 0;
+const prato_entity_1 = require("../pratos/prato.entity");
 const typeorm_1 = require("typeorm");
 let RestauranteEntity = exports.RestauranteEntity = class RestauranteEntity {
 };
@@ -18,30 +19,42 @@ __decorate([
     __metadata("design:type", Number)
 ], RestauranteEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "imagem", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 155 }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "nome", void 0);
+], RestauranteEntity.prototype, "logo", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "titulo", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2 }),
     __metadata("design:type", Number)
 ], RestauranteEntity.prototype, "avaliacao", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "categoria", void 0);
+], RestauranteEntity.prototype, "tipoRefeicao", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    __metadata("design:type", String)
 ], RestauranteEntity.prototype, "distancia", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "delivery", void 0);
+], RestauranteEntity.prototype, "tipoRetirada", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'text' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "descricao", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => prato_entity_1.PratoEntity, (prato) => prato.restaurante),
+    __metadata("design:type", Array)
+], RestauranteEntity.prototype, "pratos", void 0);
 exports.RestauranteEntity = RestauranteEntity = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('restaurantes')
 ], RestauranteEntity);
 //# sourceMappingURL=restaurante.entity.js.map

@@ -19,6 +19,7 @@ exports.RestauranteModule = RestauranteModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([restaurante_entity_1.RestauranteEntity])],
         controllers: [restaurante_controller_1.RestauranteController],
         providers: [restaurante_service_1.RestauranteService],
+        exports: [restaurante_service_1.RestauranteService]
     })
 ], RestauranteModule);
 //# sourceMappingURL=restaurante.module.js.map
