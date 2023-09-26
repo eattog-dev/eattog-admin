@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestauranteEntity = void 0;
-const prato_entity_1 = require("../pratos/prato.entity");
 const typeorm_1 = require("typeorm");
+const prato_entity_1 = require("../pratos/prato.entity");
+const class_validator_1 = require("class-validator");
 let RestauranteEntity = exports.RestauranteEntity = class RestauranteEntity {
 };
 __decorate([
@@ -20,34 +21,50 @@ __decorate([
 ], RestauranteEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "imagem", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "logo", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "titulo", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], RestauranteEntity.prototype, "avaliacao", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "tipoRefeicao", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "distancia", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "tipoRetirada", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'text' }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "descricao", void 0);
 __decorate([

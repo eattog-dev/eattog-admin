@@ -17,45 +17,50 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./user.entity");
 const typeorm_2 = require("typeorm");
-const bcrypt = require("bcrypt");
+const jwt_1 = require("@nestjs/jwt");
+const session_dto_1 = require("./dto/session.dto");
 let UserService = exports.UserService = class UserService {
-    constructor(usersRepository) {
+    constructor(usersRepository, jwtService) {
         this.usersRepository = usersRepository;
+        this.jwtService = jwtService;
     }
-    getUsers() {
-        return this.usersRepository.find();
+    async signIn(userDto) {
+        const user = await this.usersRepository.findOneBy({
+            email: userDto.email,
+            senha: userDto.senha
+        });
+        if (!user) {
+            throw new common_1.UnauthorizedException();
+        }
+        const payload = { id: user.id, email: user.email };
+        return new session_dto_1.SessionDto(await this.jwtService.signAsync(payload));
     }
-    createUser(user) {
-        const novoUser = new user_entity_1.UserEntity();
-        novoUser.nome = user.nome;
-        novoUser.email = user.email;
-        novoUser.cpf = user.cpf;
-        novoUser.numero_celular = user.numero_celular;
-        novoUser.senha = bcrypt.hashSync(user.senha, 8);
-        return this.usersRepository.save(novoUser);
+    signUp(userDto) {
+        let user = new user_entity_1.UserEntity();
+        user.nome = userDto.nome;
+        user.email = userDto.email;
+        user.cpf = userDto.cpf;
+        user.numero_celular = userDto.numero_celular;
+        user.senha = userDto.senha;
+        return this.usersRepository.save(user);
     }
-    getUser(id) {
+    async update(id, userDto) {
+        let user = await this.usersRepository.findOneBy({ id: id });
+        user.nome = userDto.nome;
+        user.email = userDto.email;
+        user.cpf = userDto.cpf;
+        user.numero_celular = userDto.numero_celular;
+        user.senha = userDto.senha;
+        return this.usersRepository.save(user);
+    }
+    show(id) {
         return this.usersRepository.findOneBy({ id: id });
-    }
-    async editUser(id, user) {
-        const atualizarUser = await this.usersRepository.findOneBy({ id: id });
-        atualizarUser.nome = user.nome;
-        atualizarUser.email = user.email;
-        atualizarUser.cpf = user.cpf;
-        atualizarUser.numero_celular = user.numero_celular;
-        atualizarUser.senha = user.senha;
-        return this.usersRepository.save(atualizarUser);
-    }
-    deleteUser(id) {
-        return this.usersRepository.delete(id);
-    }
-    async findByEmail(email) {
-        return this.usersRepository.findOne({ where: { email: email } });
     }
 };
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        jwt_1.JwtService])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

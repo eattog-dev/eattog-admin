@@ -1,39 +1,47 @@
-import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common';
-import { UserDto } from './dto/user.dto';
+import { Body, Controller, Get, Post, Put, UseGuards } from '@nestjs/common';
+import { Param, Request } from '@nestjs/common/decorators/http';
 import { UserEntity } from './user.entity';
-import { UserService } from './user.service'
-import { DeleteResult } from 'typeorm';
+import { AuthGuard as SessionGuard } from './session.guard';
+import { UserService } from './user.service';
+import { UserDto } from './dto/user.dto';
+import { SessionDto } from './dto/session.dto';
 
-@Controller()
-export class UserController {
-  constructor(private readonly userService: UserService) { }
+@Controller('users')
+export class UsersController {
+  constructor(
+    private readonly userService: UserService,
+  ) { }
 
-  @Get('/usuarios')
-  getUsers(): Promise<UserEntity[]> {
-    return this.userService.getUsers();
-  }
-
-  @Post('criar/usuario')
-  createUser(@Body() user: UserDto): Promise<UserEntity> {
-    return this.userService.createUser(user);
-  }
-
-  @Get('usuario/:id')
-  getUser(@Param('id') id: number): Promise<UserEntity> {
-    return this.userService.getUser(id);
-  }
-
-  @Put('atualizar/usuario/:id')
-  editUser(
-    @Param('id') id: number,
-    @Body() user: UserDto
+  @UseGuards(SessionGuard)
+  @Get('meu-perfil')
+  show(
+    @Request() req
   ): Promise<UserEntity> {
-    return this.userService.editUser(id, user);
+    console.log(req.user);
+    return this.userService.show(req.user.id);
   }
 
-  @Delete('deletar/usuario/:id')
-  deleteUser(@Param('id') id: number): Promise<DeleteResult> {
-    return this.userService.deleteUser(id);
+  @UseGuards(SessionGuard)
+  @Put(':id')
+  update(
+    @Param('id') id: number,
+    @Body() updateUser: UserDto
+  ): Promise<UserEntity> {
+    return this.userService.update(id, updateUser);
+  }
+
+  @Post('sign-up')
+  async create(
+    @Body() createUser: UserDto,
+  ): Promise<UserEntity> {
+    return this.userService.signUp(createUser);
+  }
+
+  @Post('sign-in')
+  login(
+    @Body() signInUser: UserDto
+  ): Promise<SessionDto> {
+    return this.userService.signIn(signInUser);
   }
 
 }

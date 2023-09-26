@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
+const class_validator_1 = require("class-validator");
 let UserEntity = exports.UserEntity = class UserEntity {
 };
 __decorate([
@@ -19,26 +20,37 @@ __decorate([
 ], UserEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "nome", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 200 }),
+    (0, typeorm_1.Column)({ length: 200, unique: true }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 14 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "cpf", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "numero_celular", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 20 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "senha", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: true }),
+    (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], UserEntity.prototype, "isActive", void 0);
 exports.UserEntity = UserEntity = __decorate([

@@ -1,13 +1,12 @@
-import { UserDto } from './dto/user.dto';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
-import { DeleteResult } from 'typeorm';
-export declare class UserController {
+import { UserDto } from './dto/user.dto';
+import { SessionDto } from './dto/session.dto';
+export declare class UsersController {
     private readonly userService;
     constructor(userService: UserService);
-    getUsers(): Promise<UserEntity[]>;
-    createUser(user: UserDto): Promise<UserEntity>;
-    getUser(id: number): Promise<UserEntity>;
-    editUser(id: number, user: UserDto): Promise<UserEntity>;
-    deleteUser(id: number): Promise<DeleteResult>;
+    show(req: any): Promise<UserEntity>;
+    update(id: number, updateUser: UserDto): Promise<UserEntity>;
+    create(createUser: UserDto): Promise<UserEntity>;
+    login(signInUser: UserDto): Promise<SessionDto>;
 }
