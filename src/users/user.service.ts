@@ -1,54 +1,56 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { SessionDto } from './dto/session.dto';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
-        private usersRepository: Repository<UserEntity>
+        private usersRepository: Repository<UserEntity>,
+        private jwtService: JwtService
     ) { }
 
-    getUsers(): Promise<UserEntity[]> {
-        return this.usersRepository.find();
+    async signIn(userDto: UserDto): Promise<SessionDto> {
+        const user = await this.usersRepository.findOneBy({
+            email: userDto.email,
+            senha: userDto.senha
+        });
+
+        if (!user) {
+            throw new UnauthorizedException();
+        }
+        const payload = { id: user.id, email: user.email };
+        return new SessionDto(await this.jwtService.signAsync(payload));
     }
 
-    createUser(user: UserDto): Promise<UserEntity> {
-        const novoUser = new UserEntity()
-        novoUser.nome = user.nome;
-        novoUser.email = user.email;
-        novoUser.cpf = user.cpf;
-        novoUser.numero_celular = user.numero_celular;
-        novoUser.senha = bcrypt.hashSync(user.senha, 8);
+    signUp(userDto: UserDto): Promise<UserEntity> {
+        let user = new UserEntity();
+        user.nome = userDto.nome;
+        user.email = userDto.email;
+        user.cpf = userDto.cpf;
+        user.numero_celular = userDto.numero_celular;
+        user.senha = userDto.senha;
 
-        return this.usersRepository.save(novoUser);
+        return this.usersRepository.save(user);
     }
 
-    getUser(id: number): Promise<UserEntity> {
+    async update(id: number, userDto: UserDto): Promise<UserEntity> {
+        let user = await this.usersRepository.findOneBy({ id: id });
+        user.nome = userDto.nome;
+        user.email = userDto.email;
+        user.cpf = userDto.cpf;
+        user.numero_celular = userDto.numero_celular;
+        user.senha = userDto.senha;
+
+        return this.usersRepository.save(user);
+    }
+
+    show(id: number): Promise<UserEntity> {
         return this.usersRepository.findOneBy({ id: id });
     }
-
-    async editUser(id: number, user: UserDto): Promise<UserEntity> {
-        const atualizarUser = await this.usersRepository.findOneBy({ id: id });
-        atualizarUser.nome = user.nome;
-        atualizarUser.email = user.email;
-        atualizarUser.cpf = user.cpf;
-        atualizarUser.numero_celular = user.numero_celular;
-        atualizarUser.senha = user.senha;
-
-        return this.usersRepository.save(atualizarUser);
-    }
-
-    deleteUser(id: number): Promise<DeleteResult> {
-        return this.usersRepository.delete(id);
-    }
-
-    async findByEmail(email: string): Promise<UserEntity> {
-        return this.usersRepository.findOne({ where: { email: email } });
-    }
-
-
 }

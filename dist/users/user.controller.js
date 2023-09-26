@@ -12,67 +12,63 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
+exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const user_dto_1 = require("./dto/user.dto");
+const http_1 = require("@nestjs/common/decorators/http");
+const session_guard_1 = require("./session.guard");
 const user_service_1 = require("./user.service");
-let UserController = exports.UserController = class UserController {
+const user_dto_1 = require("./dto/user.dto");
+let UsersController = exports.UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
     }
-    getUsers() {
-        return this.userService.getUsers();
+    show(req) {
+        console.log(req.user);
+        return this.userService.show(req.user.id);
     }
-    createUser(user) {
-        return this.userService.createUser(user);
+    update(id, updateUser) {
+        return this.userService.update(id, updateUser);
     }
-    getUser(id) {
-        return this.userService.getUser(id);
+    async create(createUser) {
+        return this.userService.signUp(createUser);
     }
-    editUser(id, user) {
-        return this.userService.editUser(id, user);
-    }
-    deleteUser(id) {
-        return this.userService.deleteUser(id);
+    login(signInUser) {
+        return this.userService.signIn(signInUser);
     }
 };
 __decorate([
-    (0, common_1.Get)('/usuarios'),
+    (0, common_1.UseGuards)(session_guard_1.AuthGuard),
+    (0, common_1.Get)('meu-perfil'),
+    __param(0, (0, http_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "getUsers", null);
+], UsersController.prototype, "show", null);
 __decorate([
-    (0, common_1.Post)('criar/usuario'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_dto_1.UserDto]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "createUser", null);
-__decorate([
-    (0, common_1.Get)('usuario/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "getUser", null);
-__decorate([
-    (0, common_1.Put)('atualizar/usuario/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.UseGuards)(session_guard_1.AuthGuard),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, http_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, user_dto_1.UserDto]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "editUser", null);
+], UsersController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)('deletar/usuario/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Post)('sign-up'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "deleteUser", null);
-exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)(),
+], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)('sign-in'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_dto_1.UserDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "login", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [user_service_1.UserService])
-], UserController);
+], UsersController);
 //# sourceMappingURL=user.controller.js.map
