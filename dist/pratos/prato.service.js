@@ -16,12 +16,14 @@ exports.PratoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const prato_entity_1 = require("./prato.entity");
-const restauranteEntity = require("../restaurante/restaurante.entity");
+const restaurante_entity_1 = require("../restaurante/restaurante.entity");
+const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
 const typeorm_2 = require("typeorm");
 let PratoService = exports.PratoService = class PratoService {
-    constructor(pratosRepository, restauranteRepository) {
+    constructor(pratosRepository, restauranteRepository, categoriaPratoRepository) {
         this.pratosRepository = pratosRepository;
         this.restauranteRepository = restauranteRepository;
+        this.categoriaPratoRepository = categoriaPratoRepository;
     }
     async getPratos() {
         return this.pratosRepository.find();
@@ -32,6 +34,9 @@ let PratoService = exports.PratoService = class PratoService {
         novoPrato.valor = pratoDto.valor;
         novoPrato.imagem = pratoDto.imagem;
         novoPrato.ingredientes = pratoDto.ingredientes;
+        novoPrato.desconto = pratoDto.desconto;
+        novoPrato.valor_desconto = pratoDto.valor_desconto;
+        novoPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato });
         novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         return this.pratosRepository.save(novoPrato);
     }
@@ -47,6 +52,9 @@ let PratoService = exports.PratoService = class PratoService {
         atualizarPrato.valor = pratoDto.valor;
         atualizarPrato.imagem = pratoDto.imagem;
         atualizarPrato.ingredientes = pratoDto.ingredientes;
+        atualizarPrato.desconto = pratoDto.desconto;
+        atualizarPrato.valor_desconto = pratoDto.valor_desconto;
+        atualizarPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato });
         atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         return this.pratosRepository.save(atualizarPrato);
     }
@@ -57,8 +65,10 @@ let PratoService = exports.PratoService = class PratoService {
 exports.PratoService = PratoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(prato_entity_1.PratoEntity)),
-    __param(1, (0, typeorm_1.InjectRepository)(restauranteEntity.RestauranteEntity)),
+    __param(1, (0, typeorm_1.InjectRepository)(restaurante_entity_1.RestauranteEntity)),
+    __param(2, (0, typeorm_1.InjectRepository)(categoria_prato_entity_1.CategoriaPratoEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository])
 ], PratoService);
 //# sourceMappingURL=prato.service.js.map

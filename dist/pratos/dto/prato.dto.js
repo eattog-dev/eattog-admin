@@ -34,4 +34,16 @@ __decorate([
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], PratoDto.prototype, "restaurante", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], PratoDto.prototype, "categoria_prato", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], PratoDto.prototype, "desconto", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], PratoDto.prototype, "valor_desconto", void 0);
 //# sourceMappingURL=prato.dto.js.map

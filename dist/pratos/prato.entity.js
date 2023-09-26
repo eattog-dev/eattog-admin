@@ -13,6 +13,7 @@ exports.PratoEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
+const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
 let PratoEntity = exports.PratoEntity = class PratoEntity {
 };
 __decorate([
@@ -35,10 +36,25 @@ __decorate([
     __metadata("design:type", String)
 ], PratoEntity.prototype, "imagem", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], PratoEntity.prototype, "desconto", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], PratoEntity.prototype, "valor_desconto", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => restaurante_entity_1.RestauranteEntity, restaurante => restaurante.pratos),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", restaurante_entity_1.RestauranteEntity)
 ], PratoEntity.prototype, "restaurante", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => categoria_prato_entity_1.CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", categoria_prato_entity_1.CategoriaPratoEntity)
+], PratoEntity.prototype, "prato_categoria", void 0);
 __decorate([
     (0, typeorm_1.Column)('simple-array'),
     (0, class_validator_1.IsArray)(),

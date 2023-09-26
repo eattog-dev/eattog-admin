@@ -1,3 +1,4 @@
+import { CategoriaPratoModule } from './categoria-prato/categoria-prato.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,6 +9,7 @@ import { RestauranteModule } from './restaurante/restaurante.module';
 
 @Module({
   imports: [
+    CategoriaPratoModule,
     UserModule,
     PratoModule,
     RestauranteModule,
@@ -23,7 +25,7 @@ import { RestauranteModule } from './restaurante/restaurante.module';
     }),
   ],
   controllers: [
-   AppController],
+    AppController],
   providers: [AppService],
 })
 export class AppModule { }

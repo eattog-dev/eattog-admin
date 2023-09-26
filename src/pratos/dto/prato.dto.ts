@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsArray, IsInt } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsInt, IsBoolean } from 'class-validator';
 
 export class PratoDto {
     @IsString()
@@ -15,4 +15,13 @@ export class PratoDto {
 
     @IsInt()
     restaurante: number;
+
+    @IsInt()
+    categoria_prato: number;
+
+    @IsBoolean()
+    desconto: boolean;
+
+    @IsNumber()
+    valor_desconto: number;
 }

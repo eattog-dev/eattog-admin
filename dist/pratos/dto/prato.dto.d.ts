@@ -4,4 +4,7 @@ export declare class PratoDto {
     imagem: string;
     ingredientes: string[];
     restaurante: number;
+    categoria_prato: number;
+    desconto: boolean;
+    valor_desconto: number;
 }
