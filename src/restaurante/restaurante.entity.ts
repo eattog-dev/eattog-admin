@@ -20,6 +20,11 @@ export class RestauranteEntity {
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty()
     @IsString()
+    banner: string;
+
+    @Column({ type: 'varchar', length: 255 })
+    @IsNotEmpty()
+    @IsString()
     titulo: string;
 
     @Column({ type: 'decimal', precision: 5, scale: 2 })

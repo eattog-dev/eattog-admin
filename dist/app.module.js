@@ -30,7 +30,7 @@ exports.AppModule = AppModule = __decorate([
                 port: 3306,
                 username: 'root',
                 password: '',
-                database: 'eattog',
+                database: 'eattogg',
                 autoLoadEntities: true,
                 synchronize: true,
             }),

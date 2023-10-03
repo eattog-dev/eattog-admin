@@ -51,7 +51,7 @@ __decorate([
     __metadata("design:type", restaurante_entity_1.RestauranteEntity)
 ], PratoEntity.prototype, "restaurante", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => categoria_prato_entity_1.CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato),
+    (0, typeorm_1.ManyToOne)(() => categoria_prato_entity_1.CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", categoria_prato_entity_1.CategoriaPratoEntity)
 ], PratoEntity.prototype, "prato_categoria", void 0);
@@ -60,6 +60,11 @@ __decorate([
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
 ], PratoEntity.prototype, "ingredientes", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ length: 255 }),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], PratoEntity.prototype, "descricao", void 0);
 exports.PratoEntity = PratoEntity = __decorate([
     (0, typeorm_1.Entity)('pratos')
 ], PratoEntity);

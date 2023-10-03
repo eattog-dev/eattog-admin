@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { IsString, IsNumber, IsArray, IsInt } from 'class-validator';
 import { PratoEntity } from 'src/pratos/prato.entity';
 
@@ -11,7 +11,7 @@ export class CategoriaPratoEntity {
     @IsString()
     categoria: string;
 
-    @OneToOne(() => PratoEntity, prato_categoria => prato_categoria.prato_categoria)
+    @OneToMany(() => PratoEntity, prato_categoria => prato_categoria.prato_categoria)
     @IsInt()
     categoria_prato: CategoriaPratoEntity;
 }

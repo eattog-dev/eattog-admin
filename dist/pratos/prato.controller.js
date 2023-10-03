@@ -21,7 +21,7 @@ let PratoController = exports.PratoController = class PratoController {
         this.pratoService = pratoService;
     }
     async getPratos() {
-        return this.pratoService.getPratos();
+        return this.pratoService.getPratosComCategorias();
     }
     async createPrato(pratoDto) {
         return this.pratoService.createPrato(pratoDto);
@@ -34,6 +34,15 @@ let PratoController = exports.PratoController = class PratoController {
     }
     async deletePrato(id) {
         return this.pratoService.deletePrato(id);
+    }
+    async getPratosPorRestaurante(restauranteId) {
+        return this.pratoService.getPratosPorRestaurante(restauranteId);
+    }
+    async getPratosCategoria(id) {
+        return this.pratoService.getPratosPorCategoria(id);
+    }
+    async getPratosCategoria1() {
+        return this.pratoService.getPratosAgrupadosPorCategoriaENome();
     }
 };
 __decorate([
@@ -71,6 +80,26 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "deletePrato", null);
+__decorate([
+    (0, common_1.Get)('pratos-restaurante/:restauranteId'),
+    __param(0, (0, common_1.Param)('restauranteId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosPorRestaurante", null);
+__decorate([
+    (0, common_1.Get)('pratos-por-categoria/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosCategoria", null);
+__decorate([
+    (0, common_1.Get)('pratos-por-categoria/'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosCategoria1", null);
 exports.PratoController = PratoController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [prato_service_1.PratoService])

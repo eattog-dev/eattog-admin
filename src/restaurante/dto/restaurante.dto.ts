@@ -8,6 +8,9 @@ export class RestauranteDTO {
     logo: string;
 
     @IsString()
+    banner: string;
+
+    @IsString()
     titulo: string;
 
     @IsNumber()

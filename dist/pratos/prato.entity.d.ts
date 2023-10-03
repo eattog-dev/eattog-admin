@@ -10,4 +10,5 @@ export declare class PratoEntity {
     restaurante: RestauranteEntity;
     prato_categoria: CategoriaPratoEntity;
     ingredientes: string[];
+    descricao: string;
 }

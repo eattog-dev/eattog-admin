@@ -36,6 +36,7 @@ let PratoService = exports.PratoService = class PratoService {
         novoPrato.ingredientes = pratoDto.ingredientes;
         novoPrato.desconto = pratoDto.desconto;
         novoPrato.valor_desconto = pratoDto.valor_desconto;
+        novoPrato.descricao = pratoDto.descricao;
         novoPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato });
         novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         return this.pratosRepository.save(novoPrato);
@@ -54,12 +55,41 @@ let PratoService = exports.PratoService = class PratoService {
         atualizarPrato.ingredientes = pratoDto.ingredientes;
         atualizarPrato.desconto = pratoDto.desconto;
         atualizarPrato.valor_desconto = pratoDto.valor_desconto;
+        atualizarPrato.descricao = pratoDto.descricao;
         atualizarPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato });
         atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         return this.pratosRepository.save(atualizarPrato);
     }
     async deletePrato(id) {
         return this.pratosRepository.delete(id);
+    }
+    async getPratosPorRestaurante(restauranteId) {
+        return this.pratosRepository
+            .createQueryBuilder('prato')
+            .innerJoin('prato.restaurante', 'restaurante')
+            .where('restaurante.id = :restauranteId', { restauranteId })
+            .getMany();
+    }
+    async getPratosComCategorias() {
+        return this.pratosRepository
+            .createQueryBuilder('prato')
+            .leftJoinAndSelect('prato.prato_categoria', 'categoria')
+            .getMany();
+    }
+    async getPratosPorCategoria(categoriaID) {
+        return this.pratosRepository
+            .createQueryBuilder('prato')
+            .innerJoin('prato.prato_categoria', 'categoria_prato')
+            .where('categoria_prato.id = :categoriaID', { categoriaID })
+            .getMany();
+    }
+    async getPratosAgrupadosPorCategoriaENome() {
+        return this.pratosRepository
+            .createQueryBuilder('prato')
+            .leftJoinAndSelect('prato.prato_categoria', 'categoria_prato')
+            .select(['categoria_prato.categoria', 'GROUP_CONCAT(prato.id) as ids'])
+            .groupBy('categoria_prato.categoria')
+            .getRawMany();
     }
 };
 exports.PratoService = PratoService = __decorate([

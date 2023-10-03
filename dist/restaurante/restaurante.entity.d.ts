@@ -3,6 +3,7 @@ export declare class RestauranteEntity {
     id: number;
     imagem: string;
     logo: string;
+    banner: string;
     titulo: string;
     avaliacao: number;
     tipoRefeicao: string;

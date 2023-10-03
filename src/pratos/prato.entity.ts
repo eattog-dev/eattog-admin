@@ -32,11 +32,15 @@ export class PratoEntity {
     @IsInt()
     restaurante: RestauranteEntity;
 
-    @OneToOne(() => CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato) // specify inverse side as a second parameter
+    @ManyToOne(() => CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato) // specify inverse side as a second parameter
     @JoinColumn()
     prato_categoria: CategoriaPratoEntity
 
     @Column('simple-array')
     @IsArray()
     ingredientes: string[];
+
+    @Column({ length: 255 })
+    @IsString()
+    descricao: string;
 }

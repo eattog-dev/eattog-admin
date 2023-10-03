@@ -28,6 +28,7 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
         const novoRestaurante = new restaurante_entity_1.RestauranteEntity();
         novoRestaurante.imagem = RestauranteDTO.imagem;
         novoRestaurante.logo = RestauranteDTO.logo;
+        novoRestaurante.banner = RestauranteDTO.banner;
         novoRestaurante.titulo = RestauranteDTO.titulo;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
@@ -46,6 +47,7 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
         }
         atualizarRestaurante.imagem = RestauranteDTO.imagem;
         atualizarRestaurante.logo = RestauranteDTO.logo;
+        atualizarRestaurante.banner = RestauranteDTO.banner;
         atualizarRestaurante.titulo = RestauranteDTO.titulo;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;

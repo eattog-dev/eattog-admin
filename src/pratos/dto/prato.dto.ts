@@ -13,6 +13,9 @@ export class PratoDto {
     @IsArray()
     ingredientes: string[];
 
+    @IsString()
+    descricao: string;
+
     @IsInt()
     restaurante: number;
 

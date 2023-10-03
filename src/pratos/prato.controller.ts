@@ -10,7 +10,7 @@ export class PratoController {
 
     @Get('pratos')
     async getPratos(): Promise<PratoEntity[]> {
-        return this.pratoService.getPratos();
+        return this.pratoService.getPratosComCategorias();
     }
 
     @Post('criar/prato')
@@ -35,4 +35,24 @@ export class PratoController {
     async deletePrato(@Param('id') id: number): Promise<DeleteResult> {
         return this.pratoService.deletePrato(id);
     }
+
+    @Get('pratos-restaurante/:restauranteId')
+    async getPratosPorRestaurante(@Param('restauranteId') restauranteId: number): Promise<PratoEntity[]> {
+        return this.pratoService.getPratosPorRestaurante(restauranteId);
+    }
+
+    @Get('pratos-por-categoria/:id')
+    async getPratosCategoria(@Param('id') id: number): Promise<PratoEntity[]> {
+        return this.pratoService.getPratosPorCategoria(id);
+    }
+    @Get('pratos-por-categoria/')
+    async getPratosCategoria1() {
+        return this.pratoService.getPratosAgrupadosPorCategoriaENome();
+    }
+    /*
+    @Get('pratos-por-categoria/:nome')
+    async getPratosCategoria(@Param('nome') nome: string): Promise<PratoEntity[]> {
+        return this.pratoService.getPratosPorCategoria(nome);
+    }
+    */
 }
