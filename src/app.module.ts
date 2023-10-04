@@ -19,7 +19,7 @@ import { RestauranteModule } from './restaurante/restaurante.module';
       port: 3306,
       username: 'root',
       password: '',
-      database: 'eattogg',
+      database: 'eattog',
       autoLoadEntities: true,
       synchronize: true,
     }),
