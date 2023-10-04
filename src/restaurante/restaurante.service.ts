@@ -24,6 +24,7 @@ export class RestauranteService {
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
         novoRestaurante.distancia = RestauranteDTO.distancia;
+        novoRestaurante.localizacao = RestauranteDTO.localizacao;
         novoRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         novoRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(novoRestaurante);
@@ -45,6 +46,7 @@ export class RestauranteService {
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
         atualizarRestaurante.distancia = RestauranteDTO.distancia;
+        atualizarRestaurante.localizacao = RestauranteDTO.localizacao;
         atualizarRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         atualizarRestaurante.descricao = RestauranteDTO.descricao;
 
