@@ -8,6 +8,7 @@ export declare class RestauranteEntity {
     avaliacao: number;
     tipoRefeicao: string;
     distancia: string;
+    localizacao: string;
     tipoRetirada: string;
     descricao: string;
     pratos: PratoEntity[];

@@ -19,7 +19,7 @@ const user_entity_1 = require("./user.entity");
 const typeorm_2 = require("typeorm");
 const jwt_1 = require("@nestjs/jwt");
 const session_dto_1 = require("./dto/session.dto");
-let UserService = exports.UserService = class UserService {
+let UserService = class UserService {
     constructor(usersRepository, jwtService) {
         this.usersRepository = usersRepository;
         this.jwtService = jwtService;
@@ -57,6 +57,7 @@ let UserService = exports.UserService = class UserService {
         return this.usersRepository.findOneBy({ id: id });
     }
 };
+exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),

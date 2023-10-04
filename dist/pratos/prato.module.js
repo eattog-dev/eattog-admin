@@ -14,8 +14,9 @@ const typeorm_1 = require("@nestjs/typeorm");
 const prato_service_1 = require("./prato.service");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
-let PratoModule = exports.PratoModule = class PratoModule {
+let PratoModule = class PratoModule {
 };
+exports.PratoModule = PratoModule;
 exports.PratoModule = PratoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([prato_entity_1.PratoEntity, restaurante_entity_1.RestauranteEntity, categoria_prato_entity_1.CategoriaPratoEntity])],

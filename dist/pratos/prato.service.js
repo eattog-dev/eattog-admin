@@ -19,7 +19,7 @@ const prato_entity_1 = require("./prato.entity");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
 const typeorm_2 = require("typeorm");
-let PratoService = exports.PratoService = class PratoService {
+let PratoService = class PratoService {
     constructor(pratosRepository, restauranteRepository, categoriaPratoRepository) {
         this.pratosRepository = pratosRepository;
         this.restauranteRepository = restauranteRepository;
@@ -80,6 +80,7 @@ let PratoService = exports.PratoService = class PratoService {
         return this.categoriaPratoRepository.find();
     }
 };
+exports.PratoService = PratoService;
 exports.PratoService = PratoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(prato_entity_1.PratoEntity)),

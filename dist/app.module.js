@@ -15,8 +15,9 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_module_1 = require("./users/user.module");
 const prato_module_1 = require("./pratos/prato.module");
 const restaurante_module_1 = require("./restaurante/restaurante.module");
-let AppModule = exports.AppModule = class AppModule {
+let AppModule = class AppModule {
 };
+exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
@@ -30,7 +31,7 @@ exports.AppModule = AppModule = __decorate([
                 port: 3306,
                 username: 'root',
                 password: '',
-                database: 'eattogg',
+                database: 'eattog',
                 autoLoadEntities: true,
                 synchronize: true,
             }),

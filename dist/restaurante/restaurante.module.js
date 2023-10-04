@@ -12,8 +12,9 @@ const restaurante_controller_1 = require("./restaurante.controller");
 const restaurante_entity_1 = require("./restaurante.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const restaurante_service_1 = require("./restaurante.service");
-let RestauranteModule = exports.RestauranteModule = class RestauranteModule {
+let RestauranteModule = class RestauranteModule {
 };
+exports.RestauranteModule = RestauranteModule;
 exports.RestauranteModule = RestauranteModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([restaurante_entity_1.RestauranteEntity])],

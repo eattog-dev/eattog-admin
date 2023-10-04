@@ -45,6 +45,10 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
+], RestauranteDTO.prototype, "localizacao", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], RestauranteDTO.prototype, "tipoRetirada", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),

@@ -13,8 +13,9 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_service_1 = require("./user.service");
 const jwt_1 = require("@nestjs/jwt");
 const user_controller_1 = require("./user.controller");
-let UserModule = exports.UserModule = class UserModule {
+let UserModule = class UserModule {
 };
+exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [

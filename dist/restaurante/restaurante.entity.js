@@ -13,8 +13,9 @@ exports.RestauranteEntity = void 0;
 const typeorm_1 = require("typeorm");
 const prato_entity_1 = require("../pratos/prato.entity");
 const class_validator_1 = require("class-validator");
-let RestauranteEntity = exports.RestauranteEntity = class RestauranteEntity {
+let RestauranteEntity = class RestauranteEntity {
 };
+exports.RestauranteEntity = RestauranteEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -61,6 +62,12 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "distancia", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "localizacao", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     (0, class_validator_1.IsNotEmpty)(),

@@ -45,6 +45,11 @@ export class RestauranteEntity {
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty()
     @IsString()
+    localizacao: string;
+
+    @Column({ type: 'varchar', length: 255 })
+    @IsNotEmpty()
+    @IsString()
     tipoRetirada: string;
 
     @Column({ type: 'text' })

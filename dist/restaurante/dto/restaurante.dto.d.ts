@@ -6,6 +6,7 @@ export declare class RestauranteDTO {
     avaliacao: number;
     tipoRefeicao: string;
     distancia: string;
+    localizacao: string;
     tipoRetirada: string;
     descricao: string;
 }

@@ -16,7 +16,7 @@ exports.PratoController = void 0;
 const common_1 = require("@nestjs/common");
 const prato_dto_1 = require("./dto/prato.dto");
 const prato_service_1 = require("./prato.service");
-let PratoController = exports.PratoController = class PratoController {
+let PratoController = class PratoController {
     constructor(pratoService) {
         this.pratoService = pratoService;
     }
@@ -42,6 +42,7 @@ let PratoController = exports.PratoController = class PratoController {
         return this.pratoService.getPratosPorCategoria();
     }
 };
+exports.PratoController = PratoController;
 __decorate([
     (0, common_1.Get)('pratos'),
     __metadata("design:type", Function),

@@ -18,7 +18,7 @@ const http_1 = require("@nestjs/common/decorators/http");
 const session_guard_1 = require("./session.guard");
 const user_service_1 = require("./user.service");
 const user_dto_1 = require("./dto/user.dto");
-let UsersController = exports.UsersController = class UsersController {
+let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
     }
@@ -36,6 +36,7 @@ let UsersController = exports.UsersController = class UsersController {
         return this.userService.signIn(signInUser);
     }
 };
+exports.UsersController = UsersController;
 __decorate([
     (0, common_1.UseGuards)(session_guard_1.AuthGuard),
     (0, common_1.Get)('meu-perfil'),

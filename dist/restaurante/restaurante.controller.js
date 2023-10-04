@@ -16,7 +16,7 @@ exports.RestauranteController = void 0;
 const common_1 = require("@nestjs/common");
 const restaurante_dto_1 = require("./dto/restaurante.dto");
 const restaurante_service_1 = require("./restaurante.service");
-let RestauranteController = exports.RestauranteController = class RestauranteController {
+let RestauranteController = class RestauranteController {
     constructor(restauranteService) {
         this.restauranteService = restauranteService;
     }
@@ -36,6 +36,7 @@ let RestauranteController = exports.RestauranteController = class RestauranteCon
         return this.restauranteService.deleteRestaurante(id);
     }
 };
+exports.RestauranteController = RestauranteController;
 __decorate([
     (0, common_1.Get)('/restaurantes'),
     __metadata("design:type", Function),

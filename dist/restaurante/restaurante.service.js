@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const restaurante_entity_1 = require("./restaurante.entity");
 const typeorm_2 = require("typeorm");
-let RestauranteService = exports.RestauranteService = class RestauranteService {
+let RestauranteService = class RestauranteService {
     constructor(restauranteRepository) {
         this.restauranteRepository = restauranteRepository;
     }
@@ -33,6 +33,7 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
         novoRestaurante.distancia = RestauranteDTO.distancia;
+        novoRestaurante.localizacao = RestauranteDTO.localizacao;
         novoRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         novoRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(novoRestaurante);
@@ -52,6 +53,7 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
         atualizarRestaurante.distancia = RestauranteDTO.distancia;
+        atualizarRestaurante.localizacao = RestauranteDTO.localizacao;
         atualizarRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         atualizarRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(atualizarRestaurante);
@@ -60,6 +62,7 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
         return this.restauranteRepository.delete(id);
     }
 };
+exports.RestauranteService = RestauranteService;
 exports.RestauranteService = RestauranteService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(restaurante_entity_1.RestauranteEntity)),

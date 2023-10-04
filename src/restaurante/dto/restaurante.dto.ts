@@ -23,6 +23,9 @@ export class RestauranteDTO {
     distancia: string;
 
     @IsString()
+    localizacao: string;
+
+    @IsString()
     tipoRetirada: string;
 
     @IsString()
