@@ -15,6 +15,5 @@ export declare class PratoService {
     deletePrato(id: number): Promise<DeleteResult>;
     getPratosPorRestaurante(restauranteId: number): Promise<PratoEntity[]>;
     getPratosComCategorias(): Promise<PratoEntity[]>;
-    getPratosPorCategoria(categoriaID: number): Promise<PratoEntity[]>;
-    getPratosAgrupadosPorCategoriaENome(): Promise<PratoEntity[]>;
+    getPratosPorCategoria(): Promise<CategoriaPratoEntity[]>;
 }

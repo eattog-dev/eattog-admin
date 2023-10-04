@@ -76,20 +76,8 @@ let PratoService = exports.PratoService = class PratoService {
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
             .getMany();
     }
-    async getPratosPorCategoria(categoriaID) {
-        return this.pratosRepository
-            .createQueryBuilder('prato')
-            .innerJoin('prato.prato_categoria', 'categoria_prato')
-            .where('categoria_prato.id = :categoriaID', { categoriaID })
-            .getMany();
-    }
-    async getPratosAgrupadosPorCategoriaENome() {
-        return this.pratosRepository
-            .createQueryBuilder('prato')
-            .leftJoinAndSelect('prato.prato_categoria', 'categoria_prato')
-            .select(['categoria_prato.categoria', 'GROUP_CONCAT(prato.id) as ids'])
-            .groupBy('categoria_prato.categoria')
-            .getRawMany();
+    async getPratosPorCategoria() {
+        return this.categoriaPratoRepository.find();
     }
 };
 exports.PratoService = PratoService = __decorate([

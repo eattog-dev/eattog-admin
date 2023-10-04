@@ -77,44 +77,17 @@ export class PratoService {
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
             .getMany();
     }
-    async getPratosPorCategoria (categoriaID: number): Promise<PratoEntity[]>{
-        return this.pratosRepository
-            .createQueryBuilder('prato')
-            .innerJoin('prato.prato_categoria', 'categoria_prato')
-            .where('categoria_prato.id = :categoriaID', { categoriaID })
-            .getMany();
-    }
-    async getPratosAgrupadosPorCategoriaENome(): Promise<PratoEntity[]> {
-        return this.pratosRepository
-              .createQueryBuilder('p')
-      .select([
-        'p.nome',
-        'p.valor',
-        'p.imagem',
-        'p.desconto',
-        'p.valor_desconto',
-        'p.ingredientes',
-        'p.descricao',
-        'cp.categoria',
-      ])
-      .innerJoin('p.categoria', 'cp')
-      .getRawMany();    
-        //   .createQueryBuilder('prato')
-        //   .leftJoinAndSelect('prato.prato_categoria', 'categoria_prato')
-        //   .select(['categoria_prato.categoria', 'GROUP_CONCAT(prato.id) as ids'])
-        // //   .from(PratoEntity, 'prato_categoria')
-        //   .groupBy('categoria_prato.categoria')
-        //   .getRawMany();
+    // async getPratosPorCategoria (categoriaID: number): Promise<PratoEntity[]>{
+    //     return this.pratosRepository
+    //         .createQueryBuilder('prato')
+    //         .innerJoin('prato.prato_categoria', 'categoria_prato')
+    //         .where('categoria_prato.id = :categoriaID', { categoriaID })
+    //         .getMany();
+    // }
+    async getPratosPorCategoria(): Promise<CategoriaPratoEntity[]> {
+        return this.categoriaPratoRepository.find();    
       }
-    /*
-    async getPratosPorCategoria (categoriaNome: string): Promise<PratoEntity[]>{
-        return this.pratosRepository
-            .createQueryBuilder('prato')
-            .innerJoin('prato.prato_categoria', 'categoria_prato')
-            .where('categoria_prato.categoria = :categoriaNome', { categoriaNome })
-            .getMany();
-    }
-    */
+
 }
 
 

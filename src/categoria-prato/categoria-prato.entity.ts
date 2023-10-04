@@ -11,7 +11,9 @@ export class CategoriaPratoEntity {
     @IsString()
     categoria: string;
 
-    @OneToMany(() => PratoEntity, prato_categoria => prato_categoria.prato_categoria)
+    @OneToMany(() => PratoEntity, prato_categoria => prato_categoria.prato_categoria, {
+        eager: true
+    })
     @IsInt()
-    categoria_prato: CategoriaPratoEntity;
+    categoria_prato: [CategoriaPratoEntity];
 }

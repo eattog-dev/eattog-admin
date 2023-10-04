@@ -38,11 +38,8 @@ let PratoController = exports.PratoController = class PratoController {
     async getPratosPorRestaurante(restauranteId) {
         return this.pratoService.getPratosPorRestaurante(restauranteId);
     }
-    async getPratosCategoria(id) {
-        return this.pratoService.getPratosPorCategoria(id);
-    }
-    async getPratosCategoria1() {
-        return this.pratoService.getPratosAgrupadosPorCategoriaENome();
+    async getPratosCategoria() {
+        return this.pratoService.getPratosPorCategoria();
     }
 };
 __decorate([
@@ -88,18 +85,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosPorRestaurante", null);
 __decorate([
-    (0, common_1.Get)('pratos-por-categoria/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], PratoController.prototype, "getPratosCategoria", null);
-__decorate([
     (0, common_1.Get)('pratos-por-categoria/'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], PratoController.prototype, "getPratosCategoria1", null);
+], PratoController.prototype, "getPratosCategoria", null);
 exports.PratoController = PratoController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [prato_service_1.PratoService])

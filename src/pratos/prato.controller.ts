@@ -41,18 +41,9 @@ export class PratoController {
         return this.pratoService.getPratosPorRestaurante(restauranteId);
     }
 
-    @Get('pratos-por-categoria/:id')
-    async getPratosCategoria(@Param('id') id: number): Promise<PratoEntity[]> {
-        return this.pratoService.getPratosPorCategoria(id);
-    }
     @Get('pratos-por-categoria/')
-    async getPratosCategoria1() {
-        return this.pratoService.getPratosAgrupadosPorCategoriaENome();
+    async getPratosCategoria() {
+        return this.pratoService.getPratosPorCategoria();
     }
-    /*
-    @Get('pratos-por-categoria/:nome')
-    async getPratosCategoria(@Param('nome') nome: string): Promise<PratoEntity[]> {
-        return this.pratoService.getPratosPorCategoria(nome);
-    }
-    */
+
 }
