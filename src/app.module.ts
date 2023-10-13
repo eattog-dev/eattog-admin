@@ -1,3 +1,4 @@
+import { ListaModule } from './listaCompras/lista.module';
 import { CategoriaPratoModule } from './categoria-prato/categoria-prato.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -9,6 +10,7 @@ import { RestauranteModule } from './restaurante/restaurante.module';
 
 @Module({
   imports: [
+    ListaModule,
     CategoriaPratoModule,
     UserModule,
     PratoModule,

@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { IsString, IsNumber, IsArray, IsInt, IsIn, IsBoolean } from 'class-validator';
 import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
+import { ItemEntity } from 'src/listaCompras/entities/item.entity';
 
 @Entity('pratos')
 export class PratoEntity {
@@ -35,6 +36,9 @@ export class PratoEntity {
     @ManyToOne(() => CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato) // specify inverse side as a second parameter
     @JoinColumn()
     prato_categoria: CategoriaPratoEntity
+
+    @OneToMany(() => ItemEntity, (item) => item.prato)
+    items: ItemEntity[]
 
     @Column('simple-array')
     @IsArray()
