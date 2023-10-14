@@ -79,6 +79,36 @@ let PratoService = exports.PratoService = class PratoService {
     async getPratosPorCategoria() {
         return this.categoriaPratoRepository.find();
     }
+    async pratosPorPagina(restauranteId, pagina) {
+        const perPage = 2;
+        const qtdItensExibidos = (pagina - 1) * perPage;
+        const itensPaginaAtual = await this.pratosRepository
+            .createQueryBuilder('pratos')
+            .innerJoin('pratos.restaurante', 'restaurante')
+            .where('restaurante.id = :restauranteId ', { restauranteId })
+            .offset((pagina - 1) * perPage)
+            .limit(perPage)
+            .getMany();
+        const qtdItens = await this.qtdPratosRestaurante(restauranteId);
+        let itensExibir = qtdItens > qtdItensExibidos;
+        console.log(itensPaginaAtual);
+        return { itensExibir, itensPaginaAtual };
+    }
+    async qtdPratosRestaurante(restauranteId) {
+        const itens = await this.pratosRepository
+            .createQueryBuilder('prato')
+            .innerJoin('prato.restaurante', 'restaurante')
+            .where('restaurante.id = :restauranteId ', { restauranteId })
+            .select("COUNT(prato.id)", "count")
+            .getRawOne();
+        return itens.count;
+    }
+    async verificaItens(restauranteId, pagina) {
+        const perPage = 2;
+        const qtdItensExibidos = (pagina - 1) * perPage;
+        const qtdItens = await this.qtdPratosRestaurante(restauranteId);
+        return qtdItens > qtdItensExibidos;
+    }
 };
 exports.PratoService = PratoService = __decorate([
     (0, common_1.Injectable)(),

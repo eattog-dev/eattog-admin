@@ -41,6 +41,12 @@ let PratoController = exports.PratoController = class PratoController {
     async getPratosCategoria() {
         return this.pratoService.getPratosPorCategoria();
     }
+    async getPratosPorPagina(restauranteId, pagina) {
+        return this.pratoService.pratosPorPagina(restauranteId, pagina);
+    }
+    async countPratos(restauranteId, pagina) {
+        return this.pratoService.verificaItens(restauranteId, pagina);
+    }
 };
 __decorate([
     (0, common_1.Get)('pratos'),
@@ -90,6 +96,22 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosCategoria", null);
+__decorate([
+    (0, common_1.Get)('pagina-cardapio/:restauranteId/:pagina'),
+    __param(0, (0, common_1.Param)('restauranteId')),
+    __param(1, (0, common_1.Param)('pagina')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosPorPagina", null);
+__decorate([
+    (0, common_1.Get)('prox-pagina/:restauranteId/:pagina'),
+    __param(0, (0, common_1.Param)('restauranteId')),
+    __param(1, (0, common_1.Param)('pagina')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "countPratos", null);
 exports.PratoController = PratoController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [prato_service_1.PratoService])

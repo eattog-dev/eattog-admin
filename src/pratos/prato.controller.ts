@@ -46,4 +46,13 @@ export class PratoController {
         return this.pratoService.getPratosPorCategoria();
     }
 
+    @Get('pagina-cardapio/:restauranteId/:pagina')
+    async getPratosPorPagina(@Param('restauranteId') restauranteId: number, @Param('pagina')  pagina: number) {
+        return this.pratoService.pratosPorPagina(restauranteId, pagina);
+    }
+
+    @Get('prox-pagina/:restauranteId/:pagina')
+    async countPratos(@Param('restauranteId') restauranteId: number, @Param('pagina')  pagina: number) {
+        return this.pratoService.verificaItens(restauranteId, pagina);
+    }
 }

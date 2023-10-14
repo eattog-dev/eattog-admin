@@ -77,17 +77,51 @@ export class PratoService {
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
             .getMany();
     }
-    // async getPratosPorCategoria (categoriaID: number): Promise<PratoEntity[]>{
-    //     return this.pratosRepository
-    //         .createQueryBuilder('prato')
-    //         .innerJoin('prato.prato_categoria', 'categoria_prato')
-    //         .where('categoria_prato.id = :categoriaID', { categoriaID })
-    //         .getMany();
-    // }
     async getPratosPorCategoria(): Promise<CategoriaPratoEntity[]> {
-        return this.categoriaPratoRepository.find();    
-      }
+        return this.categoriaPratoRepository.find();
+    }
 
+    async pratosPorPagina(restauranteId: number, pagina: number) {
+        const perPage = 2;
+        const qtdItensExibidos = (pagina - 1) * perPage;
+       
+        const itensPaginaAtual = await this.pratosRepository
+        .createQueryBuilder('pratos')
+        .innerJoin('pratos.restaurante', 'restaurante') 
+        .where('restaurante.id = :restauranteId ', { restauranteId  })
+        .offset((pagina - 1) * perPage)
+        .limit(perPage)
+        .getMany()  
+
+        const qtdItens = await this.qtdPratosRestaurante(restauranteId)
+
+        let itensExibir = qtdItens > qtdItensExibidos
+
+        console.log(itensPaginaAtual)
+
+        return {itensExibir, itensPaginaAtual }
+
+    }
+
+    async qtdPratosRestaurante (restauranteId: number ): Promise<number> {
+        const itens = await this.pratosRepository
+        .createQueryBuilder('prato')
+        .innerJoin('prato.restaurante', 'restaurante')
+        .where('restaurante.id = :restauranteId ', { restauranteId  })
+        .select("COUNT(prato.id)", "count")
+        .getRawOne();
+        
+        return itens.count
+    }
+
+    async verificaItens (restauranteId: number, pagina: number) {
+        const perPage = 2;
+        const qtdItensExibidos = (pagina - 1) * perPage;
+       
+        const qtdItens = await this.qtdPratosRestaurante(restauranteId)
+
+        return qtdItens > qtdItensExibidos
+    }
 }
 
 

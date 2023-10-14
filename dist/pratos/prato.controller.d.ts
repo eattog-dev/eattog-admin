@@ -12,4 +12,9 @@ export declare class PratoController {
     deletePrato(id: number): Promise<DeleteResult>;
     getPratosPorRestaurante(restauranteId: number): Promise<PratoEntity[]>;
     getPratosCategoria(): Promise<import("../categoria-prato/categoria-prato.entity").CategoriaPratoEntity[]>;
+    getPratosPorPagina(restauranteId: number, pagina: number): Promise<{
+        itensExibir: boolean;
+        itensPaginaAtual: PratoEntity[];
+    }>;
+    countPratos(restauranteId: number, pagina: number): Promise<boolean>;
 }
