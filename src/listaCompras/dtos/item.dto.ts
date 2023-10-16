@@ -1,3 +1,3 @@
 export interface ItemDto {
-    produtoId: number;
+    pratoId: number;
 }
