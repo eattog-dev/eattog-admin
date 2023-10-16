@@ -46,6 +46,21 @@ export class PratoController {
         return this.pratoService.getPratosPorCategoria();
     }
 
+    @Get('pratos-categoria/:id')
+    async getPratosUCategoria(@Param('id') id: number) {
+        return this.pratoService.getPratosUmaCategoria(id);
+    }
+
+   @Get('qtd-categorias/:id')
+   async getPratosCategoriaLimitado(@Param('id') id: number) {
+       return this.pratoService.qtdCategorias(id);
+   }
+
+   @Get('pagina-categoria/:categoriaID/:pagina')
+   async getCategoriaPagina(@Param('categoriaID') categoriaID: number, @Param('pagina')  pagina: number) {
+       return this.pratoService.getCategoriasComPratoPagina(1, 1);
+   }
+
     @Get('pagina-cardapio/:restauranteId/:pagina')
     async getPratosPorPagina(@Param('restauranteId') restauranteId: number, @Param('pagina')  pagina: number) {
         return this.pratoService.pratosPorPagina(restauranteId, pagina);
@@ -53,6 +68,6 @@ export class PratoController {
 
     @Get('prox-pagina/:restauranteId/:pagina')
     async countPratos(@Param('restauranteId') restauranteId: number, @Param('pagina')  pagina: number) {
-        return this.pratoService.verificaItens(restauranteId, pagina);
+        return this.pratoService.verificaPaginacaoPratos(restauranteId, pagina);
     }
 }

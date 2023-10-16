@@ -59,6 +59,23 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
     async deleteRestaurante(id) {
         return this.restauranteRepository.delete(id);
     }
+    async qtdRestaurantes() {
+        return await this.restauranteRepository.count();
+    }
+    async restaurantesPorPagina(pagina) {
+        const perPage = 3;
+        return await this.restauranteRepository
+            .createQueryBuilder('restaurantes')
+            .offset((pagina - 1) * perPage)
+            .limit(perPage)
+            .getMany();
+    }
+    async verificaPaginacaoRestaurante(pagina) {
+        const perPage = 3;
+        const itensExibidos = (pagina - 1) * perPage;
+        const qtdItens = await this.qtdRestaurantes();
+        return qtdItens > itensExibidos;
+    }
 };
 exports.RestauranteService = RestauranteService = __decorate([
     (0, common_1.Injectable)(),

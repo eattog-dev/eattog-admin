@@ -41,11 +41,20 @@ let PratoController = exports.PratoController = class PratoController {
     async getPratosCategoria() {
         return this.pratoService.getPratosPorCategoria();
     }
+    async getPratosUCategoria(id) {
+        return this.pratoService.getPratosUmaCategoria(id);
+    }
+    async getPratosCategoriaLimitado(id) {
+        return this.pratoService.qtdCategorias(id);
+    }
+    async getCategoriaPagina(categoriaID, pagina) {
+        return this.pratoService.getCategoriasComPratoPagina(1, 1);
+    }
     async getPratosPorPagina(restauranteId, pagina) {
         return this.pratoService.pratosPorPagina(restauranteId, pagina);
     }
     async countPratos(restauranteId, pagina) {
-        return this.pratoService.verificaItens(restauranteId, pagina);
+        return this.pratoService.verificaPaginacaoPratos(restauranteId, pagina);
     }
 };
 __decorate([
@@ -96,6 +105,28 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosCategoria", null);
+__decorate([
+    (0, common_1.Get)('pratos-categoria/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosUCategoria", null);
+__decorate([
+    (0, common_1.Get)('qtd-categorias/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosCategoriaLimitado", null);
+__decorate([
+    (0, common_1.Get)('pagina-categoria/:categoriaID/:pagina'),
+    __param(0, (0, common_1.Param)('categoriaID')),
+    __param(1, (0, common_1.Param)('pagina')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getCategoriaPagina", null);
 __decorate([
     (0, common_1.Get)('pagina-cardapio/:restauranteId/:pagina'),
     __param(0, (0, common_1.Param)('restauranteId')),

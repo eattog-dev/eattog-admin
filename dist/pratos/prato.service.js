@@ -74,25 +74,18 @@ let PratoService = exports.PratoService = class PratoService {
         return this.pratosRepository
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
+            .limit(6)
             .getMany();
-    }
-    async getPratosPorCategoria() {
-        return this.categoriaPratoRepository.find();
     }
     async pratosPorPagina(restauranteId, pagina) {
         const perPage = 2;
-        const qtdItensExibidos = (pagina - 1) * perPage;
-        const itensPaginaAtual = await this.pratosRepository
+        return await this.pratosRepository
             .createQueryBuilder('pratos')
             .innerJoin('pratos.restaurante', 'restaurante')
             .where('restaurante.id = :restauranteId ', { restauranteId })
             .offset((pagina - 1) * perPage)
             .limit(perPage)
             .getMany();
-        const qtdItens = await this.qtdPratosRestaurante(restauranteId);
-        let itensExibir = qtdItens > qtdItensExibidos;
-        console.log(itensPaginaAtual);
-        return { itensExibir, itensPaginaAtual };
     }
     async qtdPratosRestaurante(restauranteId) {
         const itens = await this.pratosRepository
@@ -103,10 +96,34 @@ let PratoService = exports.PratoService = class PratoService {
             .getRawOne();
         return itens.count;
     }
-    async verificaItens(restauranteId, pagina) {
+    async verificaPaginacaoPratos(restauranteId, pagina) {
         const perPage = 2;
         const qtdItensExibidos = (pagina - 1) * perPage;
         const qtdItens = await this.qtdPratosRestaurante(restauranteId);
+        return qtdItens > qtdItensExibidos;
+    }
+    async getCategoriasComPratoPagina(categoriaID, pagina) {
+        return this.getPratosPorCategoria();
+    }
+    async getPratosPorCategoria() {
+        return this.categoriaPratoRepository.find();
+    }
+    async getPratosUmaCategoria(id) {
+        return await this.categoriaPratoRepository.findOneBy({ id: id });
+    }
+    async qtdCategorias(categoriaID) {
+        const itens = await this.categoriaPratoRepository
+            .createQueryBuilder('categoria')
+            .innerJoin('categoria.categoria_prato', 'categoria_prato')
+            .where('categoria.id = :categoriaID ', { categoriaID })
+            .select("COUNT(categoria.id)", "count")
+            .getRawOne();
+        return itens.count;
+    }
+    async verificaPaginacaoCategorias(categoriaID, pagina) {
+        const perPage = 2;
+        const qtdItensExibidos = (pagina - 1) * perPage;
+        const qtdItens = await this.qtdCategorias(categoriaID);
         return qtdItens > qtdItensExibidos;
     }
 };

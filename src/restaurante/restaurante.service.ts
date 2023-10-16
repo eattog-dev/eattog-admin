@@ -54,4 +54,30 @@ export class RestauranteService {
     async deleteRestaurante(id: number): Promise<DeleteResult> {
         return this.restauranteRepository.delete(id);
     }
+
+    //conta a quantidade de restaurantes
+    async qtdRestaurantes(){
+        return await this.restauranteRepository.count()
+    }
+    
+    //retorna de forma paginada x quantidade de restaurantes
+    async restaurantesPorPagina(pagina: number) : Promise<RestauranteEntity[]>{
+        const perPage = 3
+
+        return await this.restauranteRepository
+        .createQueryBuilder('restaurantes')
+        .offset((pagina - 1) * perPage)
+        .limit(perPage)
+        .getMany()
+    }
+
+    //verifica se há itens a serem exibidos na página x
+    async verificaPaginacaoRestaurante(pagina: number) : Promise<Boolean> {
+        const perPage = 3
+        const itensExibidos = (pagina - 1) * perPage;
+
+        const qtdItens = await this.qtdRestaurantes();
+
+        return qtdItens > itensExibidos
+    }
 }

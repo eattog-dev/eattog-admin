@@ -70,55 +70,101 @@ export class PratoService {
             .getMany();
     }
 
+
     async getPratosComCategorias(): Promise<PratoEntity[]> {
         //return this.pratosRepository.find();
+
         return this.pratosRepository
-            .createQueryBuilder('prato')
-            .leftJoinAndSelect('prato.prato_categoria', 'categoria')
-            .getMany();
+        .createQueryBuilder('prato')
+        .leftJoinAndSelect('prato.prato_categoria', 'categoria')
+        .limit(6)
+        .getMany();
     }
+
+
+    //retorna x pratos por paginaçao 
+    async pratosPorPagina(restauranteId: number, pagina: number) {
+        const perPage = 2;
+
+        return await this.pratosRepository
+            .createQueryBuilder('pratos')
+            .innerJoin('pratos.restaurante', 'restaurante')
+            .where('restaurante.id = :restauranteId ', { restauranteId })
+            .offset((pagina - 1) * perPage)
+            .limit(perPage)
+            .getMany()
+    }
+
+    //retorna a quantidade de pratos do restaurante
+    async qtdPratosRestaurante(restauranteId: number): Promise<number> {
+        const itens = await this.pratosRepository
+            .createQueryBuilder('prato')
+            .innerJoin('prato.restaurante', 'restaurante')
+            .where('restaurante.id = :restauranteId ', { restauranteId })
+            .select("COUNT(prato.id)", "count")
+            .getRawOne();
+
+        return itens.count
+    }
+
+    //retorna se há pratos a serem paginados 
+    async verificaPaginacaoPratos(restauranteId: number, pagina: number): Promise<Boolean> {
+        const perPage = 2;
+        const qtdItensExibidos = (pagina - 1) * perPage;
+
+        const qtdItens = await this.qtdPratosRestaurante(restauranteId)
+
+        return qtdItens > qtdItensExibidos
+    }
+
+    async getCategoriasComPratoPagina(categoriaID: number, pagina: number): Promise<CategoriaPratoEntity[]> {
+        //     const perPage = 2;
+
+        //     const categoriaPratos = await this.categoriaPratoRepository
+        //     .createQueryBuilder('categoriaPrato')
+        //     .leftJoinAndSelect('categoriaPrato.id', 'id')
+        //     //.where('categoriaPrato.id = :categoriaID ', { categoriaID })
+        //     //.limit(3) // Limita a 3 categorias
+        //     .getMany();
+
+        //   // Limita a 3 pratos por categoria
+        // //   categoriaPratos.forEach((categoriaPrato) => {
+        // //     categoriaPrato = categoriaPrato.slice(0, 3);
+        // //   });
+
+        //   return categoriaPratos;
+        return this.getPratosPorCategoria()
+
+    }
+
+    //retorna todos pratos de todas categorias separadamente 
     async getPratosPorCategoria(): Promise<CategoriaPratoEntity[]> {
         return this.categoriaPratoRepository.find();
     }
 
-    async pratosPorPagina(restauranteId: number, pagina: number) {
-        const perPage = 2;
-        const qtdItensExibidos = (pagina - 1) * perPage;
-       
-        const itensPaginaAtual = await this.pratosRepository
-        .createQueryBuilder('pratos')
-        .innerJoin('pratos.restaurante', 'restaurante') 
-        .where('restaurante.id = :restauranteId ', { restauranteId  })
-        .offset((pagina - 1) * perPage)
-        .limit(perPage)
-        .getMany()  
-
-        const qtdItens = await this.qtdPratosRestaurante(restauranteId)
-
-        let itensExibir = qtdItens > qtdItensExibidos
-
-        console.log(itensPaginaAtual)
-
-        return {itensExibir, itensPaginaAtual }
-
+    //retorna todos os pratos de uma categoria especifica 
+    async getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity> {
+        return await this.categoriaPratoRepository.findOneBy({ id: id });
     }
 
-    async qtdPratosRestaurante (restauranteId: number ): Promise<number> {
-        const itens = await this.pratosRepository
-        .createQueryBuilder('prato')
-        .innerJoin('prato.restaurante', 'restaurante')
-        .where('restaurante.id = :restauranteId ', { restauranteId  })
-        .select("COUNT(prato.id)", "count")
-        .getRawOne();
-        
+    //retorna a quantidade de categorias
+    async qtdCategorias(categoriaID: number): Promise<number> {
+        const itens = await this.categoriaPratoRepository
+            .createQueryBuilder('categoria')
+            .innerJoin('categoria.categoria_prato', 'categoria_prato')
+            .where('categoria.id = :categoriaID ', { categoriaID })
+            .select("COUNT(categoria.id)", "count")
+            .getRawOne();
+
         return itens.count
     }
 
-    async verificaItens (restauranteId: number, pagina: number) {
+    //retorna se há categorias a serem paginadas
+    async verificaPaginacaoCategorias(categoriaID: number, pagina: number): Promise<Boolean> {
         const perPage = 2;
         const qtdItensExibidos = (pagina - 1) * perPage;
-       
-        const qtdItens = await this.qtdPratosRestaurante(restauranteId)
+
+        const qtdItens = await this.qtdCategorias(categoriaID)
 
         return qtdItens > qtdItensExibidos
     }

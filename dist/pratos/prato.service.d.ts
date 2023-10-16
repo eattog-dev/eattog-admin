@@ -15,11 +15,12 @@ export declare class PratoService {
     deletePrato(id: number): Promise<DeleteResult>;
     getPratosPorRestaurante(restauranteId: number): Promise<PratoEntity[]>;
     getPratosComCategorias(): Promise<PratoEntity[]>;
-    getPratosPorCategoria(): Promise<CategoriaPratoEntity[]>;
-    pratosPorPagina(restauranteId: number, pagina: number): Promise<{
-        itensExibir: boolean;
-        itensPaginaAtual: PratoEntity[];
-    }>;
+    pratosPorPagina(restauranteId: number, pagina: number): Promise<PratoEntity[]>;
     qtdPratosRestaurante(restauranteId: number): Promise<number>;
-    verificaItens(restauranteId: number, pagina: number): Promise<boolean>;
+    verificaPaginacaoPratos(restauranteId: number, pagina: number): Promise<Boolean>;
+    getCategoriasComPratoPagina(categoriaID: number, pagina: number): Promise<CategoriaPratoEntity[]>;
+    getPratosPorCategoria(): Promise<CategoriaPratoEntity[]>;
+    getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity>;
+    qtdCategorias(categoriaID: number): Promise<number>;
+    verificaPaginacaoCategorias(categoriaID: number, pagina: number): Promise<Boolean>;
 }
