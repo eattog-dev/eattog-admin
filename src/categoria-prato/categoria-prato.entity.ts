@@ -4,6 +4,9 @@ import { PratoEntity } from 'src/pratos/prato.entity';
 
 @Entity('categoria_prato')
 export class CategoriaPratoEntity {
+    slice(arg0: number, arg1: number): CategoriaPratoEntity {
+        throw new Error('Method not implemented.');
+    }
     @PrimaryGeneratedColumn()
     id: number;
 
