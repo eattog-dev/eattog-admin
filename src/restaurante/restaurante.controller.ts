@@ -36,4 +36,18 @@ export class RestauranteController {
     return this.restauranteService.deleteRestaurante(id);
   }
 
+  @Get('qtdRestaurantes/')
+  quantidadeRestaurantes(){
+    return this.restauranteService.qtdRestaurantes()
+  }
+
+  @Get('restaurantes/:pagina')
+  restaurantesPagina(@Param('pagina') pagina: number): Promise<RestauranteEntity[]> {
+    return this.restauranteService.restaurantesPorPagina(pagina);
+  }
+
+  @Get('restaurantes-prox-pagina/:pagina')
+  restaurantesProxPagina(@Param('pagina') pagina: number): Promise<Boolean> {
+    return this.restauranteService.verificaPaginacaoRestaurante(pagina);
+  }
 }
