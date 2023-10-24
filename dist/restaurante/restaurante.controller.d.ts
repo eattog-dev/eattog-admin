@@ -10,4 +10,7 @@ export declare class RestauranteController {
     getRestaurante(id: number): Promise<RestauranteEntity>;
     editRestaurante(id: number, restaurante: RestauranteDTO): Promise<RestauranteEntity>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
+    quantidadeRestaurantes(): Promise<number>;
+    restaurantesPagina(pagina: number): Promise<RestauranteEntity[]>;
+    restaurantesProxPagina(pagina: number): Promise<Boolean>;
 }

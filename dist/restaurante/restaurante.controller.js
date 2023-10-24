@@ -35,6 +35,15 @@ let RestauranteController = exports.RestauranteController = class RestauranteCon
     deleteRestaurante(id) {
         return this.restauranteService.deleteRestaurante(id);
     }
+    quantidadeRestaurantes() {
+        return this.restauranteService.qtdRestaurantes();
+    }
+    restaurantesPagina(pagina) {
+        return this.restauranteService.restaurantesPorPagina(pagina);
+    }
+    restaurantesProxPagina(pagina) {
+        return this.restauranteService.verificaPaginacaoRestaurante(pagina);
+    }
 };
 __decorate([
     (0, common_1.Get)('/restaurantes'),
@@ -71,6 +80,26 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "deleteRestaurante", null);
+__decorate([
+    (0, common_1.Get)('qtdRestaurantes/'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], RestauranteController.prototype, "quantidadeRestaurantes", null);
+__decorate([
+    (0, common_1.Get)('restaurantes/:pagina'),
+    __param(0, (0, common_1.Param)('pagina')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], RestauranteController.prototype, "restaurantesPagina", null);
+__decorate([
+    (0, common_1.Get)('restaurantes-prox-pagina/:pagina'),
+    __param(0, (0, common_1.Param)('pagina')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], RestauranteController.prototype, "restaurantesProxPagina", null);
 exports.RestauranteController = RestauranteController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [restaurante_service_1.RestauranteService])

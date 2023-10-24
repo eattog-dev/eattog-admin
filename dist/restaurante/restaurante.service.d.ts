@@ -9,4 +9,7 @@ export declare class RestauranteService {
     getRestaurante(id: number): Promise<RestauranteEntity | undefined>;
     editRestaurante(id: number, RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity | undefined>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
+    qtdRestaurantes(): Promise<number>;
+    restaurantesPorPagina(pagina: number): Promise<RestauranteEntity[]>;
+    verificaPaginacaoRestaurante(pagina: number): Promise<Boolean>;
 }
