@@ -32,7 +32,7 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => prato_entity_1.PratoEntity, prato_categoria => prato_categoria.prato_categoria, {
         eager: true
     }),
-    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A categoria_prato não pode ser nula.' }),
     __metadata("design:type", Array)
 ], CategoriaPratoEntity.prototype, "categoria_prato", void 0);
 exports.CategoriaPratoEntity = CategoriaPratoEntity = __decorate([

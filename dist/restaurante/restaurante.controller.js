@@ -47,7 +47,6 @@ let RestauranteController = class RestauranteController {
 };
 exports.RestauranteController = RestauranteController;
 __decorate([
-    (0, common_1.UseGuards)(),
     (0, common_1.Get)('/restaurantes'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

@@ -25,11 +25,13 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ length: 255 }),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O nome do prato não pode ser nulo.' }),
     __metadata("design:type", String)
 ], PratoEntity.prototype, "nome", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O valor do prato não pode ser nulo.' }),
     __metadata("design:type", Number)
 ], PratoEntity.prototype, "valor", void 0);
 __decorate([
@@ -50,11 +52,13 @@ __decorate([
 __decorate([
     (0, typeorm_1.ManyToOne)(() => restaurante_entity_1.RestauranteEntity, restaurante => restaurante.pratos),
     (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O restaurante não pode ser nulo.' }),
     __metadata("design:type", restaurante_entity_1.RestauranteEntity)
 ], PratoEntity.prototype, "restaurante", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => categoria_prato_entity_1.CategoriaPratoEntity, (categoria_prato) => categoria_prato.categoria_prato),
     (0, typeorm_1.JoinColumn)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A categoria_prato não pode ser nula.' }),
     __metadata("design:type", categoria_prato_entity_1.CategoriaPratoEntity)
 ], PratoEntity.prototype, "prato_categoria", void 0);
 __decorate([
@@ -64,11 +68,13 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)('simple-array'),
     (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O prato não pode ter ingredientes nulos.' }),
     __metadata("design:type", Array)
 ], PratoEntity.prototype, "ingredientes", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 255 }),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A descrição do prato não pode ser nula' }),
     __metadata("design:type", String)
 ], PratoEntity.prototype, "descricao", void 0);
 exports.PratoEntity = PratoEntity = __decorate([
