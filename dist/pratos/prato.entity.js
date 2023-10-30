@@ -15,8 +15,9 @@ const class_validator_1 = require("class-validator");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
 const item_entity_1 = require("../listaCompras/entities/item.entity");
-let PratoEntity = exports.PratoEntity = class PratoEntity {
+let PratoEntity = class PratoEntity {
 };
+exports.PratoEntity = PratoEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

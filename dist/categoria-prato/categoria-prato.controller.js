@@ -16,7 +16,7 @@ exports.CategoriaPratoController = void 0;
 const common_1 = require("@nestjs/common");
 const categoria_prato_service_1 = require("./categoria-prato.service");
 const categoria_prato_dto_1 = require("./dto/categoria-prato.dto");
-let CategoriaPratoController = exports.CategoriaPratoController = class CategoriaPratoController {
+let CategoriaPratoController = class CategoriaPratoController {
     constructor(categoriaPratoService) {
         this.categoriaPratoService = categoriaPratoService;
     }
@@ -36,6 +36,7 @@ let CategoriaPratoController = exports.CategoriaPratoController = class Categori
         return this.categoriaPratoService.deleteCategoria(id);
     }
 };
+exports.CategoriaPratoController = CategoriaPratoController;
 __decorate([
     (0, common_1.Get)('categorias'),
     __metadata("design:type", Function),

@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IsEmail, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsBoolean, Length, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
 
 @Entity('usuarios')
 export class UserEntity {
@@ -19,17 +19,24 @@ export class UserEntity {
     @Column({ length: 14 })
     @IsNotEmpty()
     @IsString()
+    @Matches(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/, {
+        message: 'O CPF deve estar no formato 999.999.999-99'
+    })
     cpf: string;
 
-    @Column()
+    @Column({ length: 14 })
     @IsNotEmpty()
     @IsString()
+    @ValidateIf((obj) => obj.numero_celular !== null)
+    @IsPhoneNumber(null, { message: 'Número de celular inválido' })
     numero_celular: string;
 
     @Column({ length: 20 })
     @IsNotEmpty()
     @IsString()
+    @Length(6, 20, { message: 'A senha deve ter entre 6 e 20 caracteres' })
     senha: string;
+
 
     @Column({ default: true })
     @IsBoolean()

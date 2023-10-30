@@ -12,8 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
-let UserEntity = exports.UserEntity = class UserEntity {
+let UserEntity = class UserEntity {
 };
+exports.UserEntity = UserEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -34,18 +35,24 @@ __decorate([
     (0, typeorm_1.Column)({ length: 14 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Matches)(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/, {
+        message: 'O CPF deve estar no formato 999.999.999-99'
+    }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "cpf", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ length: 14 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.ValidateIf)((obj) => obj.numero_celular !== null),
+    (0, class_validator_1.IsPhoneNumber)(null, { message: 'Número de celular inválido' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "numero_celular", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 20 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(6, 20, { message: 'A senha deve ter entre 6 e 20 caracteres' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "senha", void 0);
 __decorate([

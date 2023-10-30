@@ -14,8 +14,9 @@ const typeorm_1 = require("typeorm");
 const prato_entity_1 = require("../../pratos/prato.entity");
 const lista_entity_1 = require("./lista.entity");
 const class_validator_1 = require("class-validator");
-let ItemEntity = exports.ItemEntity = class ItemEntity {
+let ItemEntity = class ItemEntity {
 };
+exports.ItemEntity = ItemEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

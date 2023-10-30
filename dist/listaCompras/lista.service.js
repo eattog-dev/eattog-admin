@@ -19,7 +19,7 @@ const lista_entity_1 = require("./entities/lista.entity");
 const typeorm_2 = require("typeorm");
 const item_entity_1 = require("./entities/item.entity");
 const prato_entity_1 = require("../pratos/prato.entity");
-let ListaService = exports.ListaService = class ListaService {
+let ListaService = class ListaService {
     constructor(listaRepository, itemRepository, produtoRepository) {
         this.listaRepository = listaRepository;
         this.itemRepository = itemRepository;
@@ -56,6 +56,7 @@ let ListaService = exports.ListaService = class ListaService {
         return this.listaRepository.findOneBy({ id: id });
     }
 };
+exports.ListaService = ListaService;
 exports.ListaService = ListaService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(lista_entity_1.ListaEntity)),

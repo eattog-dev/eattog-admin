@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany } from 'typeorm';
-import { IsString, IsNumber, IsArray, IsInt } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsInt, IsNotEmpty } from 'class-validator';
 import { PratoEntity } from 'src/pratos/prato.entity';
 
 @Entity('categoria_prato')
@@ -17,6 +17,7 @@ export class CategoriaPratoEntity {
     @OneToMany(() => PratoEntity, prato_categoria => prato_categoria.prato_categoria, {
         eager: true
     })
-    @IsInt()
-    categoria_prato: [CategoriaPratoEntity];
+    @IsNotEmpty({ message: 'A categoria_prato não pode ser nula.' })
+    categoria_prato: PratoEntity[];
+
 }

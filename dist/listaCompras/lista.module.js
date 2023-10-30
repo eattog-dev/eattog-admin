@@ -14,8 +14,9 @@ const lista_entity_1 = require("./entities/lista.entity");
 const item_entity_1 = require("./entities/item.entity");
 const prato_entity_1 = require("../pratos/prato.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-let ListaModule = exports.ListaModule = class ListaModule {
+let ListaModule = class ListaModule {
 };
+exports.ListaModule = ListaModule;
 exports.ListaModule = ListaModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([lista_entity_1.ListaEntity, item_entity_1.ItemEntity, prato_entity_1.PratoEntity])],

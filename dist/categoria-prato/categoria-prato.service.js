@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const categoria_prato_entity_1 = require("./categoria-prato.entity");
 const typeorm_2 = require("typeorm");
-let CategoriaPratoService = exports.CategoriaPratoService = class CategoriaPratoService {
+let CategoriaPratoService = class CategoriaPratoService {
     constructor(categoriaPratoRepository) {
         this.categoriaPratoRepository = categoriaPratoRepository;
     }
@@ -44,6 +44,7 @@ let CategoriaPratoService = exports.CategoriaPratoService = class CategoriaPrato
         return this.categoriaPratoRepository.delete(id);
     }
 };
+exports.CategoriaPratoService = CategoriaPratoService;
 exports.CategoriaPratoService = CategoriaPratoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(categoria_prato_entity_1.CategoriaPratoEntity)),

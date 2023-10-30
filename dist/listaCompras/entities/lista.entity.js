@@ -13,8 +13,9 @@ exports.ListaEntity = void 0;
 const typeorm_1 = require("typeorm");
 const item_entity_1 = require("./item.entity");
 const class_validator_1 = require("class-validator");
-let ListaEntity = exports.ListaEntity = class ListaEntity {
+let ListaEntity = class ListaEntity {
 };
+exports.ListaEntity = ListaEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

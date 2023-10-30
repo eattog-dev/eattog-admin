@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards } from '@nestjs/common';
 import { RestauranteDTO } from './dto/restaurante.dto';
 import { RestauranteEntity } from './restaurante.entity';
 import { RestauranteService } from './restaurante.service';
@@ -8,6 +8,7 @@ import { DeleteResult } from 'typeorm';
 export class RestauranteController {
   constructor(private readonly restauranteService: RestauranteService) { }
 
+  @UseGuards()
   @Get('/restaurantes')
   getRestaurantes(): Promise<RestauranteEntity[]> {
     return this.restauranteService.getRestaurantes();

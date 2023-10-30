@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const restaurante_entity_1 = require("./restaurante.entity");
 const typeorm_2 = require("typeorm");
-let RestauranteService = exports.RestauranteService = class RestauranteService {
+let RestauranteService = class RestauranteService {
     constructor(restauranteRepository) {
         this.restauranteRepository = restauranteRepository;
     }
@@ -27,7 +27,6 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
     async createRestaurante(RestauranteDTO) {
         const novoRestaurante = new restaurante_entity_1.RestauranteEntity();
         novoRestaurante.imagem = RestauranteDTO.imagem;
-        novoRestaurante.logo = RestauranteDTO.logo;
         novoRestaurante.banner = RestauranteDTO.banner;
         novoRestaurante.titulo = RestauranteDTO.titulo;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
@@ -79,6 +78,7 @@ let RestauranteService = exports.RestauranteService = class RestauranteService {
         return qtdItens > itensExibidos;
     }
 };
+exports.RestauranteService = RestauranteService;
 exports.RestauranteService = RestauranteService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(restaurante_entity_1.RestauranteEntity)),

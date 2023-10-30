@@ -12,8 +12,9 @@ const categoria_prato_controller_1 = require("./categoria-prato.controller");
 const common_1 = require("@nestjs/common");
 const categoria_prato_entity_1 = require("./categoria-prato.entity");
 const typeorm_1 = require("@nestjs/typeorm");
-let CategoriaPratoModule = exports.CategoriaPratoModule = class CategoriaPratoModule {
+let CategoriaPratoModule = class CategoriaPratoModule {
 };
+exports.CategoriaPratoModule = CategoriaPratoModule;
 exports.CategoriaPratoModule = CategoriaPratoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([categoria_prato_entity_1.CategoriaPratoEntity])],

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListaController = void 0;
 const common_1 = require("@nestjs/common");
 const lista_service_1 = require("./lista.service");
-let ListaController = exports.ListaController = class ListaController {
+let ListaController = class ListaController {
     constructor(listaService) {
         this.listaService = listaService;
     }
@@ -32,6 +32,7 @@ let ListaController = exports.ListaController = class ListaController {
         return this.listaService.adicionarItem(id, itemDto);
     }
 };
+exports.ListaController = ListaController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

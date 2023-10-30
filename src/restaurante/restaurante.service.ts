@@ -18,7 +18,6 @@ export class RestauranteService {
     async createRestaurante(RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity> {
         const novoRestaurante = new RestauranteEntity();
         novoRestaurante.imagem = RestauranteDTO.imagem;
-        novoRestaurante.logo = RestauranteDTO.logo;
         novoRestaurante.banner = RestauranteDTO.banner;
         novoRestaurante.titulo = RestauranteDTO.titulo;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;

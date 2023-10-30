@@ -13,11 +13,12 @@ exports.CategoriaPratoEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const prato_entity_1 = require("../pratos/prato.entity");
-let CategoriaPratoEntity = exports.CategoriaPratoEntity = class CategoriaPratoEntity {
+let CategoriaPratoEntity = class CategoriaPratoEntity {
     slice(arg0, arg1) {
         throw new Error('Method not implemented.');
     }
 };
+exports.CategoriaPratoEntity = CategoriaPratoEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)

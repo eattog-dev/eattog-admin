@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const upload_module_1 = require("./upload/upload.module");
 const lista_module_1 = require("./listaCompras/lista.module");
 const categoria_prato_module_1 = require("./categoria-prato/categoria-prato.module");
 const common_1 = require("@nestjs/common");
@@ -16,11 +17,13 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_module_1 = require("./users/user.module");
 const prato_module_1 = require("./pratos/prato.module");
 const restaurante_module_1 = require("./restaurante/restaurante.module");
-let AppModule = exports.AppModule = class AppModule {
+let AppModule = class AppModule {
 };
+exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            upload_module_1.UploadModule,
             lista_module_1.ListaModule,
             categoria_prato_module_1.CategoriaPratoModule,
             user_module_1.UserModule,
