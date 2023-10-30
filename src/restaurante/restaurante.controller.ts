@@ -8,7 +8,6 @@ import { DeleteResult } from 'typeorm';
 export class RestauranteController {
   constructor(private readonly restauranteService: RestauranteService) { }
 
-  @UseGuards()
   @Get('/restaurantes')
   getRestaurantes(): Promise<RestauranteEntity[]> {
     return this.restauranteService.getRestaurantes();
