@@ -1,3 +1,4 @@
+import { UploadService } from './users/upload.service';
 import { ListaModule } from './listaCompras/lista.module';
 import { CategoriaPratoModule } from './categoria-prato/categoria-prato.module';
 import { Module } from '@nestjs/common';
@@ -28,6 +29,7 @@ import { RestauranteModule } from './restaurante/restaurante.module';
   ],
   controllers: [
     AppController],
-  providers: [AppService],
+  providers: [
+    UploadService, AppService],
 })
 export class AppModule { }

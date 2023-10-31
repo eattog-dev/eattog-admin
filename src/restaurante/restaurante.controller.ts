@@ -1,12 +1,14 @@
-import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { RestauranteDTO } from './dto/restaurante.dto';
 import { RestauranteEntity } from './restaurante.entity';
 import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { UploadService } from 'src/users/upload.service';
 
 @Controller()
 export class RestauranteController {
-  constructor(private readonly restauranteService: RestauranteService) { }
+  constructor(private readonly restauranteService: RestauranteService, private readonly uploadService: UploadService) { }
 
   @Get('/restaurantes')
   getRestaurantes(): Promise<RestauranteEntity[]> {
@@ -14,8 +16,13 @@ export class RestauranteController {
   }
 
   @Post('criar/restaurante')
-  createRestaurante(@Body() restaurante: RestauranteDTO): Promise<RestauranteEntity> {
-    return this.restauranteService.createRestaurante(restaurante);
+  @UseInterceptors(FileInterceptor('banner'))
+  async createRestaurante(@Body() restaurante: RestauranteDTO, @UploadedFile() file: Express.Multer.File): Promise<RestauranteEntity> {
+    let filePath = ''
+    if (file) {
+      filePath = await this.uploadService.uploadFile(file);
+    }
+    return this.restauranteService.createRestaurante(restaurante, filePath);
   }
 
   @Get('restaurante/:id')
@@ -24,11 +31,17 @@ export class RestauranteController {
   }
 
   @Put('atualizar/restaurante/:id')
-  editRestaurante(
+  @UseInterceptors(FileInterceptor('banner'))
+  async editRestaurante(
     @Param('id') id: number,
-    @Body() restaurante: RestauranteDTO
+    @Body() restaurante: RestauranteDTO,
+    @UploadedFile() file: Express.Multer.File
   ): Promise<RestauranteEntity> {
-    return this.restauranteService.editRestaurante(id, restaurante);
+    let filePath = ''
+    if (file) {
+      filePath = await this.uploadService.uploadFile(file);
+    }
+    return this.restauranteService.editRestaurante(id, restaurante, filePath);
   }
 
   @Delete('deletar/restaurante/:id')
@@ -37,7 +50,7 @@ export class RestauranteController {
   }
 
   @Get('qtdRestaurantes/')
-  quantidadeRestaurantes(){
+  quantidadeRestaurantes() {
     return this.restauranteService.qtdRestaurantes()
   }
 

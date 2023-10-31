@@ -17,7 +17,7 @@ export class RestauranteEntity {
     @IsString({ message: 'O campo logo deve ser uma string' })
     logo: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar' })
     @IsNotEmpty({ message: 'O campo banner não pode estar vazio' })
     @IsString({ message: 'O campo banner deve ser uma string' })
     banner: string;

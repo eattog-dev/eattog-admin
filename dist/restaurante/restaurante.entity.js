@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "logo", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ type: 'varchar' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'O campo banner não pode estar vazio' }),
     (0, class_validator_1.IsString)({ message: 'O campo banner deve ser uma string' }),
     __metadata("design:type", String)

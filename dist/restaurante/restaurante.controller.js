@@ -16,21 +16,32 @@ exports.RestauranteController = void 0;
 const common_1 = require("@nestjs/common");
 const restaurante_dto_1 = require("./dto/restaurante.dto");
 const restaurante_service_1 = require("./restaurante.service");
+const platform_express_1 = require("@nestjs/platform-express");
+const upload_service_1 = require("../users/upload.service");
 let RestauranteController = class RestauranteController {
-    constructor(restauranteService) {
+    constructor(restauranteService, uploadService) {
         this.restauranteService = restauranteService;
+        this.uploadService = uploadService;
     }
     getRestaurantes() {
         return this.restauranteService.getRestaurantes();
     }
-    createRestaurante(restaurante) {
-        return this.restauranteService.createRestaurante(restaurante);
+    async createRestaurante(restaurante, file) {
+        let filePath = '';
+        if (file) {
+            filePath = await this.uploadService.uploadFile(file);
+        }
+        return this.restauranteService.createRestaurante(restaurante, filePath);
     }
     getRestaurante(id) {
         return this.restauranteService.getRestaurante(id);
     }
-    editRestaurante(id, restaurante) {
-        return this.restauranteService.editRestaurante(id, restaurante);
+    async editRestaurante(id, restaurante, file) {
+        let filePath = '';
+        if (file) {
+            filePath = await this.uploadService.uploadFile(file);
+        }
+        return this.restauranteService.editRestaurante(id, restaurante, filePath);
     }
     deleteRestaurante(id) {
         return this.restauranteService.deleteRestaurante(id);
@@ -54,9 +65,11 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurantes", null);
 __decorate([
     (0, common_1.Post)('criar/restaurante'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('banner')),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDTO]),
+    __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDTO, Object]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "createRestaurante", null);
 __decorate([
@@ -68,10 +81,12 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurante", null);
 __decorate([
     (0, common_1.Put)('atualizar/restaurante/:id'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('banner')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDTO]),
+    __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDTO, Object]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "editRestaurante", null);
 __decorate([
@@ -103,6 +118,6 @@ __decorate([
 ], RestauranteController.prototype, "restaurantesProxPagina", null);
 exports.RestauranteController = RestauranteController = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [restaurante_service_1.RestauranteService])
+    __metadata("design:paramtypes", [restaurante_service_1.RestauranteService, upload_service_1.UploadService])
 ], RestauranteController);
 //# sourceMappingURL=restaurante.controller.js.map

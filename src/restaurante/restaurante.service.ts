@@ -15,10 +15,10 @@ export class RestauranteService {
         return this.restauranteRepository.find();
     }
 
-    async createRestaurante(RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity> {
-        const novoRestaurante = new RestauranteEntity();
+    async createRestaurante(RestauranteDTO: RestauranteDTO, filePath: string): Promise<RestauranteEntity> {
+        let novoRestaurante = new RestauranteEntity();
         novoRestaurante.imagem = RestauranteDTO.imagem;
-        novoRestaurante.banner = RestauranteDTO.banner;
+        novoRestaurante.banner = filePath;
         novoRestaurante.titulo = RestauranteDTO.titulo;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
@@ -33,14 +33,14 @@ export class RestauranteService {
         return this.restauranteRepository.findOneBy({ id: id });
     }
 
-    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity | undefined> {
+    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO, filePath: string): Promise<RestauranteEntity | undefined> {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
         if (!atualizarRestaurante) {
             return undefined;
         }
         atualizarRestaurante.imagem = RestauranteDTO.imagem;
         atualizarRestaurante.logo = RestauranteDTO.logo;
-        atualizarRestaurante.banner = RestauranteDTO.banner;
+        atualizarRestaurante.banner = filePath;
         atualizarRestaurante.titulo = RestauranteDTO.titulo;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
@@ -57,23 +57,23 @@ export class RestauranteService {
     }
 
     //conta a quantidade de restaurantes
-    async qtdRestaurantes(){
+    async qtdRestaurantes() {
         return await this.restauranteRepository.count()
     }
-    
+
     //retorna de forma paginada x quantidade de restaurantes
-    async restaurantesPorPagina(pagina: number) : Promise<RestauranteEntity[]>{
+    async restaurantesPorPagina(pagina: number): Promise<RestauranteEntity[]> {
         const perPage = 3
 
         return await this.restauranteRepository
-        .createQueryBuilder('restaurantes')
-        .offset((pagina - 1) * perPage)
-        .limit(perPage)
-        .getMany()
+            .createQueryBuilder('restaurantes')
+            .offset((pagina - 1) * perPage)
+            .limit(perPage)
+            .getMany()
     }
 
     //verifica se há itens a serem exibidos na página x
-    async verificaPaginacaoRestaurante(pagina: number) : Promise<Boolean> {
+    async verificaPaginacaoRestaurante(pagina: number): Promise<Boolean> {
         const perPage = 3
         const itensExibidos = (pagina - 1) * perPage;
 

@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const upload_service_1 = require("./users/upload.service");
 const lista_module_1 = require("./listaCompras/lista.module");
 const categoria_prato_module_1 = require("./categoria-prato/categoria-prato.module");
 const common_1 = require("@nestjs/common");
@@ -41,7 +42,9 @@ exports.AppModule = AppModule = __decorate([
         controllers: [
             app_controller_1.AppController
         ],
-        providers: [app_service_1.AppService],
+        providers: [
+            upload_service_1.UploadService, app_service_1.AppService
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

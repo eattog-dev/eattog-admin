@@ -24,10 +24,10 @@ let RestauranteService = class RestauranteService {
     async getRestaurantes() {
         return this.restauranteRepository.find();
     }
-    async createRestaurante(RestauranteDTO) {
-        const novoRestaurante = new restaurante_entity_1.RestauranteEntity();
+    async createRestaurante(RestauranteDTO, filePath) {
+        let novoRestaurante = new restaurante_entity_1.RestauranteEntity();
         novoRestaurante.imagem = RestauranteDTO.imagem;
-        novoRestaurante.banner = RestauranteDTO.banner;
+        novoRestaurante.banner = filePath;
         novoRestaurante.titulo = RestauranteDTO.titulo;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
@@ -40,14 +40,14 @@ let RestauranteService = class RestauranteService {
     async getRestaurante(id) {
         return this.restauranteRepository.findOneBy({ id: id });
     }
-    async editRestaurante(id, RestauranteDTO) {
+    async editRestaurante(id, RestauranteDTO, filePath) {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
         if (!atualizarRestaurante) {
             return undefined;
         }
         atualizarRestaurante.imagem = RestauranteDTO.imagem;
         atualizarRestaurante.logo = RestauranteDTO.logo;
-        atualizarRestaurante.banner = RestauranteDTO.banner;
+        atualizarRestaurante.banner = filePath;
         atualizarRestaurante.titulo = RestauranteDTO.titulo;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;

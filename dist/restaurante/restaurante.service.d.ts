@@ -5,9 +5,9 @@ export declare class RestauranteService {
     private restauranteRepository;
     constructor(restauranteRepository: Repository<RestauranteEntity>);
     getRestaurantes(): Promise<RestauranteEntity[]>;
-    createRestaurante(RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity>;
+    createRestaurante(RestauranteDTO: RestauranteDTO, filePath: string): Promise<RestauranteEntity>;
     getRestaurante(id: number): Promise<RestauranteEntity | undefined>;
-    editRestaurante(id: number, RestauranteDTO: RestauranteDTO): Promise<RestauranteEntity | undefined>;
+    editRestaurante(id: number, RestauranteDTO: RestauranteDTO, filePath: string): Promise<RestauranteEntity | undefined>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
     qtdRestaurantes(): Promise<number>;
     restaurantesPorPagina(pagina: number): Promise<RestauranteEntity[]>;
