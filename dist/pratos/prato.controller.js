@@ -16,15 +16,22 @@ exports.PratoController = void 0;
 const common_1 = require("@nestjs/common");
 const prato_dto_1 = require("./dto/prato.dto");
 const prato_service_1 = require("./prato.service");
+const platform_express_1 = require("@nestjs/platform-express");
+const upload_service_1 = require("../users/upload.service");
 let PratoController = class PratoController {
-    constructor(pratoService) {
+    constructor(pratoService, uploadService) {
         this.pratoService = pratoService;
+        this.uploadService = uploadService;
     }
     async getPratos() {
         return this.pratoService.getPratosComCategorias();
     }
-    async createPrato(pratoDto) {
-        return this.pratoService.createPrato(pratoDto);
+    async createPrato(pratoDto, file) {
+        let filePath = '';
+        if (file) {
+            filePath = await this.uploadService.uploadFile(file);
+        }
+        return this.pratoService.createPrato(pratoDto, filePath);
     }
     async getPrato(id) {
         return this.pratoService.getPrato(id);
@@ -66,9 +73,11 @@ __decorate([
 ], PratoController.prototype, "getPratos", null);
 __decorate([
     (0, common_1.Post)('criar/prato'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [prato_dto_1.PratoDto]),
+    __metadata("design:paramtypes", [prato_dto_1.PratoDto, Object]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "createPrato", null);
 __decorate([
@@ -146,6 +155,6 @@ __decorate([
 ], PratoController.prototype, "countPratos", null);
 exports.PratoController = PratoController = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [prato_service_1.PratoService])
+    __metadata("design:paramtypes", [prato_service_1.PratoService, upload_service_1.UploadService])
 ], PratoController);
 //# sourceMappingURL=prato.controller.js.map

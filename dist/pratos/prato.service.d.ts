@@ -9,7 +9,7 @@ export declare class PratoService {
     private readonly categoriaPratoRepository;
     constructor(pratosRepository: Repository<PratoEntity>, restauranteRepository: Repository<RestauranteEntity>, categoriaPratoRepository: Repository<CategoriaPratoEntity>);
     getPratos(): Promise<PratoEntity[]>;
-    createPrato(pratoDto: PratoDto): Promise<PratoEntity>;
+    createPrato(pratoDto: PratoDto, filePath: string): Promise<PratoEntity>;
     getPrato(id: number): Promise<PratoEntity | undefined>;
     editPrato(id: number, pratoDto: PratoDto): Promise<PratoEntity | undefined>;
     deletePrato(id: number): Promise<DeleteResult>;

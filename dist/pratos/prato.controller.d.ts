@@ -1,12 +1,15 @@
+/// <reference types="multer" />
 import { PratoDto } from './dto/prato.dto';
 import { PratoEntity } from './prato.entity';
 import { PratoService } from './prato.service';
 import { DeleteResult } from 'typeorm';
+import { UploadService } from 'src/users/upload.service';
 export declare class PratoController {
     private readonly pratoService;
-    constructor(pratoService: PratoService);
+    private readonly uploadService;
+    constructor(pratoService: PratoService, uploadService: UploadService);
     getPratos(): Promise<PratoEntity[]>;
-    createPrato(pratoDto: PratoDto): Promise<PratoEntity>;
+    createPrato(pratoDto: PratoDto, file: Express.Multer.File): Promise<PratoEntity>;
     getPrato(id: number): Promise<PratoEntity>;
     editPrato(id: number, pratoDto: PratoDto): Promise<PratoEntity>;
     deletePrato(id: number): Promise<DeleteResult>;

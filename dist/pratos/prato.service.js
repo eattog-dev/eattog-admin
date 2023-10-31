@@ -28,11 +28,11 @@ let PratoService = class PratoService {
     async getPratos() {
         return this.pratosRepository.find();
     }
-    async createPrato(pratoDto) {
+    async createPrato(pratoDto, filePath) {
         const novoPrato = new prato_entity_1.PratoEntity();
         novoPrato.nome = pratoDto.nome;
         novoPrato.valor = pratoDto.valor;
-        novoPrato.imagem = pratoDto.imagem;
+        novoPrato.imagem = filePath;
         novoPrato.ingredientes = pratoDto.ingredientes;
         novoPrato.desconto = pratoDto.desconto;
         novoPrato.valor_desconto = pratoDto.valor_desconto;

@@ -31,12 +31,36 @@ export class UserEntity {
     @IsPhoneNumber(null, { message: 'Número de celular inválido' })
     numero_celular: string;
 
+    @Column({ length: 255 })
+    @IsNotEmpty()
+    @IsString()
+    cep: string;
+
+    @Column({ length: 255 })
+    @IsNotEmpty()
+    @IsString()
+    rua: string;
+
+    @Column({ length: 255 })
+    @IsNotEmpty()
+    @IsString()
+    complemento: string;
+
+    @Column({ length: 255 })
+    @IsNotEmpty()
+    @IsString()
+    bairro: string;
+
+    @Column({ length: 255 })
+    @IsNotEmpty()
+    @IsString()
+    numero_residencia: string;
+
     @Column({ length: 20 })
     @IsNotEmpty()
     @IsString()
     @Length(6, 20, { message: 'A senha deve ter entre 6 e 20 caracteres' })
     senha: string;
-
 
     @Column({ default: true })
     @IsBoolean()

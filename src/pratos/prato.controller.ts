@@ -1,12 +1,14 @@
-import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Delete, Body, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { PratoDto } from './dto/prato.dto';
 import { PratoEntity } from './prato.entity';
 import { PratoService } from './prato.service';
 import { DeleteResult } from 'typeorm';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { UploadService } from 'src/users/upload.service';
 
 @Controller()
 export class PratoController {
-    constructor(private readonly pratoService: PratoService) { }
+    constructor(private readonly pratoService: PratoService, private readonly uploadService: UploadService) { }
 
     @Get('pratos')
     async getPratos(): Promise<PratoEntity[]> {
@@ -14,8 +16,13 @@ export class PratoController {
     }
 
     @Post('criar/prato')
-    async createPrato(@Body() pratoDto: PratoDto): Promise<PratoEntity> {
-        return this.pratoService.createPrato(pratoDto);
+    @UseInterceptors(FileInterceptor('imagem'))
+    async createPrato(@Body() pratoDto: PratoDto, @UploadedFile() file: Express.Multer.File): Promise<PratoEntity> {
+        let filePath = ''
+        if (file) {
+            filePath = await this.uploadService.uploadFile(file);
+        }
+        return this.pratoService.createPrato(pratoDto, filePath);
     }
 
     @Get('prato/:id')
@@ -51,23 +58,23 @@ export class PratoController {
         return this.pratoService.getPratosUmaCategoria(id);
     }
 
-   @Get('qtd-categorias/:id')
-   async getPratosCategoriaLimitado(@Param('id') id: number) {
-       return this.pratoService.qtdCategorias(id);
-   }
+    @Get('qtd-categorias/:id')
+    async getPratosCategoriaLimitado(@Param('id') id: number) {
+        return this.pratoService.qtdCategorias(id);
+    }
 
-   @Get('pagina-categoria/:categoriaID/:pagina')
-   async getCategoriaPagina(@Param('categoriaID') categoriaID: number, @Param('pagina')  pagina: number) {
-       return this.pratoService.getCategoriasComPratoPagina(1, 1);
-   }
+    @Get('pagina-categoria/:categoriaID/:pagina')
+    async getCategoriaPagina(@Param('categoriaID') categoriaID: number, @Param('pagina') pagina: number) {
+        return this.pratoService.getCategoriasComPratoPagina(1, 1);
+    }
 
     @Get('pagina-cardapio/:restauranteId/:pagina')
-    async getPratosPorPagina(@Param('restauranteId') restauranteId: number, @Param('pagina')  pagina: number) {
+    async getPratosPorPagina(@Param('restauranteId') restauranteId: number, @Param('pagina') pagina: number) {
         return this.pratoService.pratosPorPagina(restauranteId, pagina);
     }
 
     @Get('prox-pagina/:restauranteId/:pagina')
-    async countPratos(@Param('restauranteId') restauranteId: number, @Param('pagina')  pagina: number) {
+    async countPratos(@Param('restauranteId') restauranteId: number, @Param('pagina') pagina: number) {
         return this.pratoService.verificaPaginacaoPratos(restauranteId, pagina);
     }
 }

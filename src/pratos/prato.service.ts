@@ -21,11 +21,11 @@ export class PratoService {
         return this.pratosRepository.find();
     }
 
-    async createPrato(pratoDto: PratoDto): Promise<PratoEntity> {
+    async createPrato(pratoDto: PratoDto, filePath: string): Promise<PratoEntity> {
         const novoPrato = new PratoEntity();
         novoPrato.nome = pratoDto.nome;
         novoPrato.valor = pratoDto.valor;
-        novoPrato.imagem = pratoDto.imagem;
+        novoPrato.imagem = filePath;
         novoPrato.ingredientes = pratoDto.ingredientes
         novoPrato.desconto = pratoDto.desconto;
         novoPrato.valor_desconto = pratoDto.valor_desconto;
@@ -75,10 +75,10 @@ export class PratoService {
         //return this.pratosRepository.find();
 
         return this.pratosRepository
-        .createQueryBuilder('prato')
-        .leftJoinAndSelect('prato.prato_categoria', 'categoria')
-        .limit(6)
-        .getMany();
+            .createQueryBuilder('prato')
+            .leftJoinAndSelect('prato.prato_categoria', 'categoria')
+            .limit(6)
+            .getMany();
     }
 
 
