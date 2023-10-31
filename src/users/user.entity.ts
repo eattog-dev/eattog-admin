@@ -24,6 +24,9 @@ export class UserEntity {
     })
     cpf: string;
 
+    @Column({ type: 'date' })
+    data_de_aniversario: Date;
+
     @Column({ length: 14 })
     @IsNotEmpty()
     @IsString()

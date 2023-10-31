@@ -41,6 +41,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "cpf", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'date' }),
+    __metadata("design:type", Date)
+], UserEntity.prototype, "data_de_aniversario", void 0);
+__decorate([
     (0, typeorm_1.Column)({ length: 14 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
