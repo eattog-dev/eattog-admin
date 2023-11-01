@@ -1,4 +1,4 @@
-import { IsString, IsEmail, Matches } from 'class-validator';
+import { IsString, IsEmail, Matches, IsDate } from 'class-validator';
 
 export class UserDto {
     @IsString()
@@ -9,6 +9,24 @@ export class UserDto {
 
     @IsString()
     cpf: string;
+
+    @IsDate()
+    data_aniversario: Date;
+
+    @IsString()
+    cep: string;
+
+    @IsString()
+    rua: string;
+
+    @IsString()
+    complemento: string;
+
+    @IsString()
+    bairro: string;
+
+    @IsString()
+    numero_residencia: string;
 
     @IsString()
     numero_celular: string;

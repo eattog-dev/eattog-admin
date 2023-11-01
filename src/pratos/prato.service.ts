@@ -26,7 +26,8 @@ export class PratoService {
         novoPrato.nome = pratoDto.nome;
         novoPrato.valor = pratoDto.valor;
         novoPrato.imagem = filePath;
-        novoPrato.ingredientes = pratoDto.ingredientes
+        novoPrato.ingredientes = pratoDto.ingredientes;
+        novoPrato.tempo_preparo = pratoDto.tempo_preparo;
         novoPrato.desconto = pratoDto.desconto;
         novoPrato.valor_desconto = pratoDto.valor_desconto;
         novoPrato.descricao = pratoDto.descricao;
@@ -49,6 +50,7 @@ export class PratoService {
         atualizarPrato.valor = pratoDto.valor;
         atualizarPrato.imagem = filePath;
         atualizarPrato.ingredientes = pratoDto.ingredientes;
+        atualizarPrato.tempo_preparo = pratoDto.tempo_preparo;
         atualizarPrato.desconto = pratoDto.desconto;
         atualizarPrato.valor_desconto = pratoDto.valor_desconto;
         atualizarPrato.descricao = pratoDto.descricao;

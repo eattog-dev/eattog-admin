@@ -13,6 +13,9 @@ export class PratoDto {
     @IsArray()
     ingredientes: string[];
 
+    @IsNumber()
+    tempo_preparo: number;
+
     @IsString()
     descricao: string;
 

@@ -49,6 +49,11 @@ export class PratoEntity {
     @IsNotEmpty({ message: 'O prato não pode ter ingredientes nulos.' })
     ingredientes: string[];
 
+    @Column()
+    @IsNumber()
+    @IsNotEmpty({ message: 'O tempo de preparo não pode ser nulo.' })
+    tempo_preparo: number;
+
     @Column({ length: 255 })
     @IsString()
     @IsNotEmpty({ message: 'A descrição do prato não pode ser nula' })
