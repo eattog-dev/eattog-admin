@@ -9,9 +9,17 @@ export declare class RestauranteController {
     private readonly uploadService;
     constructor(restauranteService: RestauranteService, uploadService: UploadService);
     getRestaurantes(): Promise<RestauranteEntity[]>;
-    createRestaurante(restaurante: RestauranteDTO, file: Express.Multer.File): Promise<RestauranteEntity>;
+    createRestaurante(restaurante: RestauranteDTO, file: {
+        imagem: Express.Multer.File[];
+        banner: Express.Multer.File[];
+        logo: Express.Multer.File[];
+    }): Promise<RestauranteEntity>;
     getRestaurante(id: number): Promise<RestauranteEntity>;
-    editRestaurante(id: number, restaurante: RestauranteDTO, file: Express.Multer.File): Promise<RestauranteEntity>;
+    editRestaurante(id: number, restaurante: RestauranteDTO, file: {
+        banner: Express.Multer.File[];
+        logo: Express.Multer.File[];
+        imagem: Express.Multer.File[];
+    }): Promise<RestauranteEntity>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
     quantidadeRestaurantes(): Promise<number>;
     restaurantesPagina(pagina: number): Promise<RestauranteEntity[]>;

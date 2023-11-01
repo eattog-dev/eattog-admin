@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards, UseInterceptors, UploadedFile, UploadedFiles } from '@nestjs/common';
 import { RestauranteDTO } from './dto/restaurante.dto';
 import { RestauranteEntity } from './restaurante.entity';
 import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from 'src/users/upload.service';
 
 @Controller()
@@ -16,13 +16,25 @@ export class RestauranteController {
   }
 
   @Post('criar/restaurante')
-  @UseInterceptors(FileInterceptor('banner'))
-  async createRestaurante(@Body() restaurante: RestauranteDTO, @UploadedFile() file: Express.Multer.File): Promise<RestauranteEntity> {
-    let filePath = ''
+  @UseInterceptors(FileFieldsInterceptor([
+    { name: 'imagem', maxCount: 1 },
+    { name: 'banner', maxCount: 1 },
+    { name: 'logo', maxCount: 1 },
+  ]))
+  async createRestaurante(@Body() restaurante: RestauranteDTO, @UploadedFiles() file: { imagem: Express.Multer.File[], banner: Express.Multer.File[], logo: Express.Multer.File[] }
+  ): Promise<RestauranteEntity> {
+    console.log(file);
+
+    let imagemPath = ''
+    let bannerPath = ''
+    let logoPath = ''
     if (file) {
-      filePath = await this.uploadService.uploadFile(file);
+      imagemPath = await this.uploadService.uploadFile(file.imagem[0]);
+      bannerPath = await this.uploadService.uploadFile(file.banner[0]);
+      logoPath = await this.uploadService.uploadFile(file.logo[0]);
+
     }
-    return this.restauranteService.createRestaurante(restaurante, filePath);
+    return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath);
   }
 
   @Get('restaurante/:id')
@@ -31,11 +43,15 @@ export class RestauranteController {
   }
 
   @Put('atualizar/restaurante/:id')
-  @UseInterceptors(FileInterceptor('banner'))
+  @UseInterceptors(FileFieldsInterceptor([
+    { name: 'banner', maxCount: 1 },
+    { name: 'logo', maxCount: 1 },
+    { name: 'imagem', maxCount: 1 },
+  ]))
   async editRestaurante(
     @Param('id') id: number,
     @Body() restaurante: RestauranteDTO,
-    @UploadedFile() file: Express.Multer.File
+    @UploadedFiles() file: { banner: Express.Multer.File[], logo: Express.Multer.File[], imagem: Express.Multer.File[] }
   ): Promise<RestauranteEntity> {
     let filePath = ''
     if (file) {

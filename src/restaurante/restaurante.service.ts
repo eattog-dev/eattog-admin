@@ -15,10 +15,11 @@ export class RestauranteService {
         return this.restauranteRepository.find();
     }
 
-    async createRestaurante(RestauranteDTO: RestauranteDTO, filePath: string): Promise<RestauranteEntity> {
+    async createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath, logoPath): Promise<RestauranteEntity> {
         let novoRestaurante = new RestauranteEntity();
-        novoRestaurante.imagem = RestauranteDTO.imagem;
-        novoRestaurante.banner = filePath;
+        novoRestaurante.imagem = imagemPath;
+        novoRestaurante.banner = bannerPath;
+        novoRestaurante.logo = logoPath;
         novoRestaurante.titulo = RestauranteDTO.titulo;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
@@ -38,8 +39,8 @@ export class RestauranteService {
         if (!atualizarRestaurante) {
             return undefined;
         }
-        atualizarRestaurante.imagem = RestauranteDTO.imagem;
-        atualizarRestaurante.logo = RestauranteDTO.logo;
+        atualizarRestaurante.imagem = filePath;
+        atualizarRestaurante.logo = filePath;
         atualizarRestaurante.banner = filePath;
         atualizarRestaurante.titulo = RestauranteDTO.titulo;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;

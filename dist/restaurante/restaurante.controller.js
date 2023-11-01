@@ -27,11 +27,16 @@ let RestauranteController = class RestauranteController {
         return this.restauranteService.getRestaurantes();
     }
     async createRestaurante(restaurante, file) {
-        let filePath = '';
+        console.log(file);
+        let imagemPath = '';
+        let bannerPath = '';
+        let logoPath = '';
         if (file) {
-            filePath = await this.uploadService.uploadFile(file);
+            imagemPath = await this.uploadService.uploadFile(file.imagem[0]);
+            bannerPath = await this.uploadService.uploadFile(file.banner[0]);
+            logoPath = await this.uploadService.uploadFile(file.logo[0]);
         }
-        return this.restauranteService.createRestaurante(restaurante, filePath);
+        return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath);
     }
     getRestaurante(id) {
         return this.restauranteService.getRestaurante(id);
@@ -65,9 +70,13 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurantes", null);
 __decorate([
     (0, common_1.Post)('criar/restaurante'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('banner')),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
+        { name: 'imagem', maxCount: 1 },
+        { name: 'banner', maxCount: 1 },
+        { name: 'logo', maxCount: 1 },
+    ])),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDTO, Object]),
     __metadata("design:returntype", Promise)
@@ -81,10 +90,14 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurante", null);
 __decorate([
     (0, common_1.Put)('atualizar/restaurante/:id'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('banner')),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
+        { name: 'banner', maxCount: 1 },
+        { name: 'logo', maxCount: 1 },
+        { name: 'imagem', maxCount: 1 },
+    ])),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
-    __param(2, (0, common_1.UploadedFile)()),
+    __param(2, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDTO, Object]),
     __metadata("design:returntype", Promise)
