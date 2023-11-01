@@ -31,11 +31,17 @@ export class PratoController {
     }
 
     @Put('atualizar/prato/:id')
+    @UseInterceptors(FileInterceptor('imagem'))
     async editPrato(
         @Param('id') id: number,
-        @Body() pratoDto: PratoDto
+        @Body() pratoDto: PratoDto,
+        @UploadedFile() file: Express.Multer.File
     ): Promise<PratoEntity> {
-        return this.pratoService.editPrato(id, pratoDto);
+        let filePath = ''
+        if (file) {
+            filePath = await this.uploadService.uploadFile(file);
+        }
+        return this.pratoService.editPrato(id, pratoDto, filePath);
     }
 
     @Delete('deletar/prato/:id')

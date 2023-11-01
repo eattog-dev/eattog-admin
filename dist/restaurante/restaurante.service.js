@@ -41,14 +41,14 @@ let RestauranteService = class RestauranteService {
     async getRestaurante(id) {
         return this.restauranteRepository.findOneBy({ id: id });
     }
-    async editRestaurante(id, RestauranteDTO, filePath) {
+    async editRestaurante(id, RestauranteDTO, imagemPath, bannerPath, logoPath) {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
         if (!atualizarRestaurante) {
             return undefined;
         }
-        atualizarRestaurante.imagem = filePath;
-        atualizarRestaurante.logo = filePath;
-        atualizarRestaurante.banner = filePath;
+        atualizarRestaurante.imagem = imagemPath;
+        atualizarRestaurante.banner = bannerPath;
+        atualizarRestaurante.logo = logoPath;
         atualizarRestaurante.titulo = RestauranteDTO.titulo;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;

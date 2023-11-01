@@ -23,8 +23,6 @@ export class RestauranteController {
   ]))
   async createRestaurante(@Body() restaurante: RestauranteDTO, @UploadedFiles() file: { imagem: Express.Multer.File[], banner: Express.Multer.File[], logo: Express.Multer.File[] }
   ): Promise<RestauranteEntity> {
-    console.log(file);
-
     let imagemPath = ''
     let bannerPath = ''
     let logoPath = ''
@@ -53,11 +51,16 @@ export class RestauranteController {
     @Body() restaurante: RestauranteDTO,
     @UploadedFiles() file: { banner: Express.Multer.File[], logo: Express.Multer.File[], imagem: Express.Multer.File[] }
   ): Promise<RestauranteEntity> {
-    let filePath = ''
+    let imagemPath = ''
+    let bannerPath = ''
+    let logoPath = ''
     if (file) {
-      filePath = await this.uploadService.uploadFile(file);
+      imagemPath = await this.uploadService.uploadFile(file.imagem[0]);
+      bannerPath = await this.uploadService.uploadFile(file.banner[0]);
+      logoPath = await this.uploadService.uploadFile(file.logo[0]);
+
     }
-    return this.restauranteService.editRestaurante(id, restaurante, filePath);
+    return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath);
   }
 
   @Delete('deletar/restaurante/:id')

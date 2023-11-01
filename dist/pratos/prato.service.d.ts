@@ -11,7 +11,7 @@ export declare class PratoService {
     getPratos(): Promise<PratoEntity[]>;
     createPrato(pratoDto: PratoDto, filePath: string): Promise<PratoEntity>;
     getPrato(id: number): Promise<PratoEntity | undefined>;
-    editPrato(id: number, pratoDto: PratoDto): Promise<PratoEntity | undefined>;
+    editPrato(id: number, pratoDto: PratoDto, filePath: string): Promise<PratoEntity | undefined>;
     deletePrato(id: number): Promise<DeleteResult>;
     getPratosPorRestaurante(restauranteId: number): Promise<PratoEntity[]>;
     getPratosComCategorias(): Promise<PratoEntity[]>;

@@ -27,7 +27,6 @@ let RestauranteController = class RestauranteController {
         return this.restauranteService.getRestaurantes();
     }
     async createRestaurante(restaurante, file) {
-        console.log(file);
         let imagemPath = '';
         let bannerPath = '';
         let logoPath = '';
@@ -42,11 +41,15 @@ let RestauranteController = class RestauranteController {
         return this.restauranteService.getRestaurante(id);
     }
     async editRestaurante(id, restaurante, file) {
-        let filePath = '';
+        let imagemPath = '';
+        let bannerPath = '';
+        let logoPath = '';
         if (file) {
-            filePath = await this.uploadService.uploadFile(file);
+            imagemPath = await this.uploadService.uploadFile(file.imagem[0]);
+            bannerPath = await this.uploadService.uploadFile(file.banner[0]);
+            logoPath = await this.uploadService.uploadFile(file.logo[0]);
         }
-        return this.restauranteService.editRestaurante(id, restaurante, filePath);
+        return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath);
     }
     deleteRestaurante(id) {
         return this.restauranteService.deleteRestaurante(id);

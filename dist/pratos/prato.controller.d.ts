@@ -11,7 +11,7 @@ export declare class PratoController {
     getPratos(): Promise<PratoEntity[]>;
     createPrato(pratoDto: PratoDto, file: Express.Multer.File): Promise<PratoEntity>;
     getPrato(id: number): Promise<PratoEntity>;
-    editPrato(id: number, pratoDto: PratoDto): Promise<PratoEntity>;
+    editPrato(id: number, pratoDto: PratoDto, file: Express.Multer.File): Promise<PratoEntity>;
     deletePrato(id: number): Promise<DeleteResult>;
     getPratosPorRestaurante(restauranteId: number): Promise<PratoEntity[]>;
     getPratosCategoria(): Promise<import("../categoria-prato/categoria-prato.entity").CategoriaPratoEntity[]>;

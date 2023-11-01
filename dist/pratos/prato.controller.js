@@ -36,8 +36,12 @@ let PratoController = class PratoController {
     async getPrato(id) {
         return this.pratoService.getPrato(id);
     }
-    async editPrato(id, pratoDto) {
-        return this.pratoService.editPrato(id, pratoDto);
+    async editPrato(id, pratoDto, file) {
+        let filePath = '';
+        if (file) {
+            filePath = await this.uploadService.uploadFile(file);
+        }
+        return this.pratoService.editPrato(id, pratoDto, filePath);
     }
     async deletePrato(id) {
         return this.pratoService.deletePrato(id);
@@ -89,10 +93,12 @@ __decorate([
 ], PratoController.prototype, "getPrato", null);
 __decorate([
     (0, common_1.Put)('atualizar/prato/:id'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, prato_dto_1.PratoDto]),
+    __metadata("design:paramtypes", [Number, prato_dto_1.PratoDto, Object]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "editPrato", null);
 __decorate([

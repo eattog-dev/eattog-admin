@@ -15,7 +15,7 @@ export class RestauranteService {
         return this.restauranteRepository.find();
     }
 
-    async createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath, logoPath): Promise<RestauranteEntity> {
+    async createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string): Promise<RestauranteEntity> {
         let novoRestaurante = new RestauranteEntity();
         novoRestaurante.imagem = imagemPath;
         novoRestaurante.banner = bannerPath;
@@ -34,14 +34,14 @@ export class RestauranteService {
         return this.restauranteRepository.findOneBy({ id: id });
     }
 
-    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO, filePath: string): Promise<RestauranteEntity | undefined> {
+    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string): Promise<RestauranteEntity> {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
         if (!atualizarRestaurante) {
             return undefined;
         }
-        atualizarRestaurante.imagem = filePath;
-        atualizarRestaurante.logo = filePath;
-        atualizarRestaurante.banner = filePath;
+        atualizarRestaurante.imagem = imagemPath;
+        atualizarRestaurante.banner = bannerPath;
+        atualizarRestaurante.logo = logoPath;
         atualizarRestaurante.titulo = RestauranteDTO.titulo;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
@@ -49,7 +49,6 @@ export class RestauranteService {
         atualizarRestaurante.localizacao = RestauranteDTO.localizacao;
         atualizarRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         atualizarRestaurante.descricao = RestauranteDTO.descricao;
-
         return this.restauranteRepository.save(atualizarRestaurante);
     }
 

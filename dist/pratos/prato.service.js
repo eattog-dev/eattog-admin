@@ -44,14 +44,14 @@ let PratoService = class PratoService {
     async getPrato(id) {
         return this.pratosRepository.findOneBy({ id: id });
     }
-    async editPrato(id, pratoDto) {
+    async editPrato(id, pratoDto, filePath) {
         const atualizarPrato = await this.pratosRepository.findOneBy({ id: id });
         if (!atualizarPrato) {
             return undefined;
         }
         atualizarPrato.nome = pratoDto.nome;
         atualizarPrato.valor = pratoDto.valor;
-        atualizarPrato.imagem = pratoDto.imagem;
+        atualizarPrato.imagem = filePath;
         atualizarPrato.ingredientes = pratoDto.ingredientes;
         atualizarPrato.desconto = pratoDto.desconto;
         atualizarPrato.valor_desconto = pratoDto.valor_desconto;

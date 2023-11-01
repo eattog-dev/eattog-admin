@@ -40,14 +40,14 @@ export class PratoService {
         return this.pratosRepository.findOneBy({ id: id });
     }
 
-    async editPrato(id: number, pratoDto: PratoDto): Promise<PratoEntity | undefined> {
+    async editPrato(id: number, pratoDto: PratoDto, filePath: string): Promise<PratoEntity | undefined> {
         const atualizarPrato = await this.pratosRepository.findOneBy({ id: id });
         if (!atualizarPrato) {
             return undefined;
         }
         atualizarPrato.nome = pratoDto.nome;
         atualizarPrato.valor = pratoDto.valor;
-        atualizarPrato.imagem = pratoDto.imagem;
+        atualizarPrato.imagem = filePath;
         atualizarPrato.ingredientes = pratoDto.ingredientes;
         atualizarPrato.desconto = pratoDto.desconto;
         atualizarPrato.valor_desconto = pratoDto.valor_desconto;
