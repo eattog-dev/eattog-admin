@@ -72,6 +72,12 @@ __decorate([
     __metadata("design:type", Array)
 ], PratoEntity.prototype, "ingredientes", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O tempo de preparo não pode ser nulo.' }),
+    __metadata("design:type", Number)
+], PratoEntity.prototype, "tempo_preparo", void 0);
+__decorate([
     (0, typeorm_1.Column)({ length: 255 }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'A descrição do prato não pode ser nula' }),

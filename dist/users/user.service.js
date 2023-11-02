@@ -26,13 +26,14 @@ let UserService = class UserService {
     }
     async signIn(userDto) {
         const user = await this.usersRepository.findOneBy({
+            nome: userDto.nome,
             email: userDto.email,
             senha: userDto.senha
         });
         if (!user) {
             throw new common_1.UnauthorizedException();
         }
-        const payload = { id: user.id, email: user.email };
+        const payload = { id: user.id, nome: user.nome, email: user.email };
         return new session_dto_1.SessionDto(await this.jwtService.signAsync(payload));
     }
     signUp(userDto) {
@@ -40,6 +41,12 @@ let UserService = class UserService {
         user.nome = userDto.nome;
         user.email = userDto.email;
         user.cpf = userDto.cpf;
+        user.data_aniversario = userDto.data_aniversario;
+        user.cep = userDto.cep;
+        user.rua = userDto.rua;
+        user.complemento = userDto.complemento;
+        user.bairro = userDto.bairro;
+        user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
         user.senha = userDto.senha;
         return this.usersRepository.save(user);
@@ -49,12 +56,24 @@ let UserService = class UserService {
         user.nome = userDto.nome;
         user.email = userDto.email;
         user.cpf = userDto.cpf;
+        user.data_aniversario = userDto.data_aniversario;
+        user.cep = userDto.cep;
+        user.rua = userDto.rua;
+        user.complemento = userDto.complemento;
+        user.bairro = userDto.bairro;
+        user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
         user.senha = userDto.senha;
         return this.usersRepository.save(user);
     }
     show(id) {
         return this.usersRepository.findOneBy({ id: id });
+    }
+    allUsers() {
+        return this.usersRepository.find();
+    }
+    async decodedUser(token) {
+        return await this.jwtService.verifyAsync(token);
     }
 };
 exports.UserService = UserService;

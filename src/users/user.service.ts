@@ -6,17 +6,20 @@ import { UserDto } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { SessionDto } from './dto/session.dto';
+import { jwtConstants } from './constantes';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
         private usersRepository: Repository<UserEntity>,
-        private jwtService: JwtService
+        private jwtService: JwtService,
+
     ) { }
 
     async signIn(userDto: UserDto): Promise<SessionDto> {
         const user = await this.usersRepository.findOneBy({
+            nome: userDto.nome,
             email: userDto.email,
             senha: userDto.senha
         });
@@ -24,7 +27,7 @@ export class UserService {
         if (!user) {
             throw new UnauthorizedException();
         }
-        const payload = { id: user.id, email: user.email };
+        const payload = { id: user.id, nome: user.nome, email: user.email };
         return new SessionDto(await this.jwtService.signAsync(payload));
     }
 
@@ -64,5 +67,13 @@ export class UserService {
 
     show(id: number): Promise<UserEntity> {
         return this.usersRepository.findOneBy({ id: id });
+    }
+
+    allUsers () : Promise<UserEntity[]> {
+        return this.usersRepository.find()
+    }
+
+    async decodedUser(token: string): Promise<UserDto> {
+        return await this.jwtService.verifyAsync(token)
     }
 }

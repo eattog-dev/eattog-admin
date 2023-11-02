@@ -11,4 +11,6 @@ export declare class UserService {
     signUp(userDto: UserDto): Promise<UserEntity>;
     update(id: number, userDto: UserDto): Promise<UserEntity>;
     show(id: number): Promise<UserEntity>;
+    allUsers(): Promise<UserEntity[]>;
+    decodedUser(token: string): Promise<UserDto>;
 }

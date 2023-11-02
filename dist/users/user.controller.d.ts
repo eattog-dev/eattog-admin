@@ -9,4 +9,5 @@ export declare class UsersController {
     update(id: number, updateUser: UserDto): Promise<UserEntity>;
     create(createUser: UserDto): Promise<UserEntity>;
     login(signInUser: UserDto): Promise<SessionDto>;
+    getUser(req: any): Promise<UserDto>;
 }

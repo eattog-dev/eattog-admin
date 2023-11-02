@@ -35,6 +35,9 @@ let UsersController = class UsersController {
     login(signInUser) {
         return this.userService.signIn(signInUser);
     }
+    getUser(req) {
+        return this.userService.decodedUser(req.token);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -68,6 +71,13 @@ __decorate([
     __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('decoded-user'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUser", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [user_service_1.UserService])

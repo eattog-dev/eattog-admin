@@ -3,7 +3,7 @@ export declare class UserEntity {
     nome: string;
     email: string;
     cpf: string;
-    data_de_aniversario: Date;
+    data_aniversario: Date;
     numero_celular: string;
     cep: string;
     rua: string;

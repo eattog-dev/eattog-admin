@@ -43,5 +43,12 @@ export class UsersController {
   ): Promise<SessionDto> {
     return this.userService.signIn(signInUser);
   }
+  
 
+  @Post('decoded-user')
+   getUser(
+    @Body() req
+  ): Promise<UserDto>{
+    return this.userService.decodedUser(req.token)
+  }
 }

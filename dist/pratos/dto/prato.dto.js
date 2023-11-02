@@ -31,6 +31,10 @@ __decorate([
     __metadata("design:type", Array)
 ], PratoDto.prototype, "ingredientes", void 0);
 __decorate([
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], PratoDto.prototype, "tempo_preparo", void 0);
+__decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], PratoDto.prototype, "descricao", void 0);
