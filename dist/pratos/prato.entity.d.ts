@@ -12,5 +12,6 @@ export declare class PratoEntity {
     prato_categoria: CategoriaPratoEntity;
     items: ItemEntity[];
     ingredientes: string[];
+    tempo_preparo: number;
     descricao: string;
 }
