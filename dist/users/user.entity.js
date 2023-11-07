@@ -43,7 +43,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'date' }),
     __metadata("design:type", Date)
-], UserEntity.prototype, "data_de_aniversario", void 0);
+], UserEntity.prototype, "data_aniversario", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 14 }),
     (0, class_validator_1.IsNotEmpty)(),

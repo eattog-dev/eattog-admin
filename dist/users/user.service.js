@@ -40,6 +40,12 @@ let UserService = class UserService {
         user.nome = userDto.nome;
         user.email = userDto.email;
         user.cpf = userDto.cpf;
+        user.data_aniversario = userDto.data_aniversario;
+        user.cep = userDto.cep;
+        user.rua = userDto.rua;
+        user.complemento = userDto.complemento;
+        user.bairro = userDto.bairro;
+        user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
         user.senha = userDto.senha;
         return this.usersRepository.save(user);
@@ -49,6 +55,12 @@ let UserService = class UserService {
         user.nome = userDto.nome;
         user.email = userDto.email;
         user.cpf = userDto.cpf;
+        user.data_aniversario = userDto.data_aniversario;
+        user.cep = userDto.cep;
+        user.rua = userDto.rua;
+        user.complemento = userDto.complemento;
+        user.bairro = userDto.bairro;
+        user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
         user.senha = userDto.senha;
         return this.usersRepository.save(user);

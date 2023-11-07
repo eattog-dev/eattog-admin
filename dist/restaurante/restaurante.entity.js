@@ -40,10 +40,41 @@ __decorate([
 ], RestauranteEntity.prototype, "banner", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'O título não pode estar vazio' }),
-    (0, class_validator_1.IsString)({ message: 'O título deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A razão social não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'A razão social deve ser uma string' }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "titulo", void 0);
+], RestauranteEntity.prototype, "razao_social", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A razão social não pode estar vazia' }),
+    (0, class_validator_1.IsString)({ message: 'A razão social deve ser uma string' }),
+    (0, class_validator_1.MaxLength)(255, { message: 'A razão social não pode ter mais de 255 caracteres' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "cnpj", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 8 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O cep não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'O cep deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "cep", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A rua não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'A rua deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "rua", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O bairro não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'O bairro deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "bairro", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A cidade não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'A cidade deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "cidade", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'A avaliação não pode estar vazia' }),
@@ -55,25 +86,19 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'O tipo de refeição não pode estar vazio' }),
     (0, class_validator_1.IsString)({ message: 'O tipo de refeição deve ser uma string' }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "tipoRefeicao", void 0);
+], RestauranteEntity.prototype, "tipo_restaurante", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O tipo de retirada não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'O tipo de retirada deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "tipo_retirada", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'A distância não pode estar vazia' }),
     (0, class_validator_1.IsString)({ message: 'A distância deve ser uma string' }),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "distancia", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'A localização não pode estar vazia' }),
-    (0, class_validator_1.IsString)({ message: 'A localização deve ser uma string' }),
-    __metadata("design:type", String)
-], RestauranteEntity.prototype, "localizacao", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'O tipo de retirada não pode estar vazio' }),
-    (0, class_validator_1.IsString)({ message: 'O tipo de retirada deve ser uma string' }),
-    __metadata("design:type", String)
-], RestauranteEntity.prototype, "tipoRetirada", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'text' }),
     (0, class_validator_1.IsNotEmpty)({ message: 'A descrição não pode estar vazia' }),
