@@ -4,12 +4,16 @@ export declare class RestauranteEntity {
     imagem: string;
     logo: string;
     banner: string;
-    titulo: string;
+    razao_social: string;
+    cnpj: string;
+    cep: string;
+    rua: string;
+    bairro: string;
+    cidade: string;
     avaliacao: number;
-    tipoRefeicao: string;
+    tipo_restaurante: string;
+    tipo_retirada: string;
     distancia: string;
-    localizacao: string;
-    tipoRetirada: string;
     descricao: string;
     pratos: PratoEntity[];
 }

@@ -20,12 +20,16 @@ export class RestauranteService {
         novoRestaurante.imagem = imagemPath;
         novoRestaurante.banner = bannerPath;
         novoRestaurante.logo = logoPath;
-        novoRestaurante.titulo = RestauranteDTO.titulo;
+        novoRestaurante.razao_social = RestauranteDTO.razao_social;
+        novoRestaurante.cnpj = RestauranteDTO.cnpj;
+        novoRestaurante.cep = RestauranteDTO.cep;
+        novoRestaurante.rua = RestauranteDTO.rua;
+        novoRestaurante.bairro = RestauranteDTO.bairro;
+        novoRestaurante.cidade = RestauranteDTO.cidade;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
-        novoRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
+        novoRestaurante.tipo_restaurante = RestauranteDTO.tipo_restaurante;
+        novoRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         novoRestaurante.distancia = RestauranteDTO.distancia;
-        novoRestaurante.localizacao = RestauranteDTO.localizacao;
-        novoRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         novoRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(novoRestaurante);
     }
@@ -42,12 +46,16 @@ export class RestauranteService {
         atualizarRestaurante.imagem = imagemPath;
         atualizarRestaurante.banner = bannerPath;
         atualizarRestaurante.logo = logoPath;
-        atualizarRestaurante.titulo = RestauranteDTO.titulo;
+        atualizarRestaurante.razao_social = RestauranteDTO.razao_social;
+        atualizarRestaurante.cnpj = RestauranteDTO.cnpj;
+        atualizarRestaurante.cep = RestauranteDTO.cep;
+        atualizarRestaurante.rua = RestauranteDTO.rua;
+        atualizarRestaurante.bairro = RestauranteDTO.bairro;
+        atualizarRestaurante.cidade = RestauranteDTO.cidade;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
-        atualizarRestaurante.tipoRefeicao = RestauranteDTO.tipoRefeicao;
+        atualizarRestaurante.tipo_restaurante = RestauranteDTO.tipo_restaurante;
+        atualizarRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         atualizarRestaurante.distancia = RestauranteDTO.distancia;
-        atualizarRestaurante.localizacao = RestauranteDTO.localizacao;
-        atualizarRestaurante.tipoRetirada = RestauranteDTO.tipoRetirada;
         atualizarRestaurante.descricao = RestauranteDTO.descricao;
         return this.restauranteRepository.save(atualizarRestaurante);
     }

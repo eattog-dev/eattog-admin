@@ -8,5 +8,5 @@ export declare class PratoDto {
     restaurante: number;
     categoria_prato: number;
     desconto: boolean;
-    valor_desconto: number;
+    valor_desconto?: number;
 }

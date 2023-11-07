@@ -18,6 +18,8 @@ const restaurante_dto_1 = require("./dto/restaurante.dto");
 const restaurante_service_1 = require("./restaurante.service");
 const platform_express_1 = require("@nestjs/platform-express");
 const upload_service_1 = require("../users/upload.service");
+const roles_decorator_1 = require("../decorators/roles.decorator");
+const user_type_enum_1 = require("../users/enum/user-type.enum");
 let RestauranteController = class RestauranteController {
     constructor(restauranteService, uploadService) {
         this.restauranteService = restauranteService;
@@ -72,6 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "getRestaurantes", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Restaurante, user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('criar/restaurante'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
         { name: 'imagem', maxCount: 1 },

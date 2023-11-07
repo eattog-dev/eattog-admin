@@ -15,18 +15,19 @@ class UserDto {
 }
 exports.UserDto = UserDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'O campo "nome" deve ser uma string' }),
     __metadata("design:type", String)
 ], UserDto.prototype, "nome", void 0);
 __decorate([
-    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsEmail)({}, { message: 'O campo "email" deve ser um endereço de e-mail válido' }),
     __metadata("design:type", String)
 ], UserDto.prototype, "email", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'O campo "cpf" deve ser uma string' }),
     __metadata("design:type", String)
 ], UserDto.prototype, "cpf", void 0);
 __decorate([
+<<<<<<< HEAD
     (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
 ], UserDto.prototype, "data_aniversario", void 0);
@@ -52,6 +53,33 @@ __decorate([
 ], UserDto.prototype, "numero_residencia", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+=======
+    (0, class_validator_1.IsDate)({ message: 'O campo "data_aniversario" deve ser uma data válida' }),
+    __metadata("design:type", Date)
+], UserDto.prototype, "data_aniversario", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'O campo "cep" deve ser uma string' }),
+    __metadata("design:type", String)
+], UserDto.prototype, "cep", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'O campo "rua" deve ser uma string' }),
+    __metadata("design:type", String)
+], UserDto.prototype, "rua", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'O campo "complemento" deve ser uma string' }),
+    __metadata("design:type", String)
+], UserDto.prototype, "complemento", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'O campo "bairro" deve ser uma string' }),
+    __metadata("design:type", String)
+], UserDto.prototype, "bairro", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'O campo "numero_residencia" deve ser uma string' }),
+    __metadata("design:type", String)
+], UserDto.prototype, "numero_residencia", void 0);
+__decorate([
+    (0, class_validator_1.IsString)({ message: 'O campo "numero_celular" deve ser uma string' }),
+>>>>>>> role
     __metadata("design:type", String)
 ], UserDto.prototype, "numero_celular", void 0);
 __decorate([

@@ -15,7 +15,7 @@ class CategoriaPratoDto {
 }
 exports.CategoriaPratoDto = CategoriaPratoDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsString)({ message: 'A propriedade "categoria_prato" deve ser uma string' }),
     __metadata("design:type", String)
 ], CategoriaPratoDto.prototype, "categoria_prato", void 0);
 //# sourceMappingURL=categoria-prato.dto.js.map

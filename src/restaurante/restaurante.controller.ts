@@ -5,6 +5,8 @@ import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
 import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from 'src/users/upload.service';
+import { Roles } from 'src/decorators/roles.decorator';
+import { UserType } from 'src/users/enum/user-type.enum';
 
 @Controller()
 export class RestauranteController {
@@ -15,6 +17,7 @@ export class RestauranteController {
     return this.restauranteService.getRestaurantes();
   }
 
+  @Roles(UserType.Restaurante, UserType.Admin)
   @Post('criar/restaurante')
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'imagem', maxCount: 1 },

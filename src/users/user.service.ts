@@ -1,11 +1,12 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
 import { Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
-import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { SessionDto } from './dto/session.dto';
+import { CreateUserDto } from './dto/createUser.dto';
+import { createPasswordHashed } from 'src/utils/password';
+import { UserType } from './enum/user-type.enum';
 
 @Injectable()
 export class UserService {
@@ -15,34 +16,35 @@ export class UserService {
         private jwtService: JwtService
     ) { }
 
-    async signIn(userDto: UserDto): Promise<SessionDto> {
-        const user = await this.usersRepository.findOneBy({
-            email: userDto.email,
-            senha: userDto.senha
+    // async signIn(userDto: UserDto): Promise<SessionDto> {
+    //     const user = await this.usersRepository.findOneBy({
+    //         email: userDto.email,
+    //         senha: userDto.senha
+    //     });
+
+    //     if (!user) {
+    //         throw new UnauthorizedException();
+    //     }
+    //     const payload = { id: user.id, email: user.email };
+    //     return new SessionDto(await this.jwtService.signAsync(payload));
+    // }
+
+    async criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity> {
+        const user = await this.findUserByEmail(criaUsuario.email).catch(
+            () => undefined,
+        );
+
+        if (user) {
+            throw new BadGatewayException('email registered in system');
+        }
+        const passwordHashed = await createPasswordHashed(criaUsuario.senha);
+
+        return this.usersRepository.save({
+            ...criaUsuario,
+            tipo_usuario: tipoUsuario ? tipoUsuario : UserType.User,
+            senha: passwordHashed,
         });
 
-        if (!user) {
-            throw new UnauthorizedException();
-        }
-        const payload = { id: user.id, email: user.email };
-        return new SessionDto(await this.jwtService.signAsync(payload));
-    }
-
-    signUp(userDto: UserDto): Promise<UserEntity> {
-        let user = new UserEntity();
-        user.nome = userDto.nome;
-        user.email = userDto.email;
-        user.cpf = userDto.cpf;
-        user.data_aniversario = userDto.data_aniversario;
-        user.cep = userDto.cep;
-        user.rua = userDto.rua;
-        user.complemento = userDto.complemento;
-        user.bairro = userDto.bairro;
-        user.numero_residencia = userDto.numero_residencia;
-        user.numero_celular = userDto.numero_celular;
-        user.senha = userDto.senha;
-
-        return this.usersRepository.save(user);
     }
 
     async update(id: number, userDto: UserDto): Promise<UserEntity> {
@@ -57,7 +59,10 @@ export class UserService {
         user.bairro = userDto.bairro;
         user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
-        user.senha = userDto.senha;
+        if (userDto.senha) {
+            const passwordHashed = await createPasswordHashed(userDto.senha);
+            user.senha = passwordHashed;
+        }
 
         return this.usersRepository.save(user);
     }
@@ -65,4 +70,33 @@ export class UserService {
     show(id: number): Promise<UserEntity> {
         return this.usersRepository.findOneBy({ id: id });
     }
+
+    async findUserById(userId: number): Promise<UserEntity> {
+        const user = await this.usersRepository.findOne({
+            where: {
+                id: userId,
+            },
+        });
+
+        if (!user) {
+            throw new NotFoundException(`UserId: ${userId} Not Found`);
+        }
+
+        return user;
+    }
+
+    async findUserByEmail(email: string): Promise<UserEntity> {
+        const user = await this.usersRepository.findOne({
+            where: {
+                email,
+            },
+        });
+
+        if (!user) {
+            throw new NotFoundException(`Email: ${email} Not Found`);
+        }
+
+        return user;
+    }
+
 }

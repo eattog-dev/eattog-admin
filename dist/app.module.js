@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const auth_module_1 = require("./auth/auth.module");
 const upload_service_1 = require("./users/upload.service");
 const lista_module_1 = require("./listaCompras/lista.module");
 const categoria_prato_module_1 = require("./categoria-prato/categoria-prato.module");
@@ -17,17 +18,22 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_module_1 = require("./users/user.module");
 const prato_module_1 = require("./pratos/prato.module");
 const restaurante_module_1 = require("./restaurante/restaurante.module");
+const core_1 = require("@nestjs/core");
+const roles_guard_1 = require("./guards/roles.guard");
+const jwt_1 = require("@nestjs/jwt");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            auth_module_1.AuthModule,
             lista_module_1.ListaModule,
             categoria_prato_module_1.CategoriaPratoModule,
             user_module_1.UserModule,
             prato_module_1.PratoModule,
             restaurante_module_1.RestauranteModule,
+            jwt_1.JwtModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
                 host: '127.0.0.1',
@@ -43,7 +49,11 @@ exports.AppModule = AppModule = __decorate([
             app_controller_1.AppController
         ],
         providers: [
-            upload_service_1.UploadService, app_service_1.AppService
+            upload_service_1.UploadService, app_service_1.AppService, jwt_1.JwtService,
+            {
+                provide: core_1.APP_GUARD,
+                useClass: roles_guard_1.RolesGuard,
+            },
         ],
     })
 ], AppModule);

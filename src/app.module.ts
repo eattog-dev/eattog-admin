@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { UploadService } from './users/upload.service';
 import { ListaModule } from './listaCompras/lista.module';
 import { CategoriaPratoModule } from './categoria-prato/categoria-prato.module';
@@ -8,14 +9,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
 import { PratoModule } from './pratos/prato.module';
 import { RestauranteModule } from './restaurante/restaurante.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './guards/roles.guard';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    AuthModule,
     ListaModule,
     CategoriaPratoModule,
     UserModule,
     PratoModule,
     RestauranteModule,
+    JwtModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: '127.0.0.1',
@@ -30,6 +36,11 @@ import { RestauranteModule } from './restaurante/restaurante.module';
   controllers: [
     AppController],
   providers: [
-    UploadService, AppService],
+    UploadService, AppService, JwtService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },],
+
 })
 export class AppModule { }

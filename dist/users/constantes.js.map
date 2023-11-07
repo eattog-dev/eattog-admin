@@ -1,1 +1,1 @@
-{"version":3,"file":"constantes.js","sourceRoot":"","sources":["../../src/users/constantes.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAG;IACxB,MAAM,EAAE,kBAAkB;CAC3B,CAAC"}
+{"version":3,"file":"constantes.js","sourceRoot":"","sources":["../../src/users/constantes.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAG;IACxB,MAAM,EAAE,oBAAoB;CAC7B,CAAC"}

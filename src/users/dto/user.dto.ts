@@ -1,34 +1,34 @@
 import { IsString, IsEmail, Matches, IsDate } from 'class-validator';
 
 export class UserDto {
-    @IsString()
+    @IsString({ message: 'O campo "nome" deve ser uma string' })
     nome: string;
 
-    @IsEmail()
+    @IsEmail({}, { message: 'O campo "email" deve ser um endereço de e-mail válido' })
     email: string;
 
-    @IsString()
+    @IsString({ message: 'O campo "cpf" deve ser uma string' })
     cpf: string;
 
-    @IsDate()
+    @IsDate({ message: 'O campo "data_aniversario" deve ser uma data válida' })
     data_aniversario: Date;
 
-    @IsString()
+    @IsString({ message: 'O campo "cep" deve ser uma string' })
     cep: string;
 
-    @IsString()
+    @IsString({ message: 'O campo "rua" deve ser uma string' })
     rua: string;
 
-    @IsString()
+    @IsString({ message: 'O campo "complemento" deve ser uma string' })
     complemento: string;
 
-    @IsString()
+    @IsString({ message: 'O campo "bairro" deve ser uma string' })
     bairro: string;
 
-    @IsString()
+    @IsString({ message: 'O campo "numero_residencia" deve ser uma string' })
     numero_residencia: string;
 
-    @IsString()
+    @IsString({ message: 'O campo "numero_celular" deve ser uma string' })
     numero_celular: string;
 
     @IsString()

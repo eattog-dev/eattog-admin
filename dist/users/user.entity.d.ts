@@ -10,6 +10,7 @@ export declare class UserEntity {
     complemento: string;
     bairro: string;
     numero_residencia: string;
+    tipo_usuario: number;
     senha: string;
     isActive: boolean;
 }
