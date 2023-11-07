@@ -30,32 +30,12 @@ let UserService = class UserService {
         if (user) {
             throw new common_1.BadGatewayException('email registered in system');
         }
-<<<<<<< HEAD
-        const payload = { id: user.id, email: user.email };
-        return new session_dto_1.SessionDto(await this.jwtService.signAsync(payload));
-    }
-    signUp(userDto) {
-        let user = new user_entity_1.UserEntity();
-        user.nome = userDto.nome;
-        user.email = userDto.email;
-        user.cpf = userDto.cpf;
-        user.data_aniversario = userDto.data_aniversario;
-        user.cep = userDto.cep;
-        user.rua = userDto.rua;
-        user.complemento = userDto.complemento;
-        user.bairro = userDto.bairro;
-        user.numero_residencia = userDto.numero_residencia;
-        user.numero_celular = userDto.numero_celular;
-        user.senha = userDto.senha;
-        return this.usersRepository.save(user);
-=======
         const passwordHashed = await (0, password_1.createPasswordHashed)(criaUsuario.senha);
         return this.usersRepository.save({
             ...criaUsuario,
             tipo_usuario: tipoUsuario ? tipoUsuario : user_type_enum_1.UserType.User,
             senha: passwordHashed,
         });
->>>>>>> role
     }
     async update(id, userDto) {
         let user = await this.usersRepository.findOneBy({ id: id });

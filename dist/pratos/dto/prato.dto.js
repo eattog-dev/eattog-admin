@@ -35,11 +35,7 @@ __decorate([
     __metadata("design:type", Number)
 ], PratoDto.prototype, "tempo_preparo", void 0);
 __decorate([
-<<<<<<< HEAD
-    (0, class_validator_1.IsString)(),
-=======
     (0, class_validator_1.IsString)({ message: 'O campo "descricao" deve ser uma string' }),
->>>>>>> role
     __metadata("design:type", String)
 ], PratoDto.prototype, "descricao", void 0);
 __decorate([
