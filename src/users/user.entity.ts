@@ -59,6 +59,9 @@ export class UserEntity {
     @IsString()
     numero_residencia: string;
 
+    @Column({ nullable: false })
+    tipo_usuario: number;
+
     @Column({ length: 20 })
     @IsNotEmpty()
     @IsString()

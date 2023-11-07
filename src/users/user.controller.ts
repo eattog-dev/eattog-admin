@@ -5,6 +5,7 @@ import { AuthGuard as SessionGuard } from './session.guard';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { SessionDto } from './dto/session.dto';
+import { CreateUserDto } from './dto/createUser.dto';
 
 @Controller('users')
 export class UsersController {
@@ -31,17 +32,15 @@ export class UsersController {
   }
 
   @Post('sign-up')
-  async create(
-    @Body() createUser: UserDto,
-  ): Promise<UserEntity> {
-    return this.userService.signUp(createUser);
+  async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
+    return this.userService.criaUsuario(createUser);
   }
 
-  @Post('sign-in')
-  login(
-    @Body() signInUser: UserDto
-  ): Promise<SessionDto> {
-    return this.userService.signIn(signInUser);
-  }
+  // @Post('sign-in')
+  // login(
+  //   @Body() signInUser: UserDto
+  // ): Promise<SessionDto> {
+  //   return this.userService.signIn(signInUser);
+  // }
 
 }

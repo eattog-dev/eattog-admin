@@ -18,37 +18,24 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./user.entity");
 const typeorm_2 = require("typeorm");
 const jwt_1 = require("@nestjs/jwt");
-const session_dto_1 = require("./dto/session.dto");
+const password_1 = require("../utils/password");
+const user_type_enum_1 = require("./enum/user-type.enum");
 let UserService = class UserService {
     constructor(usersRepository, jwtService) {
         this.usersRepository = usersRepository;
         this.jwtService = jwtService;
     }
-    async signIn(userDto) {
-        const user = await this.usersRepository.findOneBy({
-            email: userDto.email,
-            senha: userDto.senha
-        });
-        if (!user) {
-            throw new common_1.UnauthorizedException();
+    async criaUsuario(criaUsuario, tipoUsuario) {
+        const user = await this.findUserByEmail(criaUsuario.email).catch(() => undefined);
+        if (user) {
+            throw new common_1.BadGatewayException('email registered in system');
         }
-        const payload = { id: user.id, email: user.email };
-        return new session_dto_1.SessionDto(await this.jwtService.signAsync(payload));
-    }
-    signUp(userDto) {
-        let user = new user_entity_1.UserEntity();
-        user.nome = userDto.nome;
-        user.email = userDto.email;
-        user.cpf = userDto.cpf;
-        user.data_aniversario = userDto.data_aniversario;
-        user.cep = userDto.cep;
-        user.rua = userDto.rua;
-        user.complemento = userDto.complemento;
-        user.bairro = userDto.bairro;
-        user.numero_residencia = userDto.numero_residencia;
-        user.numero_celular = userDto.numero_celular;
-        user.senha = userDto.senha;
-        return this.usersRepository.save(user);
+        const passwordHashed = await (0, password_1.createPasswordHashed)(criaUsuario.senha);
+        return this.usersRepository.save({
+            ...criaUsuario,
+            tipo_usuario: tipoUsuario ? tipoUsuario : user_type_enum_1.UserType.User,
+            senha: passwordHashed,
+        });
     }
     async update(id, userDto) {
         let user = await this.usersRepository.findOneBy({ id: id });
@@ -67,6 +54,17 @@ let UserService = class UserService {
     }
     show(id) {
         return this.usersRepository.findOneBy({ id: id });
+    }
+    async findUserByEmail(email) {
+        const user = await this.usersRepository.findOne({
+            where: {
+                email,
+            },
+        });
+        if (!user) {
+            throw new common_1.NotFoundException(`Email: ${email} Not Found`);
+        }
+        return user;
     }
 };
 exports.UserService = UserService;

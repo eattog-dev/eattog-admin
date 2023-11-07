@@ -83,6 +83,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "numero_residencia", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    __metadata("design:type", Number)
+], UserEntity.prototype, "tipo_usuario", void 0);
+__decorate([
     (0, typeorm_1.Column)({ length: 20 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
