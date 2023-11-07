@@ -27,7 +27,6 @@ let AuthService = class AuthService {
             .catch(() => undefined);
         console.log(user);
         const isMatch = await (0, password_1.validatePassword)(loginDto.senha, user?.senha || '');
-        console.log('match', isMatch);
         if (!user || !isMatch) {
             throw new common_1.NotFoundException('Email or passord invalid');
         }

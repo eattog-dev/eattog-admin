@@ -87,10 +87,9 @@ __decorate([
     __metadata("design:type", Number)
 ], UserEntity.prototype, "tipo_usuario", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 20 }),
+    (0, typeorm_1.Column)({ length: 255 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(6, 20, { message: 'A senha deve ter entre 6 e 20 caracteres' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "senha", void 0);
 __decorate([

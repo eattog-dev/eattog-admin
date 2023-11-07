@@ -1,4 +1,4 @@
-import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
 import { Repository } from 'typeorm';
@@ -59,13 +59,30 @@ export class UserService {
         user.bairro = userDto.bairro;
         user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
-        user.senha = userDto.senha;
+        if (userDto.senha) {
+            const passwordHashed = await createPasswordHashed(userDto.senha);
+            user.senha = passwordHashed;
+        }
 
         return this.usersRepository.save(user);
     }
 
     show(id: number): Promise<UserEntity> {
         return this.usersRepository.findOneBy({ id: id });
+    }
+
+    async findUserById(userId: number): Promise<UserEntity> {
+        const user = await this.usersRepository.findOne({
+            where: {
+                id: userId,
+            },
+        });
+
+        if (!user) {
+            throw new NotFoundException(`UserId: ${userId} Not Found`);
+        }
+
+        return user;
     }
 
     async findUserByEmail(email: string): Promise<UserEntity> {
@@ -81,4 +98,5 @@ export class UserService {
 
         return user;
     }
+
 }

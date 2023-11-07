@@ -49,11 +49,25 @@ let UserService = class UserService {
         user.bairro = userDto.bairro;
         user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
-        user.senha = userDto.senha;
+        if (userDto.senha) {
+            const passwordHashed = await (0, password_1.createPasswordHashed)(userDto.senha);
+            user.senha = passwordHashed;
+        }
         return this.usersRepository.save(user);
     }
     show(id) {
         return this.usersRepository.findOneBy({ id: id });
+    }
+    async findUserById(userId) {
+        const user = await this.usersRepository.findOne({
+            where: {
+                id: userId,
+            },
+        });
+        if (!user) {
+            throw new common_1.NotFoundException(`UserId: ${userId} Not Found`);
+        }
+        return user;
     }
     async findUserByEmail(email) {
         const user = await this.usersRepository.findOne({

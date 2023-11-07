@@ -1,16 +1,24 @@
 import { compare, hash } from 'bcrypt';
 
-export const createPasswordHashed = async (
-    senha: string,
-): Promise<string> => {
-    const saltOrRounds = 10;
+import * as bcrypt from 'bcrypt';
 
-    return hash(senha, saltOrRounds);
+export const createPasswordHashed = async (senha: string): Promise<string> => {
+    const saltRounds = 10;
+    try {
+        const hashedPassword = await bcrypt.hash(senha, saltRounds);
+        return hashedPassword;
+    } catch (error) {
+        console.error('Erro ao criar o hash da senha:', error);
+        throw error;
+    }
 };
 
-export const validatePassword = async (
-    senha: string,
-    passwordHashed: string,
-): Promise<boolean> => {
-    return compare(senha, passwordHashed);
+
+export const validatePassword = async (senha, passwordHashed) => {
+    try {
+        return await bcrypt.compare(senha, passwordHashed);
+    } catch (error) {
+        console.error('Erro na comparação de senhas:', error);
+        return false;
+    }
 };

@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const roles_decorator_1 = require("../decorators/roles.decorator");
 const jwt_1 = require("@nestjs/jwt");
-const constantes_1 = require("../users/constantes");
+const constantes_1 = require("./constantes");
 let RolesGuard = class RolesGuard {
     constructor(reflector, jwtService) {
         this.reflector = reflector;
@@ -35,7 +35,7 @@ let RolesGuard = class RolesGuard {
         }
         console.log('authorization', authorization);
         const { user } = context.switchToHttp().getRequest();
-        return requiredRoles.some((role) => role === loginPayload.typeUser);
+        return requiredRoles.some((role) => role === loginPayload.tipo_usuario);
     }
 };
 exports.RolesGuard = RolesGuard;

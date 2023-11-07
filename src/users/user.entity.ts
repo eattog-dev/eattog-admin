@@ -62,10 +62,9 @@ export class UserEntity {
     @Column({ nullable: false })
     tipo_usuario: number;
 
-    @Column({ length: 20 })
+    @Column({ length: 255 })
     @IsNotEmpty()
     @IsString()
-    @Length(6, 20, { message: 'A senha deve ter entre 6 e 20 caracteres' })
     senha: string;
 
     @Column({ default: true })

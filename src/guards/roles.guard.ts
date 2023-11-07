@@ -3,7 +3,8 @@ import { Reflector } from '@nestjs/core';
 import { UserType } from '../users/enum/user-type.enum'
 import { ROLES_KEY } from 'src/decorators/roles.decorator';
 import { JwtService } from '@nestjs/jwt';
-import { jwtConstants } from 'src/users/constantes';
+import { jwtConstants } from 'src/guards/constantes';
+import { LoginPayload } from 'src/auth/dtos/loginPayload.dto';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -22,7 +23,7 @@ export class RolesGuard implements CanActivate {
     }
 
     const { authorization } = context.switchToHttp().getRequest().headers;
-    const loginPayload = await this.jwtService.verifyAsync(authorization,
+    const loginPayload: LoginPayload | undefined = await this.jwtService.verifyAsync(authorization,
       { secret: jwtConstants.secret }).catch(() => undefined)
 
     if (!loginPayload) {
@@ -32,6 +33,6 @@ export class RolesGuard implements CanActivate {
     console.log('authorization', authorization);
 
     const { user } = context.switchToHttp().getRequest();
-    return requiredRoles.some((role) => role === loginPayload.typeUser);
+    return requiredRoles.some((role) => role === loginPayload.tipo_usuario);
   }
 }

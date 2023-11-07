@@ -21,20 +21,16 @@ export class AuthService {
             .findUserByEmail(loginDto.email)
             .catch(() => undefined);
         console.log(user);
-        
-        
+
+
         const isMatch = await validatePassword(
             loginDto.senha,
             user?.senha || '',
         );
 
-        console.log('match', isMatch);
-        
-
         if (!user || !isMatch) {
             throw new NotFoundException('Email or passord invalid');
         }
-
         return {
             accessToken: this.jwtService.sign({ ...new LoginPayload(user) }),
             user: new ReturnUserDto(user),

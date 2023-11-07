@@ -10,5 +10,6 @@ export declare class UserService {
     criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity>;
     update(id: number, userDto: UserDto): Promise<UserEntity>;
     show(id: number): Promise<UserEntity>;
+    findUserById(userId: number): Promise<UserEntity>;
     findUserByEmail(email: string): Promise<UserEntity>;
 }

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const http_1 = require("@nestjs/common/decorators/http");
-const session_guard_1 = require("./session.guard");
+const session_guard_1 = require("../guards/session.guard");
 const user_service_1 = require("./user.service");
 const user_dto_1 = require("./dto/user.dto");
 const createUser_dto_1 = require("./dto/createUser.dto");
