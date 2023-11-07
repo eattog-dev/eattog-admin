@@ -6,6 +6,8 @@ import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { SessionDto } from './dto/session.dto';
 import { CreateUserDto } from './dto/createUser.dto';
+import { UserType } from './enum/user-type.enum';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -14,7 +16,7 @@ export class UsersController {
   ) { }
 
   @UseGuards(SessionGuard)
-  @Get('meu-perfil')
+  @Get('/meu-perfil')
   show(
     @Request() req
   ): Promise<UserEntity> {
@@ -23,25 +25,28 @@ export class UsersController {
   }
 
   @UseGuards(SessionGuard)
-  @Put(':id')
+  @Put('/:id')
   update(
     @Param('id') id: number,
     @Body() updateUser: UserDto
   ): Promise<UserEntity> {
     return this.userService.update(id, updateUser);
   }
-  
 
-  @Post('sign-up')
+  @Roles(UserType.Admin)
+  @Post('/admin')
+  async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {
+    return this.userService.criaUsuario(createUser, UserType.Admin);
+  }
+
+  @Roles(UserType.Restaurante)
+  @Post('/admin-restaurante')
+  async createAdminRestaurante(@Body() createUser: CreateUserDto): Promise<UserEntity> {
+    return this.userService.criaUsuario(createUser, UserType.Restaurante);
+  }
+
+  @Post('/sign-up')
   async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.criaUsuario(createUser);
   }
-
-  // @Post('sign-in')
-  // login(
-  //   @Body() signInUser: UserDto
-  // ): Promise<SessionDto> {
-  //   return this.userService.signIn(signInUser);
-  // }
-
 }
