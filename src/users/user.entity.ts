@@ -35,27 +35,22 @@ export class UserEntity {
     numero_celular: string;
 
     @Column({ length: 255 })
-    @IsNotEmpty()
     @IsString()
     cep: string;
 
     @Column({ length: 255 })
-    @IsNotEmpty()
     @IsString()
     rua: string;
 
     @Column({ length: 255 })
-    @IsNotEmpty()
     @IsString()
     complemento: string;
 
     @Column({ length: 255 })
-    @IsNotEmpty()
     @IsString()
     bairro: string;
 
     @Column({ length: 255 })
-    @IsNotEmpty()
     @IsString()
     numero_residencia: string;
 
