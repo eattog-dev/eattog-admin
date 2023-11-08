@@ -1,16 +1,11 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class RestauranteDTO {
-    @IsString({ message: 'O campo "imagem" deve ser uma string' })
-    @IsNotEmpty()
+
     imagem: string;
 
-    @IsString({ message: 'O campo "logo" deve ser uma string' })
-    @IsNotEmpty()
     logo: string;
 
-    @IsString({ message: 'O campo "banner" deve ser uma string' })
-    @IsNotEmpty()
     banner: string;
 
     @IsString({ message: 'O campo "razao_social" deve ser uma string' })
@@ -25,7 +20,7 @@ export class RestauranteDTO {
     @IsNotEmpty()
     cep: string;
 
-    @IsString({ message: 'O campo "rua" deve ser uma string' })
+    @IsString({ message: 'O campo "rua_bairro" deve ser uma string' })
     @IsNotEmpty()
     rua_bairro: string;
 
@@ -33,7 +28,6 @@ export class RestauranteDTO {
     @IsNotEmpty()
     cidade: string;
 
-    @IsNumber()
     avaliacao: number;
 
     @IsString({ message: 'O campo "tipoRestaurante" deve ser uma string' })

@@ -96,6 +96,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "getRestaurante", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Put)('atualizar/restaurante/:id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
@@ -111,6 +112,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "editRestaurante", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Delete)('deletar/restaurante/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

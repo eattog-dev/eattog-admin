@@ -27,13 +27,13 @@ export class RestauranteEntity {
     @IsString({ message: 'A razão social deve ser uma string' })
     razao_social: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 18 })
     @IsNotEmpty({ message: 'A razão social não pode estar vazia' })
     @IsString({ message: 'A razão social deve ser uma string' })
-    @MaxLength(255, { message: 'A razão social não pode ter mais de 255 caracteres' })
+    @MaxLength(18, { message: 'A razão social não pode ter mais de 18 caracteres' })
     cnpj: string;
 
-    @Column({ type: 'varchar', length: 8 })
+    @Column({ type: 'varchar', length: 9 })
     @IsNotEmpty({ message: 'O cep não pode estar vazio' })
     @IsString({ message: 'O cep deve ser uma string' })
     cep: string;

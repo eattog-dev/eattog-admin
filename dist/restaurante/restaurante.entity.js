@@ -45,14 +45,14 @@ __decorate([
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "razao_social", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 18 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'A razão social não pode estar vazia' }),
     (0, class_validator_1.IsString)({ message: 'A razão social deve ser uma string' }),
-    (0, class_validator_1.MaxLength)(255, { message: 'A razão social não pode ter mais de 255 caracteres' }),
+    (0, class_validator_1.MaxLength)(18, { message: 'A razão social não pode ter mais de 18 caracteres' }),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "cnpj", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 8 }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 9 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'O cep não pode estar vazio' }),
     (0, class_validator_1.IsString)({ message: 'O cep deve ser uma string' }),
     __metadata("design:type", String)

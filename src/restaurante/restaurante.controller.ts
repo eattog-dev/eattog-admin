@@ -44,6 +44,7 @@ export class RestauranteController {
     return this.restauranteService.getRestaurante(id);
   }
 
+  @Roles(UserType.Admin)
   @Put('atualizar/restaurante/:id')
   @UsePipes(ValidationPipe)
   @UseInterceptors(FileFieldsInterceptor([
@@ -68,6 +69,7 @@ export class RestauranteController {
     return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath);
   }
 
+  @Roles(UserType.Admin)
   @Delete('deletar/restaurante/:id')
   deleteRestaurante(@Param('id') id: number): Promise<DeleteResult> {
     return this.restauranteService.deleteRestaurante(id);

@@ -6,6 +6,8 @@ import { DeleteResult } from 'typeorm';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from 'src/users/upload.service';
 import { Pipes } from 'aws-sdk';
+import { Roles } from 'src/decorators/roles.decorator';
+import { UserType } from 'src/users/enum/user-type.enum';
 
 @Controller()
 export class PratoController {
@@ -16,8 +18,8 @@ export class PratoController {
         return this.pratoService.getPratosComCategorias();
     }
 
+    @Roles(UserType.Admin)
     @Post('criar/prato')
-    @UsePipes(ValidationPipe)
     @UseInterceptors(FileInterceptor('imagem'))
     async createPrato(@Body() pratoDto: PratoDto, @UploadedFile() file: Express.Multer.File): Promise<PratoEntity> {
         let filePath = ''
@@ -32,8 +34,8 @@ export class PratoController {
         return this.pratoService.getPrato(id);
     }
 
+    @Roles(UserType.Admin)
     @Put('atualizar/prato/:id')
-    @UsePipes(ValidationPipe)
     @UseInterceptors(FileInterceptor('imagem'))
     async editPrato(
         @Param('id') id: number,
@@ -47,6 +49,7 @@ export class PratoController {
         return this.pratoService.editPrato(id, pratoDto, filePath);
     }
 
+    @Roles(UserType.Admin)
     @Delete('deletar/prato/:id')
     async deletePrato(@Param('id') id: number): Promise<DeleteResult> {
         return this.pratoService.deletePrato(id);

@@ -18,6 +18,8 @@ const prato_dto_1 = require("./dto/prato.dto");
 const prato_service_1 = require("./prato.service");
 const platform_express_1 = require("@nestjs/platform-express");
 const upload_service_1 = require("../users/upload.service");
+const roles_decorator_1 = require("../decorators/roles.decorator");
+const user_type_enum_1 = require("../users/enum/user-type.enum");
 let PratoController = class PratoController {
     constructor(pratoService, uploadService) {
         this.pratoService = pratoService;
@@ -76,8 +78,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratos", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('criar/prato'),
-    (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
@@ -93,8 +95,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPrato", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Put)('atualizar/prato/:id'),
-    (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -104,6 +106,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "editPrato", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Delete)('deletar/prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
