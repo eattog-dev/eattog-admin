@@ -28,6 +28,12 @@ let UsersController = class UsersController {
         console.log(req.user);
         return this.userService.show(req.user.id);
     }
+    async getTodosUsuariosNormais() {
+        return this.userService.getAllNormalUsers();
+    }
+    async getTodosUsuariosAdmin() {
+        return this.userService.getAllAdminUsers();
+    }
     update(id, updateUser) {
         return this.userService.update(id, updateUser);
     }
@@ -48,8 +54,20 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "show", null);
 __decorate([
+    (0, common_1.Get)('/usuario-normal'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getTodosUsuariosNormais", null);
+__decorate([
+    (0, common_1.Get)('/usuario-admin'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getTodosUsuariosAdmin", null);
+__decorate([
     (0, common_1.UseGuards)(session_guard_1.AuthGuard),
-    (0, common_1.Put)('/:id'),
+    (0, common_1.Put)('/atualizar-usuario/:id'),
     __param(0, (0, http_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -57,7 +75,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "update", null);
 __decorate([
-    (0, common_1.Post)('/admin'),
+    (0, common_1.Post)('cadastrar/admin'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -65,14 +83,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createAdmin", null);
 __decorate([
-    (0, common_1.Post)('/sign-up'),
+    (0, common_1.Post)('cadastrar/user'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createUser", null);
 exports.UsersController = UsersController = __decorate([
-    (0, common_1.Controller)('users'),
+    (0, common_1.Controller)(''),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UsersController);
 //# sourceMappingURL=user.controller.js.map

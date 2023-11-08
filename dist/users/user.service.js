@@ -55,6 +55,24 @@ let UserService = class UserService {
         }
         return this.usersRepository.save(user);
     }
+    async getAllNormalUsers() {
+        const normalUsers = await this.usersRepository.find({
+            where: { tipo_usuario: user_type_enum_1.UserType.User },
+        });
+        if (!normalUsers || normalUsers.length === 0) {
+            throw new common_1.NotFoundException('Não foram encontrados usuários normais.');
+        }
+        return normalUsers;
+    }
+    async getAllAdminUsers() {
+        const adminUsers = await this.usersRepository.find({
+            where: { tipo_usuario: user_type_enum_1.UserType.Admin },
+        });
+        if (!adminUsers || adminUsers.length === 0) {
+            throw new common_1.NotFoundException('Não foram encontrados usuários administradores.');
+        }
+        return adminUsers;
+    }
     show(id) {
         return this.usersRepository.findOneBy({ id: id });
     }

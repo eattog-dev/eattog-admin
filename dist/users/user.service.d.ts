@@ -9,6 +9,8 @@ export declare class UserService {
     constructor(usersRepository: Repository<UserEntity>, jwtService: JwtService);
     criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity>;
     update(id: number, userDto: UserDto): Promise<UserEntity>;
+    getAllNormalUsers(): Promise<UserEntity[]>;
+    getAllAdminUsers(): Promise<UserEntity[]>;
     show(id: number): Promise<UserEntity>;
     findUserById(userId: number): Promise<UserEntity>;
     findUserByEmail(email: string): Promise<UserEntity>;

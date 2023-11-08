@@ -16,19 +16,6 @@ export class UserService {
         private jwtService: JwtService
     ) { }
 
-    // async signIn(userDto: UserDto): Promise<SessionDto> {
-    //     const user = await this.usersRepository.findOneBy({
-    //         email: userDto.email,
-    //         senha: userDto.senha
-    //     });
-
-    //     if (!user) {
-    //         throw new UnauthorizedException();
-    //     }
-    //     const payload = { id: user.id, email: user.email };
-    //     return new SessionDto(await this.jwtService.signAsync(payload));
-    // }
-
     async criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity> {
         const user = await this.findUserByEmail(criaUsuario.email).catch(
             () => undefined,
@@ -66,6 +53,31 @@ export class UserService {
 
         return this.usersRepository.save(user);
     }
+
+    async getAllNormalUsers(): Promise<UserEntity[]> {
+        const normalUsers = await this.usersRepository.find({
+            where: { tipo_usuario: UserType.User },
+        });
+
+        if (!normalUsers || normalUsers.length === 0) {
+            throw new NotFoundException('Não foram encontrados usuários normais.');
+        }
+
+        return normalUsers;
+    }
+
+    async getAllAdminUsers(): Promise<UserEntity[]> {
+        const adminUsers = await this.usersRepository.find({
+            where: { tipo_usuario: UserType.Admin },
+        });
+
+        if (!adminUsers || adminUsers.length === 0) {
+            throw new NotFoundException('Não foram encontrados usuários administradores.');
+        }
+
+        return adminUsers;
+    }
+
 
     show(id: number): Promise<UserEntity> {
         return this.usersRepository.findOneBy({ id: id });

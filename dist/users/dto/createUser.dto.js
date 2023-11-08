@@ -20,7 +20,6 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "nome", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)({ message: 'O campo "data_aniversario" deve ser uma data válida' }),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Date)
 ], CreateUserDto.prototype, "data_aniversario", void 0);

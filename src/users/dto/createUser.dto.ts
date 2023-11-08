@@ -5,7 +5,6 @@ export class CreateUserDto {
     @IsNotEmpty()
     nome: string;
 
-    @IsDate({ message: 'O campo "data_aniversario" deve ser uma data válida' })
     @IsNotEmpty()
     data_aniversario: Date;
 

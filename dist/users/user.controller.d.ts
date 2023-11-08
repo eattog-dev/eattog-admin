@@ -6,6 +6,8 @@ export declare class UsersController {
     private readonly userService;
     constructor(userService: UserService);
     show(req: any): Promise<UserEntity>;
+    getTodosUsuariosNormais(): Promise<UserEntity[]>;
+    getTodosUsuariosAdmin(): Promise<UserEntity[]>;
     update(id: number, updateUser: UserDto): Promise<UserEntity>;
     createAdmin(createUser: CreateUserDto): Promise<UserEntity>;
     createUser(createUser: CreateUserDto): Promise<UserEntity>;

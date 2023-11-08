@@ -7,7 +7,7 @@ import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UserType } from './enum/user-type.enum';
 
-@Controller('users')
+@Controller('')
 export class UsersController {
   constructor(
     private readonly userService: UserService,
@@ -22,8 +22,18 @@ export class UsersController {
     return this.userService.show(req.user.id);
   }
 
+  @Get('/usuario-normal')
+  async getTodosUsuariosNormais() {
+    return this.userService.getAllNormalUsers();
+  }
+
+  @Get('/usuario-admin')
+  async getTodosUsuariosAdmin() {
+    return this.userService.getAllAdminUsers();
+  }
+
   @UseGuards(SessionGuard)
-  @Put('/:id')
+  @Put('/atualizar-usuario/:id')
   update(
     @Param('id') id: number,
     @Body() updateUser: UserDto
@@ -31,13 +41,14 @@ export class UsersController {
     return this.userService.update(id, updateUser);
   }
 
-  @Post('/admin')
+  @Post('cadastrar/admin')
   @UsePipes(ValidationPipe)
   async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.criaUsuario(createUser, UserType.Admin);
   }
 
-  @Post('/sign-up')
+  @Post('cadastrar/user')
+  @UsePipes(ValidationPipe)
   async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.criaUsuario(createUser);
   }
