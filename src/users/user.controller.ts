@@ -41,13 +41,13 @@ export class UsersController {
     return this.userService.update(id, updateUser);
   }
 
-  @Post('cadastrar/admin')
+  @Post('/cadastrar/admin')
   @UsePipes(ValidationPipe)
   async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.criaUsuario(createUser, UserType.Admin);
   }
 
-  @Post('cadastrar/user')
+  @Post('/cadastrar/user')
   @UsePipes(ValidationPipe)
   async createUser(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.criaUsuario(createUser);

@@ -75,7 +75,7 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurantes", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
-    (0, common_1.Post)('criar/restaurante'),
+    (0, common_1.Post)('/criar/restaurante'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
         { name: 'imagem', maxCount: 1 },
@@ -89,7 +89,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "createRestaurante", null);
 __decorate([
-    (0, common_1.Get)('restaurante/:id'),
+    (0, common_1.Get)('/restaurante/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -97,7 +97,7 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurante", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
-    (0, common_1.Put)('atualizar/restaurante/:id'),
+    (0, common_1.Put)('/atualizar/restaurante/:id'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
         { name: 'banner', maxCount: 1 },
@@ -113,27 +113,27 @@ __decorate([
 ], RestauranteController.prototype, "editRestaurante", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
-    (0, common_1.Delete)('deletar/restaurante/:id'),
+    (0, common_1.Delete)('/deletar/restaurante/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "deleteRestaurante", null);
 __decorate([
-    (0, common_1.Get)('qtdRestaurantes/'),
+    (0, common_1.Get)('/qtdRestaurantes/'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], RestauranteController.prototype, "quantidadeRestaurantes", null);
 __decorate([
-    (0, common_1.Get)('restaurantes/:pagina'),
+    (0, common_1.Get)('/restaurantes/:pagina'),
     __param(0, (0, common_1.Param)('pagina')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "restaurantesPagina", null);
 __decorate([
-    (0, common_1.Get)('restaurantes-prox-pagina/:pagina'),
+    (0, common_1.Get)('/restaurantes-prox-pagina/:pagina'),
     __param(0, (0, common_1.Param)('pagina')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

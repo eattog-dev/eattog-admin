@@ -18,7 +18,7 @@ export class RestauranteController {
   }
 
   @Roles(UserType.Admin)
-  @Post('criar/restaurante')
+  @Post('/criar/restaurante')
   @UsePipes(ValidationPipe)
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'imagem', maxCount: 1 },
@@ -39,13 +39,13 @@ export class RestauranteController {
     return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath);
   }
 
-  @Get('restaurante/:id')
+  @Get('/restaurante/:id')
   getRestaurante(@Param('id') id: number): Promise<RestauranteEntity> {
     return this.restauranteService.getRestaurante(id);
   }
 
   @Roles(UserType.Admin)
-  @Put('atualizar/restaurante/:id')
+  @Put('/atualizar/restaurante/:id')
   @UsePipes(ValidationPipe)
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'banner', maxCount: 1 },
@@ -70,22 +70,22 @@ export class RestauranteController {
   }
 
   @Roles(UserType.Admin)
-  @Delete('deletar/restaurante/:id')
+  @Delete('/deletar/restaurante/:id')
   deleteRestaurante(@Param('id') id: number): Promise<DeleteResult> {
     return this.restauranteService.deleteRestaurante(id);
   }
 
-  @Get('qtdRestaurantes/')
+  @Get('/qtdRestaurantes/')
   quantidadeRestaurantes() {
     return this.restauranteService.qtdRestaurantes()
   }
 
-  @Get('restaurantes/:pagina')
+  @Get('/restaurantes/:pagina')
   restaurantesPagina(@Param('pagina') pagina: number): Promise<RestauranteEntity[]> {
     return this.restauranteService.restaurantesPorPagina(pagina);
   }
 
-  @Get('restaurantes-prox-pagina/:pagina')
+  @Get('/restaurantes-prox-pagina/:pagina')
   restaurantesProxPagina(@Param('pagina') pagina: number): Promise<Boolean> {
     return this.restauranteService.verificaPaginacaoRestaurante(pagina);
   }

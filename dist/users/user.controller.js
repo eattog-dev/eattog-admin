@@ -75,7 +75,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "update", null);
 __decorate([
-    (0, common_1.Post)('cadastrar/admin'),
+    (0, common_1.Post)('/cadastrar/admin'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -83,7 +83,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createAdmin", null);
 __decorate([
-    (0, common_1.Post)('cadastrar/user'),
+    (0, common_1.Post)('/cadastrar/user'),
     (0, common_1.UsePipes)(common_1.ValidationPipe),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),

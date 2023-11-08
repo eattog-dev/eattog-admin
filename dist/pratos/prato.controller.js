@@ -72,14 +72,14 @@ let PratoController = class PratoController {
 };
 exports.PratoController = PratoController;
 __decorate([
-    (0, common_1.Get)('pratos'),
+    (0, common_1.Get)('/pratos'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratos", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
-    (0, common_1.Post)('criar/prato'),
+    (0, common_1.Post)('/criar/prato'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
@@ -88,7 +88,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "createPrato", null);
 __decorate([
-    (0, common_1.Get)('prato/:id'),
+    (0, common_1.Get)('/prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -96,7 +96,7 @@ __decorate([
 ], PratoController.prototype, "getPrato", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
-    (0, common_1.Put)('atualizar/prato/:id'),
+    (0, common_1.Put)('/atualizar/prato/:id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -107,41 +107,41 @@ __decorate([
 ], PratoController.prototype, "editPrato", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
-    (0, common_1.Delete)('deletar/prato/:id'),
+    (0, common_1.Delete)('/deletar/prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "deletePrato", null);
 __decorate([
-    (0, common_1.Get)('pratos-restaurante/:restauranteId'),
+    (0, common_1.Get)('/pratos-restaurante/:restauranteId'),
     __param(0, (0, common_1.Param)('restauranteId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosPorRestaurante", null);
 __decorate([
-    (0, common_1.Get)('pratos-por-categoria/'),
+    (0, common_1.Get)('/pratos-por-categoria/'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosCategoria", null);
 __decorate([
-    (0, common_1.Get)('pratos-categoria/:id'),
+    (0, common_1.Get)('/pratos-categoria/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosUCategoria", null);
 __decorate([
-    (0, common_1.Get)('qtd-categorias/:id'),
+    (0, common_1.Get)('/qtd-categorias/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosCategoriaLimitado", null);
 __decorate([
-    (0, common_1.Get)('pagina-categoria/:categoriaID/:pagina'),
+    (0, common_1.Get)('/pagina-categoria/:categoriaID/:pagina'),
     __param(0, (0, common_1.Param)('categoriaID')),
     __param(1, (0, common_1.Param)('pagina')),
     __metadata("design:type", Function),
@@ -149,7 +149,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getCategoriaPagina", null);
 __decorate([
-    (0, common_1.Get)('pagina-cardapio/:restauranteId/:pagina'),
+    (0, common_1.Get)('/pagina-cardapio/:restauranteId/:pagina'),
     __param(0, (0, common_1.Param)('restauranteId')),
     __param(1, (0, common_1.Param)('pagina')),
     __metadata("design:type", Function),
@@ -157,7 +157,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratosPorPagina", null);
 __decorate([
-    (0, common_1.Get)('prox-pagina/:restauranteId/:pagina'),
+    (0, common_1.Get)('/prox-pagina/:restauranteId/:pagina'),
     __param(0, (0, common_1.Param)('restauranteId')),
     __param(1, (0, common_1.Param)('pagina')),
     __metadata("design:type", Function),

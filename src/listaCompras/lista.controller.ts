@@ -10,12 +10,12 @@ export class ListaController {
         private readonly listaService: ListaService,
     ) { }
 
-    @Get()
+    @Get("/lista")
     listar(): Promise<ListaEntity[]> {
         return this.listaService.listar();
     }
 
-    @Post()
+    @Post("/criar-lista")
     criar(@Body() listaDto: ListaDto): Promise<ListaEntity> {
         return this.listaService.criar(listaDto);
     }
@@ -31,7 +31,7 @@ export class ListaController {
     //     return this.stripeService.criarSessaoCompra(lista);
     // }
 
-    @Put(":id/adicionar")
+    @Put(":id/adicionar-item")
     adicionar(
         @Param('id') id: number,
         @Body() itemDto: ItemDto

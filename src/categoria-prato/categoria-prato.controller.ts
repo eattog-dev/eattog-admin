@@ -8,22 +8,22 @@ import { DeleteResult } from 'typeorm';
 export class CategoriaPratoController {
     constructor(private readonly categoriaPratoService: CategoriaPratoService) { }
 
-    @Get('categorias')
+    @Get('/categorias')
     async getCategorias(): Promise<CategoriaPratoEntity[]> {
         return this.categoriaPratoService.getCategorias();
     }
 
-    @Post('criar/categoria')
+    @Post('/criar/categoria')
     async createCategoria(@Body() categoriaPratoDto: CategoriaPratoDto): Promise<CategoriaPratoEntity> {
         return this.categoriaPratoService.createCategoria(categoriaPratoDto);
     }
 
-    @Get('categoria-prato/:id')
+    @Get('/categoria-prato/:id')
     async getCategoria(@Param('id') id: number): Promise<CategoriaPratoEntity> {
         return this.categoriaPratoService.getCategoria(id);
     }
 
-    @Put('atualizar/categoria-prato/:id')
+    @Put('/atualizar/categoria-prato/:id')
     async editCategoria(
         @Param('id') id: number,
         @Body() categoriaPratoDto: CategoriaPratoDto
@@ -31,7 +31,7 @@ export class CategoriaPratoController {
         return this.categoriaPratoService.editCategoria(id, categoriaPratoDto);
     }
 
-    @Delete('deletar/categoria-prato/:id')
+    @Delete('/deletar/categoria-prato/:id')
     async deleteCategoria(@Param('id') id: number): Promise<DeleteResult> {
         return this.categoriaPratoService.deleteCategoria(id);
     }

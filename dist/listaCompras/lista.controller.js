@@ -34,13 +34,13 @@ let ListaController = class ListaController {
 };
 exports.ListaController = ListaController;
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)("/lista"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ListaController.prototype, "listar", null);
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)("/criar-lista"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ListaController.prototype, "completar", null);
 __decorate([
-    (0, common_1.Put)(":id/adicionar"),
+    (0, common_1.Put)(":id/adicionar-item"),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

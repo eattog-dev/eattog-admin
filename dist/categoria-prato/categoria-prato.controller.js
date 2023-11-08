@@ -38,27 +38,27 @@ let CategoriaPratoController = class CategoriaPratoController {
 };
 exports.CategoriaPratoController = CategoriaPratoController;
 __decorate([
-    (0, common_1.Get)('categorias'),
+    (0, common_1.Get)('/categorias'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "getCategorias", null);
 __decorate([
-    (0, common_1.Post)('criar/categoria'),
+    (0, common_1.Post)('/criar/categoria'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [categoria_prato_dto_1.CategoriaPratoDto]),
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "createCategoria", null);
 __decorate([
-    (0, common_1.Get)('categoria-prato/:id'),
+    (0, common_1.Get)('/categoria-prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "getCategoria", null);
 __decorate([
-    (0, common_1.Put)('atualizar/categoria-prato/:id'),
+    (0, common_1.Put)('/atualizar/categoria-prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -66,7 +66,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "editCategoria", null);
 __decorate([
-    (0, common_1.Delete)('deletar/categoria-prato/:id'),
+    (0, common_1.Delete)('/deletar/categoria-prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
