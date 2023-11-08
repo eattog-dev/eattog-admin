@@ -77,6 +77,7 @@ __decorate([
 ], PratoController.prototype, "getPratos", null);
 __decorate([
     (0, common_1.Post)('criar/prato'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
@@ -93,6 +94,7 @@ __decorate([
 ], PratoController.prototype, "getPrato", null);
 __decorate([
     (0, common_1.Put)('atualizar/prato/:id'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('imagem')),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

@@ -37,6 +37,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'A imagem não pode ser nula' }),
     __metadata("design:type", String)
 ], PratoEntity.prototype, "imagem", void 0);
 __decorate([

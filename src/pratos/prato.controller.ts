@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Param, Put, Delete, Body, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Delete, Body, UseInterceptors, UploadedFile, UsePipes, ValidationPipe } from '@nestjs/common';
 import { PratoDto } from './dto/prato.dto';
 import { PratoEntity } from './prato.entity';
 import { PratoService } from './prato.service';
 import { DeleteResult } from 'typeorm';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from 'src/users/upload.service';
+import { Pipes } from 'aws-sdk';
 
 @Controller()
 export class PratoController {
@@ -16,6 +17,7 @@ export class PratoController {
     }
 
     @Post('criar/prato')
+    @UsePipes(ValidationPipe)
     @UseInterceptors(FileInterceptor('imagem'))
     async createPrato(@Body() pratoDto: PratoDto, @UploadedFile() file: Express.Multer.File): Promise<PratoEntity> {
         let filePath = ''
@@ -31,6 +33,7 @@ export class PratoController {
     }
 
     @Put('atualizar/prato/:id')
+    @UsePipes(ValidationPipe)
     @UseInterceptors(FileInterceptor('imagem'))
     async editPrato(
         @Param('id') id: number,

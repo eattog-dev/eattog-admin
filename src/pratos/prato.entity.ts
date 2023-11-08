@@ -21,6 +21,7 @@ export class PratoEntity {
 
     @Column({ nullable: false })
     @IsString()
+    @IsNotEmpty({ message: 'A imagem não pode ser nula' })
     imagem: string;
 
     @Column({ nullable: false })
@@ -61,7 +62,7 @@ export class PratoEntity {
 
     @CreateDateColumn()
     data_criacao: Date;
-  
+
     @UpdateDateColumn()
     data_alteracao: Date;
 }
