@@ -5,8 +5,7 @@ export declare class RestauranteDTO {
     razao_social: string;
     cnpj: string;
     cep: string;
-    rua: string;
-    bairro: string;
+    rua_bairro: string;
     cidade: string;
     avaliacao: number;
     tipo_restaurante: string;

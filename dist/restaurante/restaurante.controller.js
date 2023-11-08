@@ -76,6 +76,7 @@ __decorate([
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('criar/restaurante'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
         { name: 'imagem', maxCount: 1 },
         { name: 'banner', maxCount: 1 },
@@ -96,6 +97,7 @@ __decorate([
 ], RestauranteController.prototype, "getRestaurante", null);
 __decorate([
     (0, common_1.Put)('atualizar/restaurante/:id'),
+    (0, common_1.UsePipes)(common_1.ValidationPipe),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
         { name: 'banner', maxCount: 1 },
         { name: 'logo', maxCount: 1 },

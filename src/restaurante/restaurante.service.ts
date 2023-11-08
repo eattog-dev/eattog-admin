@@ -23,8 +23,7 @@ export class RestauranteService {
         novoRestaurante.razao_social = RestauranteDTO.razao_social;
         novoRestaurante.cnpj = RestauranteDTO.cnpj;
         novoRestaurante.cep = RestauranteDTO.cep;
-        novoRestaurante.rua = RestauranteDTO.rua;
-        novoRestaurante.bairro = RestauranteDTO.bairro;
+        novoRestaurante.rua_bairro = RestauranteDTO.rua_bairro;
         novoRestaurante.cidade = RestauranteDTO.cidade;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
         novoRestaurante.tipo_restaurante = RestauranteDTO.tipo_restaurante;
@@ -49,8 +48,7 @@ export class RestauranteService {
         atualizarRestaurante.razao_social = RestauranteDTO.razao_social;
         atualizarRestaurante.cnpj = RestauranteDTO.cnpj;
         atualizarRestaurante.cep = RestauranteDTO.cep;
-        atualizarRestaurante.rua = RestauranteDTO.rua;
-        atualizarRestaurante.bairro = RestauranteDTO.bairro;
+        atualizarRestaurante.rua_bairro = RestauranteDTO.rua_bairro;
         atualizarRestaurante.cidade = RestauranteDTO.cidade;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
         atualizarRestaurante.tipo_restaurante = RestauranteDTO.tipo_restaurante;

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards, UseInterceptors, UploadedFile, UploadedFiles } from '@nestjs/common';
+import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards, UseInterceptors, UploadedFile, UploadedFiles, UsePipes, ValidationPipe } from '@nestjs/common';
 import { RestauranteDTO } from './dto/restaurante.dto';
 import { RestauranteEntity } from './restaurante.entity';
 import { RestauranteService } from './restaurante.service';
@@ -19,6 +19,7 @@ export class RestauranteController {
 
   @Roles(UserType.Admin)
   @Post('criar/restaurante')
+  @UsePipes(ValidationPipe)
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'imagem', maxCount: 1 },
     { name: 'banner', maxCount: 1 },
@@ -44,6 +45,7 @@ export class RestauranteController {
   }
 
   @Put('atualizar/restaurante/:id')
+  @UsePipes(ValidationPipe)
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'banner', maxCount: 1 },
     { name: 'logo', maxCount: 1 },

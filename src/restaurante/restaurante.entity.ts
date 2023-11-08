@@ -41,12 +41,7 @@ export class RestauranteEntity {
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty({ message: 'A rua não pode estar vazio' })
     @IsString({ message: 'A rua deve ser uma string' })
-    rua: string;
-
-    @Column({ type: 'varchar', length: 255 })
-    @IsNotEmpty({ message: 'O bairro não pode estar vazio' })
-    @IsString({ message: 'O bairro deve ser uma string' })
-    bairro: string;
+    rua_bairro: string;
 
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty({ message: 'A cidade não pode estar vazio' })
@@ -54,7 +49,6 @@ export class RestauranteEntity {
     cidade: string;
 
     @Column({ type: 'decimal', precision: 5, scale: 2 })
-    @IsNotEmpty({ message: 'A avaliação não pode estar vazia' })
     @IsNumber({}, { message: 'A avaliação deve ser um número' })
     avaliacao: number;
 
@@ -69,7 +63,6 @@ export class RestauranteEntity {
     tipo_retirada: string;
 
     @Column({ type: 'varchar', length: 255 })
-    @IsNotEmpty({ message: 'A distância não pode estar vazia' })
     @IsString({ message: 'A distância deve ser uma string' })
     distancia: string;
 

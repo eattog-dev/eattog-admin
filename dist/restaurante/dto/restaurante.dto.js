@@ -16,38 +16,42 @@ class RestauranteDTO {
 exports.RestauranteDTO = RestauranteDTO;
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "imagem" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "imagem", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "logo" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "logo", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "banner" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "banner", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "razao_social" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "razao_social", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "cnpj" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "cnpj", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "cep" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "cep", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "rua" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], RestauranteDTO.prototype, "rua", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: 'O campo "bairro" deve ser uma string' }),
-    __metadata("design:type", String)
-], RestauranteDTO.prototype, "bairro", void 0);
+], RestauranteDTO.prototype, "rua_bairro", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "cidade" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "cidade", void 0);
 __decorate([
@@ -56,10 +60,12 @@ __decorate([
 ], RestauranteDTO.prototype, "avaliacao", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "tipoRestaurante" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "tipo_restaurante", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "tipoRetirada" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "tipo_retirada", void 0);
 __decorate([
@@ -68,6 +74,7 @@ __decorate([
 ], RestauranteDTO.prototype, "distancia", void 0);
 __decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "descricao" deve ser uma string' }),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RestauranteDTO.prototype, "descricao", void 0);
 //# sourceMappingURL=restaurante.dto.js.map

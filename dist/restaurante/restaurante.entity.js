@@ -62,13 +62,7 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'A rua não pode estar vazio' }),
     (0, class_validator_1.IsString)({ message: 'A rua deve ser uma string' }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "rua", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'O bairro não pode estar vazio' }),
-    (0, class_validator_1.IsString)({ message: 'O bairro deve ser uma string' }),
-    __metadata("design:type", String)
-], RestauranteEntity.prototype, "bairro", void 0);
+], RestauranteEntity.prototype, "rua_bairro", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'A cidade não pode estar vazio' }),
@@ -77,7 +71,6 @@ __decorate([
 ], RestauranteEntity.prototype, "cidade", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2 }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'A avaliação não pode estar vazia' }),
     (0, class_validator_1.IsNumber)({}, { message: 'A avaliação deve ser um número' }),
     __metadata("design:type", Number)
 ], RestauranteEntity.prototype, "avaliacao", void 0);
@@ -95,7 +88,6 @@ __decorate([
 ], RestauranteEntity.prototype, "tipo_retirada", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'A distância não pode estar vazia' }),
     (0, class_validator_1.IsString)({ message: 'A distância deve ser uma string' }),
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "distancia", void 0);
