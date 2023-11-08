@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { IsString, IsNumber, IsArray, IsInt, IsNotEmpty } from 'class-validator';
 import { PratoEntity } from 'src/pratos/prato.entity';
 
@@ -19,5 +19,11 @@ export class CategoriaPratoEntity {
     })
     @IsNotEmpty({ message: 'A categoria_prato não pode ser nula.' })
     categoria_prato: PratoEntity[];
+
+    @CreateDateColumn()
+    data_criacao: Date;
+  
+    @UpdateDateColumn()
+    data_alteracao: Date;
 
 }

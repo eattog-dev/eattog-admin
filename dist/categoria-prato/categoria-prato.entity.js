@@ -35,6 +35,14 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'A categoria_prato não pode ser nula.' }),
     __metadata("design:type", Array)
 ], CategoriaPratoEntity.prototype, "categoria_prato", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], CategoriaPratoEntity.prototype, "data_criacao", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], CategoriaPratoEntity.prototype, "data_alteracao", void 0);
 exports.CategoriaPratoEntity = CategoriaPratoEntity = __decorate([
     (0, typeorm_1.Entity)('categoria_prato')
 ], CategoriaPratoEntity);

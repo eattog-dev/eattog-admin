@@ -33,16 +33,9 @@ export class UsersController {
     return this.userService.update(id, updateUser);
   }
 
-  @Roles(UserType.Admin)
   @Post('/admin')
   async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {
     return this.userService.criaUsuario(createUser, UserType.Admin);
-  }
-
-  @Roles(UserType.Restaurante)
-  @Post('/admin-restaurante')
-  async createAdminRestaurante(@Body() createUser: CreateUserDto): Promise<UserEntity> {
-    return this.userService.criaUsuario(createUser, UserType.Restaurante);
   }
 
   @Post('/sign-up')

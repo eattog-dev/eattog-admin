@@ -83,6 +83,14 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'A descrição do prato não pode ser nula' }),
     __metadata("design:type", String)
 ], PratoEntity.prototype, "descricao", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], PratoEntity.prototype, "data_criacao", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], PratoEntity.prototype, "data_alteracao", void 0);
 exports.PratoEntity = PratoEntity = __decorate([
     (0, typeorm_1.Entity)('pratos')
 ], PratoEntity);

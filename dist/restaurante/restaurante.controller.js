@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "getRestaurantes", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Restaurante, user_type_enum_1.UserType.Admin),
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('criar/restaurante'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
         { name: 'imagem', maxCount: 1 },

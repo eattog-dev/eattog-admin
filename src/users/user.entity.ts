@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { IsEmail, IsNotEmpty, IsString, IsBoolean, Length, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
 
 @Entity('usuarios')
@@ -61,6 +61,12 @@ export class UserEntity {
     @IsNotEmpty()
     @IsString()
     senha: string;
+
+    @CreateDateColumn()
+    data_criacao: Date;
+  
+    @UpdateDateColumn()
+    data_alteracao: Date;
 
     @Column({ default: true })
     @IsBoolean()

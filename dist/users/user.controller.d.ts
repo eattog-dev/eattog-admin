@@ -8,6 +8,5 @@ export declare class UsersController {
     show(req: any): Promise<UserEntity>;
     update(id: number, updateUser: UserDto): Promise<UserEntity>;
     createAdmin(createUser: CreateUserDto): Promise<UserEntity>;
-    createAdminRestaurante(createUser: CreateUserDto): Promise<UserEntity>;
     createUser(createUser: CreateUserDto): Promise<UserEntity>;
 }

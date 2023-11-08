@@ -22,12 +22,6 @@ __decorate([
 ], ListaEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, class_validator_1.IsNotEmpty)({ message: 'O nome da lista não pode estar vazio' }),
-    (0, class_validator_1.IsString)({ message: 'O nome da lista deve ser uma string' }),
-    __metadata("design:type", String)
-], ListaEntity.prototype, "nome", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'O estado da lista não pode estar vazio' }),
     (0, class_validator_1.IsString)({ message: 'O estado da lista deve ser uma string' }),
     __metadata("design:type", String)
@@ -38,6 +32,14 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], ListaEntity.prototype, "items", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], ListaEntity.prototype, "data_criacao", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], ListaEntity.prototype, "data_alteracao", void 0);
 exports.ListaEntity = ListaEntity = __decorate([
     (0, typeorm_1.Entity)('lista-carrinho')
 ], ListaEntity);

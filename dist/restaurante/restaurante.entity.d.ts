@@ -16,4 +16,6 @@ export declare class RestauranteEntity {
     distancia: string;
     descricao: string;
     pratos: PratoEntity[];
+    data_criacao: Date;
+    data_alteracao: Date;
 }

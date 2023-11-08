@@ -3,6 +3,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { PratoEntity } from 'src/pratos/prato.entity';
 import { ListaEntity } from './lista.entity';
@@ -18,6 +20,11 @@ export class ItemEntity {
   @IsNumber({}, { message: 'A quantidade do item deve ser um número' })
   quantidade: number;
 
+  @Column()
+  @IsNotEmpty({ message: 'O valor do item não pode estar vazia' })
+  @IsNumber({}, { message: 'O valor do item deve ser um número' })
+  valor_total: number;
+
   @ManyToOne(() => PratoEntity, (prato) => prato.items, {
     eager: true,
   })
@@ -25,4 +32,10 @@ export class ItemEntity {
 
   @ManyToOne(() => ListaEntity, (lista) => lista.items)
   lista: ListaEntity;
+
+  @CreateDateColumn()
+  data_criacao: Date;
+
+  @UpdateDateColumn()
+  data_alteracao: Date;
 }

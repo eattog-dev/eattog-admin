@@ -20,7 +20,6 @@ const user_service_1 = require("./user.service");
 const user_dto_1 = require("./dto/user.dto");
 const createUser_dto_1 = require("./dto/createUser.dto");
 const user_type_enum_1 = require("./enum/user-type.enum");
-const roles_decorator_1 = require("../decorators/roles.decorator");
 let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
@@ -34,9 +33,6 @@ let UsersController = class UsersController {
     }
     async createAdmin(createUser) {
         return this.userService.criaUsuario(createUser, user_type_enum_1.UserType.Admin);
-    }
-    async createAdminRestaurante(createUser) {
-        return this.userService.criaUsuario(createUser, user_type_enum_1.UserType.Restaurante);
     }
     async createUser(createUser) {
         return this.userService.criaUsuario(createUser);
@@ -61,21 +57,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "update", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('/admin'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createAdmin", null);
-__decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Restaurante),
-    (0, common_1.Post)('/admin-restaurante'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "createAdminRestaurante", null);
 __decorate([
     (0, common_1.Post)('/sign-up'),
     __param(0, (0, common_1.Body)()),

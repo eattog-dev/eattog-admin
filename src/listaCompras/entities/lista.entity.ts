@@ -3,6 +3,8 @@ import {
     Column,
     PrimaryGeneratedColumn,
     OneToMany,
+    CreateDateColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { ItemEntity } from './item.entity';
 import { IsNotEmpty, IsString, IsIn, ValidateNested } from 'class-validator';
@@ -13,11 +15,6 @@ export class ListaEntity {
     id: number;
 
     @Column()
-    @IsNotEmpty({ message: 'O nome da lista não pode estar vazio' })
-    @IsString({ message: 'O nome da lista deve ser uma string' })
-    nome: string;
-
-    @Column()
     @IsNotEmpty({ message: 'O estado da lista não pode estar vazio' })
     @IsString({ message: 'O estado da lista deve ser uma string' })
     estado: string;
@@ -26,4 +23,10 @@ export class ListaEntity {
         eager: true,
     })
     items: ItemEntity[];
+
+    @CreateDateColumn()
+    data_criacao: Date;
+  
+    @UpdateDateColumn()
+    data_alteracao: Date;
 }

@@ -17,7 +17,7 @@ export class RestauranteController {
     return this.restauranteService.getRestaurantes();
   }
 
-  @Roles(UserType.Restaurante, UserType.Admin)
+  @Roles(UserType.Admin)
   @Post('criar/restaurante')
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'imagem', maxCount: 1 },

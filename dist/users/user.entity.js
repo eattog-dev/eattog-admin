@@ -88,6 +88,14 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "senha", void 0);
 __decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], UserEntity.prototype, "data_criacao", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], UserEntity.prototype, "data_alteracao", void 0);
+__decorate([
     (0, typeorm_1.Column)({ default: true }),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)

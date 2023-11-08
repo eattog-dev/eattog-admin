@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { PratoEntity } from 'src/pratos/prato.entity';
 import { IsNotEmpty, IsString, IsNumber, MaxLength } from 'class-validator';
 
@@ -80,4 +80,10 @@ export class RestauranteEntity {
 
     @OneToMany(() => PratoEntity, (prato) => prato.restaurante)
     pratos: PratoEntity[];
+
+    @CreateDateColumn()
+    data_criacao: Date;
+
+    @UpdateDateColumn()
+    data_alteracao: Date;
 }

@@ -4,4 +4,6 @@ export declare class CategoriaPratoEntity {
     id: number;
     categoria: string;
     categoria_prato: PratoEntity[];
+    data_criacao: Date;
+    data_alteracao: Date;
 }

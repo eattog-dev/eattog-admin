@@ -12,5 +12,7 @@ export declare class UserEntity {
     numero_residencia: string;
     tipo_usuario: number;
     senha: string;
+    data_criacao: Date;
+    data_alteracao: Date;
     isActive: boolean;
 }

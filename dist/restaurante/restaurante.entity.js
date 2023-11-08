@@ -109,6 +109,14 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => prato_entity_1.PratoEntity, (prato) => prato.restaurante),
     __metadata("design:type", Array)
 ], RestauranteEntity.prototype, "pratos", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], RestauranteEntity.prototype, "data_criacao", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], RestauranteEntity.prototype, "data_alteracao", void 0);
 exports.RestauranteEntity = RestauranteEntity = __decorate([
     (0, typeorm_1.Entity)('restaurantes')
 ], RestauranteEntity);

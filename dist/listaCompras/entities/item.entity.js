@@ -28,6 +28,12 @@ __decorate([
     __metadata("design:type", Number)
 ], ItemEntity.prototype, "quantidade", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O valor do item não pode estar vazia' }),
+    (0, class_validator_1.IsNumber)({}, { message: 'O valor do item deve ser um número' }),
+    __metadata("design:type", Number)
+], ItemEntity.prototype, "valor_total", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => prato_entity_1.PratoEntity, (prato) => prato.items, {
         eager: true,
     }),
@@ -37,6 +43,14 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => lista_entity_1.ListaEntity, (lista) => lista.items),
     __metadata("design:type", lista_entity_1.ListaEntity)
 ], ItemEntity.prototype, "lista", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], ItemEntity.prototype, "data_criacao", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
+    __metadata("design:type", Date)
+], ItemEntity.prototype, "data_alteracao", void 0);
 exports.ItemEntity = ItemEntity = __decorate([
     (0, typeorm_1.Entity)('item-carrinho')
 ], ItemEntity);

@@ -28,7 +28,6 @@ export class ListaService {
 
     criar(listaDto: ListaDto): Promise<ListaEntity> {
         let lista = new ListaEntity();
-        lista.nome = listaDto.nome;
         lista.estado = "pendente";
 
         return this.listaRepository.save(lista);

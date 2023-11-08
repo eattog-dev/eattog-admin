@@ -33,7 +33,6 @@ let ListaService = class ListaService {
     }
     criar(listaDto) {
         let lista = new lista_entity_1.ListaEntity();
-        lista.nome = listaDto.nome;
         lista.estado = "pendente";
         return this.listaRepository.save(lista);
     }
