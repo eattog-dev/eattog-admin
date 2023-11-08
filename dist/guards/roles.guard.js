@@ -33,7 +33,6 @@ let RolesGuard = class RolesGuard {
         if (!loginPayload) {
             return false;
         }
-        console.log('authorization', authorization);
         const { user } = context.switchToHttp().getRequest();
         return requiredRoles.some((role) => role === loginPayload.tipo_usuario);
     }
