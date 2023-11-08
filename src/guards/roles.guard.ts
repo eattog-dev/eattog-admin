@@ -17,7 +17,6 @@ export class RolesGuard implements CanActivate {
       context.getClass(),
     ]);
 
-
     if (!requiredRoles) {
       return true;
     }
@@ -29,8 +28,6 @@ export class RolesGuard implements CanActivate {
     if (!loginPayload) {
       return false;
     }
-
-    console.log('authorization', authorization);
 
     const { user } = context.switchToHttp().getRequest();
     return requiredRoles.some((role) => role === loginPayload.tipo_usuario);
