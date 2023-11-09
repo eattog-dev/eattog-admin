@@ -27,7 +27,7 @@ export class UserEntity {
     @Column({ type: 'date' })
     data_aniversario: Date;
 
-    @Column({ length: 14 })
+    @Column({ length: 15 })
     @IsNotEmpty()
     @IsString()
     @ValidateIf((obj) => obj.numero_celular !== null)
