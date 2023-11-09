@@ -17,13 +17,11 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./user.entity");
 const typeorm_2 = require("typeorm");
-const jwt_1 = require("@nestjs/jwt");
 const password_1 = require("../utils/password");
 const user_type_enum_1 = require("./enum/user-type.enum");
 let UserService = class UserService {
-    constructor(usersRepository, jwtService) {
+    constructor(usersRepository) {
         this.usersRepository = usersRepository;
-        this.jwtService = jwtService;
     }
     async criaUsuario(criaUsuario, tipoUsuario) {
         const user = await this.findUserByEmail(criaUsuario.email).catch(() => undefined);
@@ -103,7 +101,6 @@ exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository,
-        jwt_1.JwtService])
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

@@ -34,25 +34,26 @@ export class UserEntity {
     @IsPhoneNumber(null, { message: 'Número de celular inválido' })
     numero_celular: string;
 
-    @Column({ length: 255 })
+    @Column({ length: 255, nullable: true })
     @IsString()
     cep: string;
 
-    @Column({ length: 255 })
+    @Column({ length: 255, nullable: true })
     @IsString()
     rua: string;
 
-    @Column({ length: 255 })
+    @Column({ length: 255, nullable: true })
     @IsString()
     complemento: string;
 
-    @Column({ length: 255 })
+    @Column({ length: 255, nullable: true })
     @IsString()
     bairro: string;
 
-    @Column({ length: 255 })
+    @Column({ length: 255, nullable: true })
     @IsString()
     numero_residencia: string;
+
 
     @Column({ nullable: false })
     tipo_usuario: number;
@@ -64,7 +65,7 @@ export class UserEntity {
 
     @CreateDateColumn()
     data_criacao: Date;
-  
+
     @UpdateDateColumn()
     data_alteracao: Date;
 
