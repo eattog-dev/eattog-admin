@@ -53,27 +53,27 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "numero_celular", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "cep", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "rua", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "complemento", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "bairro", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ length: 255, nullable: true }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "numero_residencia", void 0);
