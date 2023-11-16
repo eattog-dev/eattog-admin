@@ -3,11 +3,13 @@ import { ListaService } from './lista.service';
 import { ListaEntity } from './entities/lista.entity';
 import { ListaDto } from './dtos/lista.dto';
 import { ItemDto } from './dtos/item.dto';
+import { StripeService } from 'src/stripe/stripe.service';
 
 @Controller()
 export class ListaController {
     constructor(
         private readonly listaService: ListaService,
+        private readonly stripeService: StripeService
     ) { }
 
     @Get("/lista")
@@ -25,11 +27,11 @@ export class ListaController {
         return this.listaService.completar(id);
     }
 
-    // @Get(":id/checkout")
-    // async checkout(@Param('id') id: number) {
-    //     const lista = await this.listaService.detalhes(id);
-    //     return this.stripeService.criarSessaoCompra(lista);
-    // }
+    @Get(":id/checkout")
+    async checkout(@Param('id') id: number) {
+        const lista = await this.listaService.detalhes(id);
+        return this.stripeService.criarSessaoCompra(lista);
+    }
 
     @Put(":id/adicionar-item")
     adicionar(

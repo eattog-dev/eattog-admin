@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PratoEntity } from './prato.entity';
 import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { PratoDto } from './dto/prato.dto';
+import { StripeService } from 'src/stripe/stripe.service';
 
 @Injectable()
 export class PratoService {
@@ -15,6 +16,8 @@ export class PratoService {
         private readonly restauranteRepository: Repository<RestauranteEntity>, // Correção aqui
         @InjectRepository(CategoriaPratoEntity)
         private readonly categoriaPratoRepository: Repository<CategoriaPratoEntity>,
+        @Inject(StripeService)
+        private readonly stripeService: StripeService
     ) { }
 
     async getPratos(): Promise<PratoEntity[]> {
@@ -33,7 +36,8 @@ export class PratoService {
         novoPrato.descricao = pratoDto.descricao;
         novoPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato })
         novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante })
-
+        const resposta = await this.stripeService.criarProduto(novoPrato);
+        novoPrato.valorStripe = resposta.default_price
         return this.pratosRepository.save(novoPrato);
     }
 

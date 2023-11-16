@@ -20,11 +20,6 @@ export class ItemEntity {
   @IsNumber({}, { message: 'A quantidade do item deve ser um número' })
   quantidade: number;
 
-  @Column()
-  @IsNotEmpty({ message: 'O valor do item não pode estar vazia' })
-  @IsNumber({}, { message: 'O valor do item deve ser um número' })
-  valor_total: number;
-
   @ManyToOne(() => PratoEntity, (prato) => prato.items, {
     eager: true,
   })

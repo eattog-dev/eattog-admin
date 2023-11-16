@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const stripe_service_1 = require("./stripe/stripe.service");
 const auth_module_1 = require("./auth/auth.module");
 const upload_service_1 = require("./users/upload.service");
 const lista_module_1 = require("./listaCompras/lista.module");
@@ -49,6 +50,7 @@ exports.AppModule = AppModule = __decorate([
             app_controller_1.AppController
         ],
         providers: [
+            stripe_service_1.StripeService,
             upload_service_1.UploadService, app_service_1.AppService, jwt_1.JwtService,
             {
                 provide: core_1.APP_GUARD,

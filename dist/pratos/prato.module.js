@@ -15,6 +15,7 @@ const prato_service_1 = require("./prato.service");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
 const upload_service_1 = require("../users/upload.service");
+const stripe_service_1 = require("../stripe/stripe.service");
 let PratoModule = class PratoModule {
 };
 exports.PratoModule = PratoModule;
@@ -22,7 +23,7 @@ exports.PratoModule = PratoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([prato_entity_1.PratoEntity, restaurante_entity_1.RestauranteEntity, categoria_prato_entity_1.CategoriaPratoEntity])],
         controllers: [prato_controller_1.PratoController],
-        providers: [prato_service_1.PratoService, upload_service_1.UploadService]
+        providers: [prato_service_1.PratoService, upload_service_1.UploadService, stripe_service_1.StripeService]
     })
 ], PratoModule);
 //# sourceMappingURL=prato.module.js.map

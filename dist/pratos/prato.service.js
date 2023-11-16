@@ -19,11 +19,13 @@ const prato_entity_1 = require("./prato.entity");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
 const typeorm_2 = require("typeorm");
+const stripe_service_1 = require("../stripe/stripe.service");
 let PratoService = class PratoService {
-    constructor(pratosRepository, restauranteRepository, categoriaPratoRepository) {
+    constructor(pratosRepository, restauranteRepository, categoriaPratoRepository, stripeService) {
         this.pratosRepository = pratosRepository;
         this.restauranteRepository = restauranteRepository;
         this.categoriaPratoRepository = categoriaPratoRepository;
+        this.stripeService = stripeService;
     }
     async getPratos() {
         return this.pratosRepository.find();
@@ -40,6 +42,8 @@ let PratoService = class PratoService {
         novoPrato.descricao = pratoDto.descricao;
         novoPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato });
         novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
+        const resposta = await this.stripeService.criarProduto(novoPrato);
+        novoPrato.valorStripe = resposta.default_price;
         return this.pratosRepository.save(novoPrato);
     }
     async getPrato(id) {
@@ -135,8 +139,10 @@ exports.PratoService = PratoService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(prato_entity_1.PratoEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(restaurante_entity_1.RestauranteEntity)),
     __param(2, (0, typeorm_1.InjectRepository)(categoria_prato_entity_1.CategoriaPratoEntity)),
+    __param(3, (0, common_1.Inject)(stripe_service_1.StripeService)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
-        typeorm_2.Repository])
+        typeorm_2.Repository,
+        stripe_service_1.StripeService])
 ], PratoService);
 //# sourceMappingURL=prato.service.js.map

@@ -3,7 +3,6 @@ import { ListaEntity } from './lista.entity';
 export declare class ItemEntity {
     id: number;
     quantidade: number;
-    valor_total: number;
     prato: PratoEntity;
     lista: ListaEntity;
     data_criacao: Date;
