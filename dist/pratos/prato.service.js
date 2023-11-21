@@ -44,6 +44,9 @@ let PratoService = class PratoService {
         novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
         const resposta = await this.stripeService.criarProduto(novoPrato);
         novoPrato.valorStripe = resposta.default_price;
+        console.log("adasdasdasd");
+        console.log(resposta);
+        console.log("asdadadasdad");
         return this.pratosRepository.save(novoPrato);
     }
     async getPrato(id) {
@@ -64,6 +67,11 @@ let PratoService = class PratoService {
         atualizarPrato.descricao = pratoDto.descricao;
         atualizarPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato });
         atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante });
+        const resposta = await this.stripeService.criarProduto(atualizarPrato);
+        atualizarPrato.valorStripe = resposta.default_price;
+        console.log("adasdasdasd");
+        console.log(resposta);
+        console.log("asdadadasdad");
         return this.pratosRepository.save(atualizarPrato);
     }
     async deletePrato(id) {

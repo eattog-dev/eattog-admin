@@ -27,6 +27,9 @@ export class StripeService {
 
     async criarSessaoCompra(lista: ListaEntity) {
         const lineItems = lista.items.map((item) => {
+            console.log('-----------------------')
+            console.log(item);
+            console.log('-----------------------')
             return {
                 price: item.prato.valorStripe,
                 quantity: item.quantidade

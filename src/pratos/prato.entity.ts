@@ -20,8 +20,8 @@ export class PratoEntity {
     valor: number;
 
     @Column()
-    @IsNumber()
-    valorStripe: number;
+    @IsString()
+    valorStripe: string;
 
     @Column({ nullable: false })
     @IsString()

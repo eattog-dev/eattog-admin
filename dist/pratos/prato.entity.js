@@ -36,8 +36,8 @@ __decorate([
 ], PratoEntity.prototype, "valor", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], PratoEntity.prototype, "valorStripe", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: false }),
