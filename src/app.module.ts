@@ -1,3 +1,4 @@
+import { StripeService } from './stripe/stripe.service';
 import { AuthModule } from './auth/auth.module';
 import { UploadService } from './users/upload.service';
 import { ListaModule } from './listaCompras/lista.module';
@@ -36,6 +37,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
   controllers: [
     AppController],
   providers: [
+    StripeService,
     UploadService, AppService, JwtService,
     {
       provide: APP_GUARD,

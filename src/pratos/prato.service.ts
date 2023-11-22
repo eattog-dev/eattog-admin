@@ -1,20 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PratoEntity } from './prato.entity';
 import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { PratoDto } from './dto/prato.dto';
+import { StripeService } from 'src/stripe/stripe.service';
 
 @Injectable()
 export class PratoService {
     constructor(
         @InjectRepository(PratoEntity)
         private readonly pratosRepository: Repository<PratoEntity>,
-        @InjectRepository(RestauranteEntity) // Correção aqui
-        private readonly restauranteRepository: Repository<RestauranteEntity>, // Correção aqui
+        @InjectRepository(RestauranteEntity)
+        private readonly restauranteRepository: Repository<RestauranteEntity>,
         @InjectRepository(CategoriaPratoEntity)
         private readonly categoriaPratoRepository: Repository<CategoriaPratoEntity>,
+        @Inject(StripeService)
+        private readonly stripeService: StripeService
     ) { }
 
     async getPratos(): Promise<PratoEntity[]> {
@@ -33,7 +36,11 @@ export class PratoService {
         novoPrato.descricao = pratoDto.descricao;
         novoPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato })
         novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante })
-
+        const resposta = await this.stripeService.criarProduto(novoPrato);
+        novoPrato.valorStripe = resposta.default_price
+        console.log("adasdasdasd");
+        console.log(resposta);
+        console.log("asdadadasdad");
         return this.pratosRepository.save(novoPrato);
     }
 
@@ -56,7 +63,11 @@ export class PratoService {
         atualizarPrato.descricao = pratoDto.descricao;
         atualizarPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato })
         atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante })
-
+        const resposta = await this.stripeService.criarProduto(atualizarPrato);
+        atualizarPrato.valorStripe = resposta.default_price
+        console.log("adasdasdasd");
+        console.log(resposta);
+        console.log("asdadadasdad");
         return this.pratosRepository.save(atualizarPrato);
     }
 
@@ -72,10 +83,7 @@ export class PratoService {
             .getMany();
     }
 
-
     async getPratosComCategorias(): Promise<PratoEntity[]> {
-        //return this.pratosRepository.find();
-
         return this.pratosRepository
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
@@ -83,8 +91,6 @@ export class PratoService {
             .getMany();
     }
 
-
-    //retorna x pratos por paginaçao 
     async pratosPorPagina(restauranteId: number, pagina: number) {
         const perPage = 2;
 

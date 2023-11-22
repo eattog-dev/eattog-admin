@@ -19,6 +19,10 @@ export class PratoEntity {
     @IsNotEmpty({ message: 'O valor do prato não pode ser nulo.' })
     valor: number;
 
+    @Column()
+    @IsString()
+    valorStripe: string;
+
     @Column({ nullable: false })
     @IsString()
     @IsNotEmpty({ message: 'A imagem não pode ser nula' })

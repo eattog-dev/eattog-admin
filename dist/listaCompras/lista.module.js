@@ -14,6 +14,7 @@ const lista_entity_1 = require("./entities/lista.entity");
 const item_entity_1 = require("./entities/item.entity");
 const prato_entity_1 = require("../pratos/prato.entity");
 const typeorm_1 = require("@nestjs/typeorm");
+const stripe_service_1 = require("../stripe/stripe.service");
 let ListaModule = class ListaModule {
 };
 exports.ListaModule = ListaModule;
@@ -24,7 +25,7 @@ exports.ListaModule = ListaModule = __decorate([
             lista_controller_1.ListaController,
         ],
         providers: [
-            lista_service_1.ListaService,
+            lista_service_1.ListaService, stripe_service_1.StripeService
         ],
     })
 ], ListaModule);
