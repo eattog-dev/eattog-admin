@@ -1,3 +1,4 @@
+import { EnderecoModule } from './endereco/endereco.module';
 import { StripeService } from './stripe/stripe.service';
 import { AuthModule } from './auth/auth.module';
 import { UploadService } from './users/upload.service';
@@ -16,6 +17,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    EnderecoModule,
     AuthModule,
     ListaModule,
     CategoriaPratoModule,
