@@ -20,6 +20,7 @@ const user_service_1 = require("./user.service");
 const user_dto_1 = require("./dto/user.dto");
 const createUser_dto_1 = require("./dto/createUser.dto");
 const user_type_enum_1 = require("./enum/user-type.enum");
+const returnUser_dto_1 = require("./dto/returnUser.dto");
 let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
@@ -30,6 +31,9 @@ let UsersController = class UsersController {
     }
     async getTodosUsuariosNormais() {
         return this.userService.getAllNormalUsers();
+    }
+    async getUsuarioId(usuario_id) {
+        return new returnUser_dto_1.ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuario_id));
     }
     async getTodosUsuariosAdmin() {
         return this.userService.getAllAdminUsers();
@@ -59,6 +63,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getTodosUsuariosNormais", null);
+__decorate([
+    (0, common_1.Get)('/:usuario_id'),
+    __param(0, (0, http_1.Param)('usuario_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUsuarioId", null);
 __decorate([
     (0, common_1.Get)('/usuario-admin'),
     __metadata("design:type", Function),

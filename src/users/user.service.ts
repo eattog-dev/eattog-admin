@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
 import { Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
-import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from './dto/createUser.dto';
 import { createPasswordHashed } from 'src/utils/password';
 import { UserType } from './enum/user-type.enum';
@@ -39,11 +38,6 @@ export class UserService {
         user.email = userDto.email;
         user.cpf = userDto.cpf;
         user.data_aniversario = userDto.data_aniversario;
-        user.cep = userDto.cep;
-        user.rua = userDto.rua;
-        user.complemento = userDto.complemento;
-        user.bairro = userDto.bairro;
-        user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
         if (userDto.senha) {
             const passwordHashed = await createPasswordHashed(userDto.senha);
@@ -76,6 +70,16 @@ export class UserService {
 
         return adminUsers;
     }
+
+    async getUserByIdUsingRelations(usuarioId: number): Promise<UserEntity> {
+        return this.usersRepository.findOne({
+            where: {
+                id: usuarioId,
+            },
+            relations: ['addresses'],
+        });
+    }
+
 
 
     show(id: number): Promise<UserEntity> {

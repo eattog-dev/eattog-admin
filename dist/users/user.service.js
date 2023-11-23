@@ -41,11 +41,6 @@ let UserService = class UserService {
         user.email = userDto.email;
         user.cpf = userDto.cpf;
         user.data_aniversario = userDto.data_aniversario;
-        user.cep = userDto.cep;
-        user.rua = userDto.rua;
-        user.complemento = userDto.complemento;
-        user.bairro = userDto.bairro;
-        user.numero_residencia = userDto.numero_residencia;
         user.numero_celular = userDto.numero_celular;
         if (userDto.senha) {
             const passwordHashed = await (0, password_1.createPasswordHashed)(userDto.senha);
@@ -70,6 +65,14 @@ let UserService = class UserService {
             throw new common_1.NotFoundException('Não foram encontrados usuários administradores.');
         }
         return adminUsers;
+    }
+    async getUserByIdUsingRelations(usuarioId) {
+        return this.usersRepository.findOne({
+            where: {
+                id: usuarioId,
+            },
+            relations: ['addresses'],
+        });
     }
     show(id) {
         return this.usersRepository.findOneBy({ id: id });
