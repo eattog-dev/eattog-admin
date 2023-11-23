@@ -9,7 +9,7 @@ export declare class EnderecoEntity {
     numero_residencia: string;
     bairro: string;
     complemento: string;
-    user: UserEntity;
+    user?: UserEntity;
     data_criacao: Date;
     data_alteracao: Date;
     isActive: boolean;

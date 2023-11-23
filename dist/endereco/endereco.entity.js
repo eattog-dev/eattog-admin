@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", Number)
 ], EnderecoEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'user_id' }),
+    (0, typeorm_1.Column)({ name: 'user_id', nullable: false }),
     __metadata("design:type", Number)
 ], EnderecoEntity.prototype, "userId", void 0);
 __decorate([
@@ -60,7 +60,7 @@ __decorate([
     __metadata("design:type", String)
 ], EnderecoEntity.prototype, "complemento", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, (user) => user.addresses, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, (user) => user.addresses),
     (0, typeorm_1.JoinColumn)({ name: 'user_id', referencedColumnName: 'id' }),
     __metadata("design:type", user_entity_1.UserEntity)
 ], EnderecoEntity.prototype, "user", void 0);
