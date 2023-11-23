@@ -24,11 +24,11 @@ let EnderecoService = class EnderecoService {
         this.usuarioService = usuarioService;
     }
     ;
-    async criarEndereco(criarEndereco, usuarioId) {
-        await this.usuarioService.findUserById(usuarioId);
+    async criarEndereco(criarEndereco, userId) {
+        await this.usuarioService.findUserById(userId);
         return this.enderecoRepository.save({
             ...criarEndereco,
-            usuarioId,
+            userId,
         });
     }
 };

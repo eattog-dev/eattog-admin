@@ -14,13 +14,13 @@ export class EnderecoService {
     ) {
     };
 
-    async criarEndereco(criarEndereco: CriarEnderecoDto, usuarioId: number
+    async criarEndereco(criarEndereco: CriarEnderecoDto, userId: number
     ): Promise<EnderecoEntity> {
-        await this.usuarioService.findUserById(usuarioId);
+        await this.usuarioService.findUserById(userId);
 
         return this.enderecoRepository.save({
             ...criarEndereco,
-            usuarioId,
+            userId,
         });
     }
 }

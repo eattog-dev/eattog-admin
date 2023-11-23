@@ -6,5 +6,5 @@ export declare class EnderecoService {
     private readonly enderecoRepository;
     private readonly usuarioService;
     constructor(enderecoRepository: Repository<EnderecoEntity>, usuarioService: UserService);
-    criarEndereco(criarEndereco: CriarEnderecoDto, usuarioId: number): Promise<EnderecoEntity>;
+    criarEndereco(criarEndereco: CriarEnderecoDto, userId: number): Promise<EnderecoEntity>;
 }
