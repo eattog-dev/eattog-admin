@@ -1,3 +1,5 @@
+import { CarrinhoPratoModule } from './carrinho-produto/carrinho-prato.module';
+import { CarrinhoCompraModule } from './carrinho-compra/carrinho-compra.module';
 import { EnderecoModule } from './endereco/endereco.module';
 import { StripeService } from './stripe/stripe.service';
 import { AuthModule } from './auth/auth.module';
@@ -17,6 +19,8 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    CarrinhoPratoModule,
+    CarrinhoCompraModule,
     EnderecoModule,
     AuthModule,
     ListaModule,

@@ -3,6 +3,7 @@ import { IsString, IsNumber, IsArray, IsInt, IsIn, IsBoolean, IsNotEmpty } from 
 import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
 import { ItemEntity } from 'src/listaCompras/entities/item.entity';
+import { CarrinhoPratoEntity } from 'src/carrinho-produto/entities/carrinho-prato.entity';
 
 @Entity('pratos')
 export class PratoEntity {
@@ -46,9 +47,6 @@ export class PratoEntity {
     @IsNotEmpty({ message: 'A categoria_prato não pode ser nula.' })
     prato_categoria: CategoriaPratoEntity;
 
-    @OneToMany(() => ItemEntity, (item) => item.prato)
-    items: ItemEntity[];
-
     @Column('simple-array')
     @IsArray()
     @IsNotEmpty({ message: 'O prato não pode ter ingredientes nulos.' })
@@ -69,4 +67,10 @@ export class PratoEntity {
 
     @UpdateDateColumn()
     data_alteracao: Date;
+
+    @OneToMany(() => ItemEntity, (item) => item.prato)
+    items: ItemEntity[];
+
+    @OneToMany(() => CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.prato)
+    carrinhoPrato: CarrinhoPratoEntity[];
 }

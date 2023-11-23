@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const carrinho_prato_module_1 = require("./carrinho-produto/carrinho-prato.module");
+const carrinho_compra_module_1 = require("./carrinho-compra/carrinho-compra.module");
 const endereco_module_1 = require("./endereco/endereco.module");
 const stripe_service_1 = require("./stripe/stripe.service");
 const auth_module_1 = require("./auth/auth.module");
@@ -29,6 +31,8 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            carrinho_prato_module_1.CarrinhoPratoModule,
+            carrinho_compra_module_1.CarrinhoCompraModule,
             endereco_module_1.EnderecoModule,
             auth_module_1.AuthModule,
             lista_module_1.ListaModule,
