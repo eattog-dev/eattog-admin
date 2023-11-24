@@ -9,6 +9,7 @@ export declare class UserService {
     update(id: number, userDto: UserDto): Promise<UserEntity>;
     getAllNormalUsers(): Promise<UserEntity[]>;
     getAllAdminUsers(): Promise<UserEntity[]>;
+    getUserByIdUsingRelations(usuarioId: number): Promise<UserEntity>;
     show(id: number): Promise<UserEntity>;
     findUserById(userId: number): Promise<UserEntity>;
     findUserByEmail(email: string): Promise<UserEntity>;

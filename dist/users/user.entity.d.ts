@@ -1,3 +1,4 @@
+import { EnderecoEntity } from 'src/endereco/endereco.entity';
 export declare class UserEntity {
     id: number;
     nome: string;
@@ -5,12 +6,8 @@ export declare class UserEntity {
     cpf: string;
     data_aniversario: Date;
     numero_celular: string;
-    cep: string;
-    rua: string;
-    complemento: string;
-    bairro: string;
-    numero_residencia: string;
     tipo_usuario: number;
+    addresses?: EnderecoEntity[];
     senha: string;
     data_criacao: Date;
     data_alteracao: Date;

@@ -23,7 +23,8 @@ exports.PratoModule = PratoModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([prato_entity_1.PratoEntity, restaurante_entity_1.RestauranteEntity, categoria_prato_entity_1.CategoriaPratoEntity])],
         controllers: [prato_controller_1.PratoController],
-        providers: [prato_service_1.PratoService, upload_service_1.UploadService, stripe_service_1.StripeService]
+        providers: [prato_service_1.PratoService, upload_service_1.UploadService, stripe_service_1.StripeService],
+        exports: [prato_service_1.PratoService]
     })
 ], PratoModule);
 //# sourceMappingURL=prato.module.js.map

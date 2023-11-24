@@ -30,10 +30,6 @@ let ListaController = class ListaController {
     completar(id) {
         return this.listaService.completar(id);
     }
-    async checkout(id) {
-        const lista = await this.listaService.detalhes(id);
-        return this.stripeService.criarSessaoCompra(lista);
-    }
     adicionar(id, itemDto) {
         return this.listaService.adicionarItem(id, itemDto);
     }
@@ -59,13 +55,6 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ListaController.prototype, "completar", null);
-__decorate([
-    (0, common_1.Get)(":id/checkout"),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], ListaController.prototype, "checkout", null);
 __decorate([
     (0, common_1.Put)(":id/adicionar-item"),
     __param(0, (0, common_1.Param)('id')),

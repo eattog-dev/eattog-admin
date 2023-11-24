@@ -41,7 +41,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsInt)({ message: 'O campo "restaurante" deve ser um número inteiro' }),
     __metadata("design:type", Number)
-], PratoDto.prototype, "restaurante", void 0);
+], PratoDto.prototype, "restaurante_id", void 0);
 __decorate([
     (0, class_validator_1.IsInt)({ message: 'O campo "categoria_prato" deve ser um número inteiro' }),
     __metadata("design:type", Number)

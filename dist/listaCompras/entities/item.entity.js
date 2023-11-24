@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemEntity = void 0;
 const typeorm_1 = require("typeorm");
-const prato_entity_1 = require("../../pratos/prato.entity");
 const lista_entity_1 = require("./lista.entity");
 const class_validator_1 = require("class-validator");
 let ItemEntity = class ItemEntity {
@@ -27,12 +26,6 @@ __decorate([
     (0, class_validator_1.IsNumber)({}, { message: 'A quantidade do item deve ser um número' }),
     __metadata("design:type", Number)
 ], ItemEntity.prototype, "quantidade", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => prato_entity_1.PratoEntity, (prato) => prato.items, {
-        eager: true,
-    }),
-    __metadata("design:type", prato_entity_1.PratoEntity)
-], ItemEntity.prototype, "prato", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => lista_entity_1.ListaEntity, (lista) => lista.items),
     __metadata("design:type", lista_entity_1.ListaEntity)

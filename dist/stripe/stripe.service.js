@@ -29,20 +29,32 @@ let StripeService = class StripeService {
         return this.stripe.products.create(stripeProduto);
     }
     async criarSessaoCompra(lista) {
-        const lineItems = lista.items.map((item) => {
-            return {
-                price: item.prato.valorStripe,
-                quantity: item.quantidade
-            };
-        });
-        console.log(lineItems);
-        const checkoutSession = await this.stripe.checkout.sessions.create({
-            mode: "payment",
-            line_items: lineItems,
-            success_url: `http://localhost:5173/sucesso/${lista.id}`,
-            cancel_url: `http://localhost:5173/falha/${lista.id}`
-        });
-        return checkoutSession;
+        const lineItems = lista.carrinhoProduto?.map((item) => {
+            if (item && item.prato) {
+                return {
+                    price: item.prato.valorStripe,
+                    quantity: item.quantidade
+                };
+            }
+            return null;
+        }) || [];
+        if (lineItems.length === 0) {
+            throw new Error('Não há itens no carrinho para criar uma sessão de checkout.');
+        }
+        try {
+            const checkoutSession = await this.stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                mode: 'payment',
+                line_items: lineItems,
+                success_url: `http://localhost:5173/sucesso/${lista.id}`,
+                cancel_url: `http://localhost:5173/falha/${lista.id}`,
+            });
+            return checkoutSession;
+        }
+        catch (error) {
+            console.error(error);
+            throw new Error('Erro ao criar sessão de checkout');
+        }
     }
 };
 exports.StripeService = StripeService;

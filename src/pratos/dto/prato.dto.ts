@@ -20,7 +20,7 @@ export class PratoDto {
     descricao: string;
 
     @IsInt({ message: 'O campo "restaurante" deve ser um número inteiro' })
-    restaurante: number;
+    restaurante_id: number;
 
     @IsInt({ message: 'O campo "categoria_prato" deve ser um número inteiro' })
     categoria_prato: number;
