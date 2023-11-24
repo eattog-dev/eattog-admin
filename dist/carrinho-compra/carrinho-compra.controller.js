@@ -26,6 +26,12 @@ let CarrinhoCompraController = class CarrinhoCompraController {
     async inserirCarrinho(criarCarrinhoCompra, usuarioId) {
         return this.carrinhoCompraService.inserirProdutoNoCarrinho(criarCarrinhoCompra, usuarioId);
     }
+    async findPratoUsuarioId(usuarioId) {
+        return await this.carrinhoCompraService.findCarrinhoUsuarioId(usuarioId, true);
+    }
+    async limparCarrinho(usuarioId) {
+        return this.carrinhoCompraService.limpaCarrinho(usuarioId);
+    }
 };
 exports.CarrinhoCompraController = CarrinhoCompraController;
 __decorate([
@@ -37,6 +43,20 @@ __decorate([
     __metadata("design:paramtypes", [inserir_carrinho_compra_dto_1.InserirCarrinhoCompraDTO, Number]),
     __metadata("design:returntype", Promise)
 ], CarrinhoCompraController.prototype, "inserirCarrinho", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, user_id_decorator_1.UserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CarrinhoCompraController.prototype, "findPratoUsuarioId", null);
+__decorate([
+    (0, common_1.Delete)(),
+    __param(0, (0, user_id_decorator_1.UserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CarrinhoCompraController.prototype, "limparCarrinho", null);
 exports.CarrinhoCompraController = CarrinhoCompraController = __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.User),
     (0, common_1.Controller)('carrinho-compra'),

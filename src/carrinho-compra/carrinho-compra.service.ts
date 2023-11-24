@@ -1,9 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CarrinhoCompraEntity } from './entities/carrinho-compra.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { InserirCarrinhoCompraDTO } from './dto/inserir-carrinho-compra.dto';
 import { CarrinhoPratoService } from 'src/carrinho-produto/carrinho-prato.service';
+
+const LINE_AFFECTED = 1;
 
 @Injectable()
 export class CarrinhoCompraService {
@@ -13,6 +15,18 @@ export class CarrinhoCompraService {
     private readonly carrinhoPratoService: CarrinhoPratoService
 
   ) { }
+
+  async limpaCarrinho(userId: number): Promise<DeleteResult> {
+    const carrinho = await this.findCarrinhoUsuarioId(userId);
+    await this.carrinhoCompraRepository.save({
+      ...carrinho,
+      isActive: false
+    })
+    return {
+      raw: [],
+      affected: LINE_AFFECTED,
+    }
+  }
 
   async findCarrinhoUsuarioId(usuario_id: number, isRelations?: boolean) {
     const relations = isRelations ? {
@@ -54,7 +68,8 @@ export class CarrinhoCompraService {
       return this.createCart(usuario_id);
     });
     await this.carrinhoPratoService.inserirProdutoCarrinho(inserirCarrinhoDTO, cart)
-    return this.findCarrinhoUsuarioId(usuario_id, true);
+    // return this.findCarrinhoUsuarioId(usuario_id, true);
+    return cart;
   }
 
   // async inserirCarrinho(inserirCarrinhoCompra: InserirCarrinhoCompraDTO, usuarioId: number): Promise<CarrinhoCompraEntity> {

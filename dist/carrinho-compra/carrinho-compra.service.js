@@ -18,10 +18,22 @@ const typeorm_1 = require("@nestjs/typeorm");
 const carrinho_compra_entity_1 = require("./entities/carrinho-compra.entity");
 const typeorm_2 = require("typeorm");
 const carrinho_prato_service_1 = require("../carrinho-produto/carrinho-prato.service");
+const LINE_AFFECTED = 1;
 let CarrinhoCompraService = class CarrinhoCompraService {
     constructor(carrinhoCompraRepository, carrinhoPratoService) {
         this.carrinhoCompraRepository = carrinhoCompraRepository;
         this.carrinhoPratoService = carrinhoPratoService;
+    }
+    async limpaCarrinho(userId) {
+        const carrinho = await this.findCarrinhoUsuarioId(userId);
+        await this.carrinhoCompraRepository.save({
+            ...carrinho,
+            isActive: false
+        });
+        return {
+            raw: [],
+            affected: LINE_AFFECTED,
+        };
     }
     async findCarrinhoUsuarioId(usuario_id, isRelations) {
         const relations = isRelations ? {
@@ -52,7 +64,7 @@ let CarrinhoCompraService = class CarrinhoCompraService {
             return this.createCart(usuario_id);
         });
         await this.carrinhoPratoService.inserirProdutoCarrinho(inserirCarrinhoDTO, cart);
-        return this.findCarrinhoUsuarioId(usuario_id, true);
+        return cart;
     }
 };
 exports.CarrinhoCompraService = CarrinhoCompraService;
