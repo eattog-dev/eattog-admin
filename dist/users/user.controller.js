@@ -21,19 +21,16 @@ const user_dto_1 = require("./dto/user.dto");
 const createUser_dto_1 = require("./dto/createUser.dto");
 const user_type_enum_1 = require("./enum/user-type.enum");
 const returnUser_dto_1 = require("./dto/returnUser.dto");
+const user_id_decorator_1 = require("../decorators/user-id.decorator");
 let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
     }
-    show(req) {
-        console.log(req.user);
-        return this.userService.show(req.user.id);
-    }
     async getTodosUsuariosNormais() {
         return this.userService.getAllNormalUsers();
     }
-    async getUsuarioId(usuario_id) {
-        return new returnUser_dto_1.ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuario_id));
+    async getUsuarioId(usuarioId) {
+        return new returnUser_dto_1.ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuarioId));
     }
     async getTodosUsuariosAdmin() {
         return this.userService.getAllAdminUsers();
@@ -50,22 +47,14 @@ let UsersController = class UsersController {
 };
 exports.UsersController = UsersController;
 __decorate([
-    (0, common_1.UseGuards)(session_guard_1.AuthGuard),
-    (0, common_1.Get)('/meu-perfil'),
-    __param(0, (0, http_1.Request)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "show", null);
-__decorate([
     (0, common_1.Get)('/usuario-normal'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getTodosUsuariosNormais", null);
 __decorate([
-    (0, common_1.Get)('/:usuario_id'),
-    __param(0, (0, http_1.Param)('usuario_id')),
+    (0, common_1.Get)('/meu-perfil'),
+    __param(0, (0, user_id_decorator_1.UserId)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)

@@ -6,9 +6,8 @@ import { ReturnUserDto } from './dto/returnUser.dto';
 export declare class UsersController {
     private readonly userService;
     constructor(userService: UserService);
-    show(req: any): Promise<UserEntity>;
     getTodosUsuariosNormais(): Promise<UserEntity[]>;
-    getUsuarioId(usuario_id: number): Promise<ReturnUserDto>;
+    getUsuarioId(usuarioId: number): Promise<ReturnUserDto>;
     getTodosUsuariosAdmin(): Promise<UserEntity[]>;
     update(id: number, updateUser: UserDto): Promise<UserEntity>;
     createAdmin(createUser: CreateUserDto): Promise<UserEntity>;
