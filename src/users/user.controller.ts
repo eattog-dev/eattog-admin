@@ -32,6 +32,7 @@ export class UsersController {
   @Get('/meu-perfil')
   async getUsuarioId(@UserId() usuarioId: number): Promise<ReturnUserDto> {
     return new ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuarioId));
+
   }
 
   @Get('/usuario-admin')

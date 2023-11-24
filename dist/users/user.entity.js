@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:type", Date)
 ], UserEntity.prototype, "data_aniversario", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 14 }),
+    (0, typeorm_1.Column)({ length: 15 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.ValidateIf)((obj) => obj.numero_celular !== null),
