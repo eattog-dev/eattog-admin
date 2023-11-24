@@ -31,26 +31,6 @@ __decorate([
     __metadata("design:type", Date)
 ], UserDto.prototype, "data_aniversario", void 0);
 __decorate([
-    (0, class_validator_1.IsString)({ message: 'O campo "cep" deve ser uma string' }),
-    __metadata("design:type", String)
-], UserDto.prototype, "cep", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: 'O campo "rua" deve ser uma string' }),
-    __metadata("design:type", String)
-], UserDto.prototype, "rua", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: 'O campo "complemento" deve ser uma string' }),
-    __metadata("design:type", String)
-], UserDto.prototype, "complemento", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: 'O campo "bairro" deve ser uma string' }),
-    __metadata("design:type", String)
-], UserDto.prototype, "bairro", void 0);
-__decorate([
-    (0, class_validator_1.IsString)({ message: 'O campo "numero_residencia" deve ser uma string' }),
-    __metadata("design:type", String)
-], UserDto.prototype, "numero_residencia", void 0);
-__decorate([
     (0, class_validator_1.IsString)({ message: 'O campo "numero_celular" deve ser uma string' }),
     __metadata("design:type", String)
 ], UserDto.prototype, "numero_celular", void 0);

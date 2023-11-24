@@ -20,10 +20,10 @@ export class ItemEntity {
   @IsNumber({}, { message: 'A quantidade do item deve ser um número' })
   quantidade: number;
 
-  @ManyToOne(() => PratoEntity, (prato) => prato.items, {
-    eager: true,
-  })
-  prato: PratoEntity;
+  // @ManyToOne(() => PratoEntity, (prato) => prato.items, {
+  //   eager: true,
+  // })
+  // prato: PratoEntity;
 
   @ManyToOne(() => ListaEntity, (lista) => lista.items)
   lista: ListaEntity;

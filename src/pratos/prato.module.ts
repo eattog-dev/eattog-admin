@@ -11,6 +11,7 @@ import { StripeService } from 'src/stripe/stripe.service';
 @Module({
   imports: [TypeOrmModule.forFeature([PratoEntity, RestauranteEntity, CategoriaPratoEntity])],
   controllers: [PratoController],
-  providers: [PratoService, UploadService, StripeService]
+  providers: [PratoService, UploadService, StripeService],
+  exports: [PratoService]
 })
 export class PratoModule {}

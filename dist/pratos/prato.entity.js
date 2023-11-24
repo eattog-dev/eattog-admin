@@ -14,7 +14,7 @@ const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
-const item_entity_1 = require("../listaCompras/entities/item.entity");
+const carrinho_prato_entity_1 = require("../carrinho-produto/entities/carrinho-prato.entity");
 let PratoEntity = class PratoEntity {
 };
 exports.PratoEntity = PratoEntity;
@@ -68,10 +68,6 @@ __decorate([
     __metadata("design:type", categoria_prato_entity_1.CategoriaPratoEntity)
 ], PratoEntity.prototype, "prato_categoria", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.ItemEntity, (item) => item.prato),
-    __metadata("design:type", Array)
-], PratoEntity.prototype, "items", void 0);
-__decorate([
     (0, typeorm_1.Column)('simple-array'),
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)({ message: 'O prato não pode ter ingredientes nulos.' }),
@@ -97,6 +93,15 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], PratoEntity.prototype, "data_alteracao", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: true }),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], PratoEntity.prototype, "isActive", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => carrinho_prato_entity_1.CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.prato),
+    __metadata("design:type", Array)
+], PratoEntity.prototype, "carrinhoPrato", void 0);
 exports.PratoEntity = PratoEntity = __decorate([
     (0, typeorm_1.Entity)('pratos')
 ], PratoEntity);

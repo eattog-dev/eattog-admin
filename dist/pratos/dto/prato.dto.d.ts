@@ -5,7 +5,7 @@ export declare class PratoDto {
     ingredientes: string[];
     tempo_preparo: number;
     descricao: string;
-    restaurante: number;
+    restaurante_id: number;
     categoria_prato: number;
     desconto: boolean;
     valor_desconto?: number;

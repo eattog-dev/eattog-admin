@@ -13,21 +13,6 @@ export class UserDto {
     @IsDate({ message: 'O campo "data_aniversario" deve ser uma data válida' })
     data_aniversario: Date;
 
-    @IsString({ message: 'O campo "cep" deve ser uma string' })
-    cep: string;
-
-    @IsString({ message: 'O campo "rua" deve ser uma string' })
-    rua: string;
-
-    @IsString({ message: 'O campo "complemento" deve ser uma string' })
-    complemento: string;
-
-    @IsString({ message: 'O campo "bairro" deve ser uma string' })
-    bairro: string;
-
-    @IsString({ message: 'O campo "numero_residencia" deve ser uma string' })
-    numero_residencia: string;
-
     @IsString({ message: 'O campo "numero_celular" deve ser uma string' })
     numero_celular: string;
 

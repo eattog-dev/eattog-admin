@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UserType } from './enum/user-type.enum';
+import { ReturnUserDto } from './dto/returnUser.dto';
 
 @Controller('')
 export class UsersController {
@@ -25,6 +26,11 @@ export class UsersController {
   @Get('/usuario-normal')
   async getTodosUsuariosNormais() {
     return this.userService.getAllNormalUsers();
+  }
+
+  @Get('/:usuario_id')
+  async getUsuarioId(@Param('usuario_id') usuario_id: number): Promise<ReturnUserDto> {
+    return new ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuario_id));
   }
 
   @Get('/usuario-admin')

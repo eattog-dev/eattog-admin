@@ -35,12 +35,9 @@ export class PratoService {
         novoPrato.valor_desconto = pratoDto.valor_desconto;
         novoPrato.descricao = pratoDto.descricao;
         novoPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato })
-        novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante })
+        novoPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante_id })
         const resposta = await this.stripeService.criarProduto(novoPrato);
         novoPrato.valorStripe = resposta.default_price
-        console.log("adasdasdasd");
-        console.log(resposta);
-        console.log("asdadadasdad");
         return this.pratosRepository.save(novoPrato);
     }
 
@@ -62,7 +59,7 @@ export class PratoService {
         atualizarPrato.valor_desconto = pratoDto.valor_desconto;
         atualizarPrato.descricao = pratoDto.descricao;
         atualizarPrato.prato_categoria = await this.categoriaPratoRepository.findOneBy({ id: pratoDto.categoria_prato })
-        atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante })
+        atualizarPrato.restaurante = await this.restauranteRepository.findOneBy({ id: pratoDto.restaurante_id })
         const resposta = await this.stripeService.criarProduto(atualizarPrato);
         atualizarPrato.valorStripe = resposta.default_price
         console.log("adasdasdasd");

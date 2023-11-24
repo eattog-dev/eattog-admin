@@ -10,6 +10,5 @@ export declare class ListaController {
     listar(): Promise<ListaEntity[]>;
     criar(listaDto: ListaDto): Promise<ListaEntity>;
     completar(id: number): Promise<ListaEntity>;
-    checkout(id: number): Promise<any>;
     adicionar(id: number, itemDto: ItemDto): Promise<ListaEntity>;
 }

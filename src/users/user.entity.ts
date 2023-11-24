@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { IsEmail, IsNotEmpty, IsString, IsBoolean, Length, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
+import { EnderecoEntity } from 'src/endereco/endereco.entity';
 
 @Entity('usuarios')
 export class UserEntity {
@@ -34,29 +35,11 @@ export class UserEntity {
     @IsPhoneNumber(null, { message: 'Número de celular inválido' })
     numero_celular: string;
 
-    @Column({ length: 255, nullable: true })
-    @IsString()
-    cep: string;
-
-    @Column({ length: 255, nullable: true })
-    @IsString()
-    rua: string;
-
-    @Column({ length: 255, nullable: true })
-    @IsString()
-    complemento: string;
-
-    @Column({ length: 255, nullable: true })
-    @IsString()
-    bairro: string;
-
-    @Column({ length: 255, nullable: true })
-    @IsString()
-    numero_residencia: string;
-
-
     @Column({ nullable: false })
     tipo_usuario: number;
+
+    @OneToMany(() => EnderecoEntity, (address) => address.user)
+    addresses?: EnderecoEntity[];
 
     @Column({ length: 255 })
     @IsNotEmpty()
