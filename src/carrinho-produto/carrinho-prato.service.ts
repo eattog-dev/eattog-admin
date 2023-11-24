@@ -31,6 +31,7 @@ export class CarrinhoPratoService {
         return this.carrinhoPratoRepository.save({
             quantidade: inserirCarrinhoCompraDTO.quantidade,
             prato_id: inserirCarrinhoCompraDTO.productId,
+            descricao: inserirCarrinhoCompraDTO.descricao,
             carrinho_compra_id
         })
     }

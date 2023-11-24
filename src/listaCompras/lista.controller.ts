@@ -27,11 +27,11 @@ export class ListaController {
             return this.listaService.completar(id);
         }
 
-    @Get(":id/checkout")
-    async checkout(@Param('id') id: number) {
-        const lista = await this.listaService.detalhes(id);
-        return this.stripeService.criarSessaoCompra(lista);
-    }
+    // @Get(":id/checkout")
+    // async checkout(@Param('id') id: number) {
+    //     const lista = await this.listaService.detalhes(id);
+    //     return this.stripeService.criarSessaoCompra(lista);
+    // }
 
     @Put(":id/adicionar-item")
     adicionar(

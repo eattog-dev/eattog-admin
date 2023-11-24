@@ -16,6 +16,10 @@ export class CarrinhoCompraService {
 
   ) { }
 
+  // detalhes(id: number): Promise<ListaEntity> {
+  //   return this.listaRepository.findOneBy({ id: id });
+  // }
+
   async limpaCarrinho(userId: number): Promise<DeleteResult> {
     const carrinho = await this.findCarrinhoUsuarioId(userId);
     await this.carrinhoCompraRepository.save({

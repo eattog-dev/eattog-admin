@@ -37,6 +37,12 @@ __decorate([
     __metadata("design:type", Number)
 ], CarrinhoPratoEntity.prototype, "quantidade", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CarrinhoPratoEntity.prototype, "descricao", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], CarrinhoPratoEntity.prototype, "data_criacao", void 0);

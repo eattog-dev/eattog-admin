@@ -5,6 +5,7 @@ export declare class CarrinhoPratoEntity {
     carrinho_compra_id: number;
     prato_id: number;
     quantidade: number;
+    descricao: string;
     data_criacao: Date;
     data_alteracao: Date;
     isActive: boolean;

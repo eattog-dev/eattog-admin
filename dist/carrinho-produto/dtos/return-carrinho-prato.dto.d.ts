@@ -6,6 +6,7 @@ export declare class ReturnCarrinhoPratoDTO {
     carrinho_compra_id: number;
     prato_id: number;
     quantidade: number;
+    descricao: string;
     prato?: ReturnPrato;
     carrinhoCompra?: ReturnCarrinhoCompraDTO;
     constructor(carrinhoPrato: CarrinhoPratoEntity);

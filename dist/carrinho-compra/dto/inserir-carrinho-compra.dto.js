@@ -22,4 +22,8 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], InserirCarrinhoCompraDTO.prototype, "quantidade", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], InserirCarrinhoCompraDTO.prototype, "descricao", void 0);
 //# sourceMappingURL=inserir-carrinho-compra.dto.js.map

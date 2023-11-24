@@ -13,6 +13,7 @@ const common_1 = require("@nestjs/common");
 const carrinho_compra_entity_1 = require("./entities/carrinho-compra.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const carrinho_prato_module_1 = require("../carrinho-produto/carrinho-prato.module");
+const stripe_service_1 = require("../stripe/stripe.service");
 let CarrinhoCompraModule = class CarrinhoCompraModule {
 };
 exports.CarrinhoCompraModule = CarrinhoCompraModule;
@@ -23,7 +24,7 @@ exports.CarrinhoCompraModule = CarrinhoCompraModule = __decorate([
             carrinho_compra_controller_1.CarrinhoCompraController,
         ],
         providers: [
-            carrinho_compra_service_1.CarrinhoCompraService,
+            carrinho_compra_service_1.CarrinhoCompraService, stripe_service_1.StripeService
         ],
         exports: [carrinho_compra_service_1.CarrinhoCompraService]
     })

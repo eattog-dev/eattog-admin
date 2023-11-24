@@ -1,6 +1,5 @@
 import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
-import { ItemEntity } from 'src/listaCompras/entities/item.entity';
 import { CarrinhoPratoEntity } from 'src/carrinho-produto/entities/carrinho-prato.entity';
 export declare class PratoEntity {
     id: number;
@@ -18,6 +17,5 @@ export declare class PratoEntity {
     data_criacao: Date;
     data_alteracao: Date;
     isActive: boolean;
-    items: ItemEntity[];
     carrinhoPrato: CarrinhoPratoEntity[];
 }

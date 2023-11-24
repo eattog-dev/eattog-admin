@@ -19,9 +19,11 @@ const user_type_enum_1 = require("../users/enum/user-type.enum");
 const inserir_carrinho_compra_dto_1 = require("./dto/inserir-carrinho-compra.dto");
 const carrinho_compra_service_1 = require("./carrinho-compra.service");
 const user_id_decorator_1 = require("../decorators/user-id.decorator");
+const stripe_service_1 = require("../stripe/stripe.service");
 let CarrinhoCompraController = class CarrinhoCompraController {
-    constructor(carrinhoCompraService) {
+    constructor(carrinhoCompraService, stripeService) {
         this.carrinhoCompraService = carrinhoCompraService;
+        this.stripeService = stripeService;
     }
     async inserirCarrinho(criarCarrinhoCompra, usuarioId) {
         return this.carrinhoCompraService.inserirProdutoNoCarrinho(criarCarrinhoCompra, usuarioId);
@@ -31,6 +33,14 @@ let CarrinhoCompraController = class CarrinhoCompraController {
     }
     async limparCarrinho(usuarioId) {
         return this.carrinhoCompraService.limpaCarrinho(usuarioId);
+    }
+    async checkout(usuarioId) {
+        const lista = await this.carrinhoCompraService.findCarrinhoUsuarioId(usuarioId, true);
+        if (!lista) {
+            throw new common_1.NotFoundException('Carrinho não encontrado');
+        }
+        const sessaoCheckout = await this.stripeService.criarSessaoCompra(lista);
+        return sessaoCheckout;
     }
 };
 exports.CarrinhoCompraController = CarrinhoCompraController;
@@ -57,9 +67,17 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CarrinhoCompraController.prototype, "limparCarrinho", null);
+__decorate([
+    (0, common_1.Get)("/checkout"),
+    __param(0, (0, user_id_decorator_1.UserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CarrinhoCompraController.prototype, "checkout", null);
 exports.CarrinhoCompraController = CarrinhoCompraController = __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.User),
     (0, common_1.Controller)('carrinho-compra'),
-    __metadata("design:paramtypes", [carrinho_compra_service_1.CarrinhoCompraService])
+    __metadata("design:paramtypes", [carrinho_compra_service_1.CarrinhoCompraService,
+        stripe_service_1.StripeService])
 ], CarrinhoCompraController);
 //# sourceMappingURL=carrinho-compra.controller.js.map

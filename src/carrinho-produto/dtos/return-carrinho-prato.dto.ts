@@ -6,7 +6,8 @@ export class ReturnCarrinhoPratoDTO {
     id: number;
     carrinho_compra_id: number;
     prato_id: number;
-    quantidade: number
+    quantidade: number;
+    descricao: string;
     prato?: ReturnPrato;
     carrinhoCompra?: ReturnCarrinhoCompraDTO;
 
@@ -15,6 +16,7 @@ export class ReturnCarrinhoPratoDTO {
         this.carrinho_compra_id = carrinhoPrato.carrinho_compra_id;
         this.prato_id = carrinhoPrato.prato_id;
         this.quantidade = carrinhoPrato.quantidade;
+        this.descricao = carrinhoPrato.descricao;
         this.prato = carrinhoPrato.prato ? new ReturnPrato(carrinhoPrato.prato) : undefined;
         this.carrinhoCompra = carrinhoPrato.prato ? new ReturnCarrinhoCompraDTO(carrinhoPrato.carrinhoCompra) : undefined;
     }

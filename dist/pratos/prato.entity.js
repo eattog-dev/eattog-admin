@@ -14,7 +14,6 @@ const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
-const item_entity_1 = require("../listaCompras/entities/item.entity");
 const carrinho_prato_entity_1 = require("../carrinho-produto/entities/carrinho-prato.entity");
 let PratoEntity = class PratoEntity {
 };
@@ -99,10 +98,6 @@ __decorate([
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], PratoEntity.prototype, "isActive", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => item_entity_1.ItemEntity, (item) => item.prato),
-    __metadata("design:type", Array)
-], PratoEntity.prototype, "items", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => carrinho_prato_entity_1.CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.prato),
     __metadata("design:type", Array)

@@ -13,7 +13,6 @@ const endereco_module_1 = require("./endereco/endereco.module");
 const stripe_service_1 = require("./stripe/stripe.service");
 const auth_module_1 = require("./auth/auth.module");
 const upload_service_1 = require("./users/upload.service");
-const lista_module_1 = require("./listaCompras/lista.module");
 const categoria_prato_module_1 = require("./categoria-prato/categoria-prato.module");
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
@@ -35,7 +34,6 @@ exports.AppModule = AppModule = __decorate([
             carrinho_compra_module_1.CarrinhoCompraModule,
             endereco_module_1.EnderecoModule,
             auth_module_1.AuthModule,
-            lista_module_1.ListaModule,
             categoria_prato_module_1.CategoriaPratoModule,
             user_module_1.UserModule,
             prato_module_1.PratoModule,

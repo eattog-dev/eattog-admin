@@ -49,7 +49,6 @@ let ListaService = class ListaService {
         }
         let item = new item_entity_1.ItemEntity();
         item.quantidade = 1;
-        item.prato = prato;
         item.lista = lista;
         await this.itemRepository.save(item);
         return this.listaRepository.findOneBy({ id: id });
