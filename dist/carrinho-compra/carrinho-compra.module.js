@@ -12,18 +12,20 @@ const carrinho_compra_service_1 = require("./carrinho-compra.service");
 const common_1 = require("@nestjs/common");
 const carrinho_compra_entity_1 = require("./entities/carrinho-compra.entity");
 const typeorm_1 = require("@nestjs/typeorm");
+const carrinho_prato_module_1 = require("../carrinho-produto/carrinho-prato.module");
 let CarrinhoCompraModule = class CarrinhoCompraModule {
 };
 exports.CarrinhoCompraModule = CarrinhoCompraModule;
 exports.CarrinhoCompraModule = CarrinhoCompraModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([carrinho_compra_entity_1.CarrinhoCompraEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([carrinho_compra_entity_1.CarrinhoCompraEntity]), carrinho_prato_module_1.CarrinhoPratoModule],
         controllers: [
             carrinho_compra_controller_1.CarrinhoCompraController,
         ],
         providers: [
             carrinho_compra_service_1.CarrinhoCompraService,
         ],
+        exports: [carrinho_compra_service_1.CarrinhoCompraService]
     })
 ], CarrinhoCompraModule);
 //# sourceMappingURL=carrinho-compra.module.js.map

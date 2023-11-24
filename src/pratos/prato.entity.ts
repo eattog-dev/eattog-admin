@@ -68,6 +68,10 @@ export class PratoEntity {
     @UpdateDateColumn()
     data_alteracao: Date;
 
+    @Column({ default: true })
+    @IsBoolean()
+    isActive: boolean;
+
     @OneToMany(() => ItemEntity, (item) => item.prato)
     items: ItemEntity[];
 

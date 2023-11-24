@@ -95,6 +95,11 @@ __decorate([
     __metadata("design:type", Date)
 ], PratoEntity.prototype, "data_alteracao", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: true }),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], PratoEntity.prototype, "isActive", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => item_entity_1.ItemEntity, (item) => item.prato),
     __metadata("design:type", Array)
 ], PratoEntity.prototype, "items", void 0);

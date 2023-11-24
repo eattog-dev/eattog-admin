@@ -17,6 +17,7 @@ export declare class PratoEntity {
     descricao: string;
     data_criacao: Date;
     data_alteracao: Date;
+    isActive: boolean;
     items: ItemEntity[];
     carrinhoPrato: CarrinhoPratoEntity[];
 }

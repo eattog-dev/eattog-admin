@@ -17,41 +17,49 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const carrinho_compra_entity_1 = require("./entities/carrinho-compra.entity");
 const typeorm_2 = require("typeorm");
+const carrinho_prato_service_1 = require("../carrinho-produto/carrinho-prato.service");
 let CarrinhoCompraService = class CarrinhoCompraService {
-    constructor(carrinhoRepository) {
-        this.carrinhoRepository = carrinhoRepository;
+    constructor(carrinhoCompraRepository, carrinhoPratoService) {
+        this.carrinhoCompraRepository = carrinhoCompraRepository;
+        this.carrinhoPratoService = carrinhoPratoService;
     }
-    async verificaCarrinhoAtivo(usuario_id) {
-        const carrinho = await this.carrinhoRepository.findOne({
+    async findCarrinhoUsuarioId(usuario_id, isRelations) {
+        const relations = isRelations ? {
+            carrinhoProduto: {
+                prato: true
+            }
+        } : undefined;
+        let carrinho = await this.carrinhoCompraRepository.findOne({
             where: {
                 usuario_id,
-            }
+                isActive: true
+            },
+            relations,
         });
         if (!carrinho) {
             throw new common_1.NotFoundException('Carrinho ativo nao encontrado');
         }
+        return carrinho;
     }
     async createCart(usuario_id) {
-        return this.carrinhoRepository.save({
+        return this.carrinhoCompraRepository.save({
             isActive: true,
             usuario_id,
         });
     }
     async inserirProdutoNoCarrinho(inserirCarrinhoDTO, usuario_id) {
-        const cart = await this.verificaCarrinhoAtivo(usuario_id).catch(() => {
+        const cart = await this.findCarrinhoUsuarioId(usuario_id).catch(() => {
             return this.createCart(usuario_id);
         });
-        console.log(usuario_id);
-        if (!cart) {
-            throw new common_1.NotFoundException('Carrinho ativo não encontrado');
-        }
-        return cart;
+        await this.carrinhoPratoService.inserirProdutoCarrinho(inserirCarrinhoDTO, cart);
+        return this.findCarrinhoUsuarioId(usuario_id, true);
     }
 };
 exports.CarrinhoCompraService = CarrinhoCompraService;
 exports.CarrinhoCompraService = CarrinhoCompraService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(carrinho_compra_entity_1.CarrinhoCompraEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        carrinho_prato_service_1.CarrinhoPratoService])
 ], CarrinhoCompraService);
 //# sourceMappingURL=carrinho-compra.service.js.map

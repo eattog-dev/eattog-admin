@@ -7,17 +7,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarrinhoPratoModule = void 0;
+const carrinho_prato_service_1 = require("./carrinho-prato.service");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const carrinho_prato_entity_1 = require("./entities/carrinho-prato.entity");
+const prato_module_1 = require("../pratos/prato.module");
 let CarrinhoPratoModule = class CarrinhoPratoModule {
 };
 exports.CarrinhoPratoModule = CarrinhoPratoModule;
 exports.CarrinhoPratoModule = CarrinhoPratoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([carrinho_prato_entity_1.CarrinhoPratoEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([carrinho_prato_entity_1.CarrinhoPratoEntity]), prato_module_1.PratoModule],
         controllers: [],
-        providers: [],
+        providers: [
+            carrinho_prato_service_1.CarrinhoPratoService,
+        ],
+        exports: [carrinho_prato_service_1.CarrinhoPratoService]
     })
 ], CarrinhoPratoModule);
 //# sourceMappingURL=carrinho-prato.module.js.map
