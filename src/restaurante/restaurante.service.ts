@@ -46,11 +46,12 @@ export class RestauranteService {
         return this.restauranteRepository.findOneBy({ id: id });
     }
 
-    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string): Promise<RestauranteEntity> {
+    async editRestaurante(id: number, RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string, usuario_id: number): Promise<RestauranteEntity> {
         const atualizarRestaurante = await this.restauranteRepository.findOneBy({ id: id });
         if (!atualizarRestaurante) {
             return undefined;
         }
+        const user = await this.usuarioRepository.findOne({ where: { id: usuario_id } })
         atualizarRestaurante.imagem = imagemPath;
         atualizarRestaurante.banner = bannerPath;
         atualizarRestaurante.logo = logoPath;
@@ -68,6 +69,7 @@ export class RestauranteService {
         atualizarRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         atualizarRestaurante.distancia = RestauranteDTO.distancia;
         atualizarRestaurante.descricao = RestauranteDTO.descricao;
+        atualizarRestaurante.usuarios = user;
         return this.restauranteRepository.save(atualizarRestaurante);
     }
 

@@ -59,7 +59,8 @@ export class RestauranteController {
   async editRestaurante(
     @Param('id') id: number,
     @Body() restaurante: RestauranteDTO,
-    @UploadedFiles() file: { banner: Express.Multer.File[], logo: Express.Multer.File[], imagem: Express.Multer.File[] }
+    @UploadedFiles() file: { banner: Express.Multer.File[], logo: Express.Multer.File[], imagem: Express.Multer.File[] },
+    @UserId() usuario_id: number
   ): Promise<RestauranteEntity> {
     let imagemPath = ''
     let bannerPath = ''
@@ -70,7 +71,7 @@ export class RestauranteController {
       logoPath = await this.uploadService.uploadFile(file.logo[0]);
 
     }
-    return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath);
+    return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath, usuario_id);
   }
 
   @Roles(UserType.Admin)

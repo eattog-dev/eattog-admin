@@ -9,7 +9,7 @@ export declare class RestauranteService {
     getRestaurantes(): Promise<RestauranteEntity[]>;
     createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string, usuario_id: number): Promise<RestauranteEntity>;
     getRestaurante(id: number): Promise<RestauranteEntity | undefined>;
-    editRestaurante(id: number, RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string): Promise<RestauranteEntity>;
+    editRestaurante(id: number, RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string, usuario_id: number): Promise<RestauranteEntity>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
     qtdRestaurantes(): Promise<number>;
     restaurantesPorPagina(pagina: number): Promise<RestauranteEntity[]>;

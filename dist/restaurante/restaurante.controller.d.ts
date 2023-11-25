@@ -19,7 +19,7 @@ export declare class RestauranteController {
         banner: Express.Multer.File[];
         logo: Express.Multer.File[];
         imagem: Express.Multer.File[];
-    }): Promise<RestauranteEntity>;
+    }, usuario_id: number): Promise<RestauranteEntity>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
     quantidadeRestaurantes(): Promise<number>;
     restaurantesPagina(pagina: number): Promise<RestauranteEntity[]>;

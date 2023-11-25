@@ -43,7 +43,7 @@ let RestauranteController = class RestauranteController {
     getRestaurante(id) {
         return this.restauranteService.getRestaurante(id);
     }
-    async editRestaurante(id, restaurante, file) {
+    async editRestaurante(id, restaurante, file, usuario_id) {
         let imagemPath = '';
         let bannerPath = '';
         let logoPath = '';
@@ -52,7 +52,7 @@ let RestauranteController = class RestauranteController {
             bannerPath = await this.uploadService.uploadFile(file.banner[0]);
             logoPath = await this.uploadService.uploadFile(file.logo[0]);
         }
-        return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath);
+        return this.restauranteService.editRestaurante(id, restaurante, imagemPath, bannerPath, logoPath, usuario_id);
     }
     deleteRestaurante(id) {
         return this.restauranteService.deleteRestaurante(id);
@@ -109,8 +109,9 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.UploadedFiles)()),
+    __param(3, (0, user_id_decorator_1.UserId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDTO, Object]),
+    __metadata("design:paramtypes", [Number, restaurante_dto_1.RestauranteDTO, Object, Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "editRestaurante", null);
 __decorate([
