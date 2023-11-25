@@ -3,12 +3,11 @@ import { RestauranteDTO } from './dto/restaurante.dto';
 import { RestauranteEntity } from './restaurante.entity';
 import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
-import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { UploadService } from 'src/users/upload.service';
 import { Roles } from 'src/decorators/roles.decorator';
 import { UserType } from 'src/users/enum/user-type.enum';
 import { UserId } from 'src/decorators/user-id.decorator';
-import { ReturnRestauranteUsuarioDTO } from './dto/return-restaurante-usuario.dto';
 
 @Controller()
 export class RestauranteController {

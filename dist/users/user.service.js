@@ -76,6 +76,14 @@ let UserService = class UserService {
             relations: ['addresses'],
         });
     }
+    async getUserByIdUsingRelationsRestaurante(usuarioId) {
+        return this.usersRepository.findOne({
+            where: {
+                id: usuarioId,
+            },
+            relations: ['restaurante'],
+        });
+    }
     show(id) {
         return this.usersRepository.findOneBy({ id: id });
     }

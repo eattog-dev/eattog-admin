@@ -47,8 +47,8 @@ export class UserEntity {
     @IsString()
     senha: string;
 
-    @OneToMany(() => RestauranteEntity, (rest) => rest.usuario)
-    restaurante: RestauranteEntity[];
+    @OneToMany(() => RestauranteEntity, (rest) => rest.usuarios)
+    restaurante?: RestauranteEntity[];
 
     @CreateDateColumn()
     data_criacao: Date;

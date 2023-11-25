@@ -8,7 +8,8 @@ import { CreateUserDto } from './dto/createUser.dto';
 import { UserType } from './enum/user-type.enum';
 import { ReturnUserDto } from './dto/returnUser.dto';
 import { UserId } from 'src/decorators/user-id.decorator';
-import { ReturnRestauranteUsuarioDTO } from 'src/restaurante/dto/return-restaurante-usuario.dto';
+import { ReturnRestauranteUserDto } from './dto/return-restaurante-usuario.dto';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @Controller('')
 export class UsersController {
@@ -24,7 +25,7 @@ export class UsersController {
   //   console.log(req.user);
   //   return this.userService.show(req.user.id);
   // }
-
+  @Roles(UserType.Admin)
   @Get('/usuario-normal')
   async getTodosUsuariosNormais() {
     return this.userService.getAllNormalUsers();
@@ -35,7 +36,13 @@ export class UsersController {
     return new ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuarioId));
 
   }
+  @Roles(UserType.Admin)
+  @Get('/meus-restaurantes')
+  async getUsuarioRestauranteId(@UserId() usuarioId: number): Promise<ReturnRestauranteUserDto> {
+    return new ReturnRestauranteUserDto(await this.userService.getUserByIdUsingRelationsRestaurante(usuarioId));
 
+  }
+  @Roles(UserType.Admin)
   @Get('/usuario-admin')
   async getTodosUsuariosAdmin() {
     return this.userService.getAllAdminUsers();
@@ -49,7 +56,7 @@ export class UsersController {
   ): Promise<UserEntity> {
     return this.userService.update(id, updateUser);
   }
-
+  
   @Post('/cadastrar/admin')
   @UsePipes(ValidationPipe)
   async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {

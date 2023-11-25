@@ -35,14 +35,18 @@ let RestauranteService = class RestauranteService {
         novoRestaurante.razao_social = RestauranteDTO.razao_social;
         novoRestaurante.cnpj = RestauranteDTO.cnpj;
         novoRestaurante.cep = RestauranteDTO.cep;
-        novoRestaurante.rua_bairro = RestauranteDTO.rua_bairro;
+        novoRestaurante.rua = RestauranteDTO.rua;
+        novoRestaurante.bairro = RestauranteDTO.bairro;
+        novoRestaurante.numero_endereco = RestauranteDTO.numero_endereco;
         novoRestaurante.cidade = RestauranteDTO.cidade;
+        novoRestaurante.estado = RestauranteDTO.estado;
         novoRestaurante.avaliacao = RestauranteDTO.avaliacao;
+        novoRestaurante.numero_telefone = RestauranteDTO.numero_telefone;
         novoRestaurante.tipo_restaurante = RestauranteDTO.tipo_restaurante;
         novoRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         novoRestaurante.distancia = RestauranteDTO.distancia;
         novoRestaurante.descricao = RestauranteDTO.descricao;
-        novoRestaurante.usuario = user;
+        novoRestaurante.usuarios = user;
         return this.restauranteRepository.save(novoRestaurante);
     }
     async getRestaurante(id) {
@@ -59,9 +63,13 @@ let RestauranteService = class RestauranteService {
         atualizarRestaurante.razao_social = RestauranteDTO.razao_social;
         atualizarRestaurante.cnpj = RestauranteDTO.cnpj;
         atualizarRestaurante.cep = RestauranteDTO.cep;
-        atualizarRestaurante.rua_bairro = RestauranteDTO.rua_bairro;
+        atualizarRestaurante.rua = RestauranteDTO.rua;
+        atualizarRestaurante.bairro = RestauranteDTO.bairro;
+        atualizarRestaurante.numero_endereco = RestauranteDTO.numero_endereco;
         atualizarRestaurante.cidade = RestauranteDTO.cidade;
+        atualizarRestaurante.estado = RestauranteDTO.estado;
         atualizarRestaurante.avaliacao = RestauranteDTO.avaliacao;
+        atualizarRestaurante.numero_telefone = RestauranteDTO.numero_telefone;
         atualizarRestaurante.tipo_restaurante = RestauranteDTO.tipo_restaurante;
         atualizarRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         atualizarRestaurante.distancia = RestauranteDTO.distancia;

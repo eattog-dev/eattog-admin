@@ -16,7 +16,7 @@ export class UserService {
         @InjectRepository(RestauranteEntity)
         private restauranteRepository: Repository<RestauranteEntity>,
     ) { }
-
+    
     async criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity> {
         const user = await this.findUserByEmail(criaUsuario.email).catch(
             () => undefined,
@@ -80,6 +80,15 @@ export class UserService {
                 id: usuarioId,
             },
             relations: ['addresses'],
+        });
+    }
+
+    async getUserByIdUsingRelationsRestaurante(usuarioId: number): Promise<UserEntity> {
+        return this.usersRepository.findOne({
+            where: {
+                id: usuarioId,
+            },
+            relations: ['restaurante'],
         });
     }
 

@@ -22,6 +22,8 @@ const createUser_dto_1 = require("./dto/createUser.dto");
 const user_type_enum_1 = require("./enum/user-type.enum");
 const returnUser_dto_1 = require("./dto/returnUser.dto");
 const user_id_decorator_1 = require("../decorators/user-id.decorator");
+const return_restaurante_usuario_dto_1 = require("./dto/return-restaurante-usuario.dto");
+const roles_decorator_1 = require("../decorators/roles.decorator");
 let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
@@ -31,6 +33,9 @@ let UsersController = class UsersController {
     }
     async getUsuarioId(usuarioId) {
         return new returnUser_dto_1.ReturnUserDto(await this.userService.getUserByIdUsingRelations(usuarioId));
+    }
+    async getUsuarioRestauranteId(usuarioId) {
+        return new return_restaurante_usuario_dto_1.ReturnRestauranteUserDto(await this.userService.getUserByIdUsingRelationsRestaurante(usuarioId));
     }
     async getTodosUsuariosAdmin() {
         return this.userService.getAllAdminUsers();
@@ -47,6 +52,7 @@ let UsersController = class UsersController {
 };
 exports.UsersController = UsersController;
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Get)('/usuario-normal'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -60,6 +66,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getUsuarioId", null);
 __decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
+    (0, common_1.Get)('/meus-restaurantes'),
+    __param(0, (0, user_id_decorator_1.UserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUsuarioRestauranteId", null);
+__decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Get)('/usuario-admin'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

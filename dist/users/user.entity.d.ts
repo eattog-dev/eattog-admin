@@ -10,7 +10,7 @@ export declare class UserEntity {
     tipo_usuario: number;
     addresses?: EnderecoEntity[];
     senha: string;
-    restaurante: RestauranteEntity[];
+    restaurante?: RestauranteEntity[];
     data_criacao: Date;
     data_alteracao: Date;
     isActive: boolean;

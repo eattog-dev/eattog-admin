@@ -12,6 +12,7 @@ export declare class UserService {
     getAllNormalUsers(): Promise<UserEntity[]>;
     getAllAdminUsers(): Promise<UserEntity[]>;
     getUserByIdUsingRelations(usuarioId: number): Promise<UserEntity>;
+    getUserByIdUsingRelationsRestaurante(usuarioId: number): Promise<UserEntity>;
     show(id: number): Promise<UserEntity>;
     findUserById(userId: number): Promise<UserEntity>;
     findUserByEmail(email: string): Promise<UserEntity>;

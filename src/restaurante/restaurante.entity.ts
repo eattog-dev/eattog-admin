@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { PratoEntity } from 'src/pratos/prato.entity';
-import { IsNotEmpty, IsString, IsNumber, MaxLength, IsInt, IsBoolean } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, MaxLength, IsInt, IsBoolean, ValidateIf, IsPhoneNumber } from 'class-validator';
 import { UserEntity } from 'src/users/user.entity';
 
 @Entity('restaurantes')
@@ -42,16 +42,37 @@ export class RestauranteEntity {
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty({ message: 'A rua não pode estar vazio' })
     @IsString({ message: 'A rua deve ser uma string' })
-    rua_bairro: string;
+    rua: string;
+
+    @Column({ type: 'varchar', length: 255 })
+    @IsNotEmpty({ message: 'O bairro não pode estar vazio' })
+    @IsString({ message: 'O bairro deve ser uma string' })
+    bairro: string;
+
+    @Column({ type: 'varchar', length: 255 })
+    @IsNotEmpty({ message: 'O bairro não pode estar vazio' })
+    @IsString({ message: 'O bairro deve ser uma string' })
+    numero_endereco: string;
 
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty({ message: 'A cidade não pode estar vazio' })
     @IsString({ message: 'A cidade deve ser uma string' })
     cidade: string;
 
+    @Column({ type: 'varchar', length: 255 })
+    @IsNotEmpty({ message: 'O estado não pode estar vazio' })
+    @IsString({ message: 'O estado deve ser uma string' })
+    estado: string;
+
     @Column({ type: 'decimal', precision: 5, scale: 2 })
     @IsNumber({}, { message: 'A avaliação deve ser um número' })
     avaliacao: number;
+
+    @Column({ length: 15 })
+    @IsString()
+    @ValidateIf((obj) => obj.numero_telefone !== null)
+    @IsPhoneNumber(null, { message: 'Número de telefone inválido' })
+    numero_telefone?: string;
 
     @Column({ type: 'varchar', length: 255 })
     @IsNotEmpty({ message: 'O tipo de refeição não pode estar vazio' })
@@ -72,13 +93,12 @@ export class RestauranteEntity {
     @IsString({ message: 'A descrição deve ser uma string' })
     descricao: string;
 
-    @Column({ nullable: false })
-    @IsInt()
-    usuario_id: number;
+    @Column({ name: 'user_id', nullable: false })
+    userId: number;
 
     @ManyToOne(() => UserEntity, (user) => user.restaurante)
-    @JoinColumn({ name: 'usuario_id', referencedColumnName: 'id' })
-    usuario: UserEntity;
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+    usuarios: UserEntity;
 
     @OneToMany(() => PratoEntity, (prato) => prato.restaurante)
     pratos: PratoEntity[];

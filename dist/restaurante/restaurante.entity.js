@@ -63,7 +63,19 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'A rua não pode estar vazio' }),
     (0, class_validator_1.IsString)({ message: 'A rua deve ser uma string' }),
     __metadata("design:type", String)
-], RestauranteEntity.prototype, "rua_bairro", void 0);
+], RestauranteEntity.prototype, "rua", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O bairro não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'O bairro deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "bairro", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O bairro não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'O bairro deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "numero_endereco", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'A cidade não pode estar vazio' }),
@@ -71,10 +83,23 @@ __decorate([
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "cidade", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'O estado não pode estar vazio' }),
+    (0, class_validator_1.IsString)({ message: 'O estado deve ser uma string' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "estado", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'decimal', precision: 5, scale: 2 }),
     (0, class_validator_1.IsNumber)({}, { message: 'A avaliação deve ser um número' }),
     __metadata("design:type", Number)
 ], RestauranteEntity.prototype, "avaliacao", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ length: 15 }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.ValidateIf)((obj) => obj.numero_telefone !== null),
+    (0, class_validator_1.IsPhoneNumber)(null, { message: 'Número de telefone inválido' }),
+    __metadata("design:type", String)
+], RestauranteEntity.prototype, "numero_telefone", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     (0, class_validator_1.IsNotEmpty)({ message: 'O tipo de refeição não pode estar vazio' }),
@@ -99,15 +124,14 @@ __decorate([
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "descricao", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false }),
-    (0, class_validator_1.IsInt)(),
+    (0, typeorm_1.Column)({ name: 'user_id', nullable: false }),
     __metadata("design:type", Number)
-], RestauranteEntity.prototype, "usuario_id", void 0);
+], RestauranteEntity.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, (user) => user.restaurante),
-    (0, typeorm_1.JoinColumn)({ name: 'usuario_id', referencedColumnName: 'id' }),
+    (0, typeorm_1.JoinColumn)({ name: 'user_id', referencedColumnName: 'id' }),
     __metadata("design:type", user_entity_1.UserEntity)
-], RestauranteEntity.prototype, "usuario", void 0);
+], RestauranteEntity.prototype, "usuarios", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => prato_entity_1.PratoEntity, (prato) => prato.restaurante),
     __metadata("design:type", Array)

@@ -5,9 +5,13 @@ export declare class RestauranteDTO {
     razao_social: string;
     cnpj: string;
     cep: string;
-    rua_bairro: string;
+    numero_endereco: string;
+    rua: string;
+    bairro: string;
     cidade: string;
+    estado: string;
     avaliacao: number;
+    numero_telefone: string;
     tipo_restaurante: string;
     tipo_retirada: string;
     distancia: string;

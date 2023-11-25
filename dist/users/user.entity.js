@@ -69,7 +69,7 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "senha", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => restaurante_entity_1.RestauranteEntity, (rest) => rest.usuario),
+    (0, typeorm_1.OneToMany)(() => restaurante_entity_1.RestauranteEntity, (rest) => rest.usuarios),
     __metadata("design:type", Array)
 ], UserEntity.prototype, "restaurante", void 0);
 __decorate([

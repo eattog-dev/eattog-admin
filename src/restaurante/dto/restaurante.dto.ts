@@ -20,15 +20,31 @@ export class RestauranteDTO {
     @IsNotEmpty()
     cep: string;
 
-    @IsString({ message: 'O campo "rua_bairro" deve ser uma string' })
+    @IsString({ message: 'O campo "cep" deve ser uma string' })
     @IsNotEmpty()
-    rua_bairro: string;
+    numero_endereco: string;
+
+    @IsString({ message: 'O campo "rua" deve ser uma string' })
+    @IsNotEmpty()
+    rua: string;
+
+    @IsString({ message: 'O campo "rua" deve ser uma string' })
+    @IsNotEmpty()
+    bairro: string;
 
     @IsString({ message: 'O campo "cidade" deve ser uma string' })
     @IsNotEmpty()
     cidade: string;
 
+    @IsString({ message: 'O campo "cidade" deve ser uma string' })
+    @IsNotEmpty()
+    estado: string;
+
     avaliacao: number;
+
+    @IsString({ message: 'O campo "numero_telefone" deve ser uma string' })
+    numero_telefone: string;
+
 
     @IsString({ message: 'O campo "tipoRestaurante" deve ser uma string' })
     @IsNotEmpty()
