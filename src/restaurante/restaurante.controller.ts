@@ -7,6 +7,8 @@ import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express
 import { UploadService } from 'src/users/upload.service';
 import { Roles } from 'src/decorators/roles.decorator';
 import { UserType } from 'src/users/enum/user-type.enum';
+import { UserId } from 'src/decorators/user-id.decorator';
+import { ReturnRestauranteUsuarioDTO } from './dto/return-restaurante-usuario.dto';
 
 @Controller()
 export class RestauranteController {
@@ -25,7 +27,10 @@ export class RestauranteController {
     { name: 'banner', maxCount: 1 },
     { name: 'logo', maxCount: 1 },
   ]))
-  async createRestaurante(@Body() restaurante: RestauranteDTO, @UploadedFiles() file: { imagem: Express.Multer.File[], banner: Express.Multer.File[], logo: Express.Multer.File[] }
+  async createRestaurante(
+    @Body() restaurante: RestauranteDTO,
+    @UploadedFiles() file: { imagem: Express.Multer.File[], banner: Express.Multer.File[], logo: Express.Multer.File[] },
+    @UserId() usuario_id: number
   ): Promise<RestauranteEntity> {
     let imagemPath = ''
     let bannerPath = ''
@@ -36,7 +41,7 @@ export class RestauranteController {
       logoPath = await this.uploadService.uploadFile(file.logo[0]);
 
     }
-    return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath);
+    return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath, usuario_id);
   }
 
   @Get('/restaurante/:id')

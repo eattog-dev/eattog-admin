@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { IsEmail, IsNotEmpty, IsString, IsBoolean, Length, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
 import { EnderecoEntity } from 'src/endereco/endereco.entity';
+import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 
 @Entity('usuarios')
 export class UserEntity {
@@ -45,6 +46,9 @@ export class UserEntity {
     @IsNotEmpty()
     @IsString()
     senha: string;
+
+    @OneToMany(() => RestauranteEntity, (rest) => rest.usuario)
+    restaurante: RestauranteEntity[];
 
     @CreateDateColumn()
     data_criacao: Date;

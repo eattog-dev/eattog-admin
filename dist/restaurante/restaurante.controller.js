@@ -20,6 +20,7 @@ const platform_express_1 = require("@nestjs/platform-express");
 const upload_service_1 = require("../users/upload.service");
 const roles_decorator_1 = require("../decorators/roles.decorator");
 const user_type_enum_1 = require("../users/enum/user-type.enum");
+const user_id_decorator_1 = require("../decorators/user-id.decorator");
 let RestauranteController = class RestauranteController {
     constructor(restauranteService, uploadService) {
         this.restauranteService = restauranteService;
@@ -28,7 +29,7 @@ let RestauranteController = class RestauranteController {
     getRestaurantes() {
         return this.restauranteService.getRestaurantes();
     }
-    async createRestaurante(restaurante, file) {
+    async createRestaurante(restaurante, file, usuario_id) {
         let imagemPath = '';
         let bannerPath = '';
         let logoPath = '';
@@ -37,7 +38,7 @@ let RestauranteController = class RestauranteController {
             bannerPath = await this.uploadService.uploadFile(file.banner[0]);
             logoPath = await this.uploadService.uploadFile(file.logo[0]);
         }
-        return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath);
+        return await this.restauranteService.createRestaurante(restaurante, imagemPath, bannerPath, logoPath, usuario_id);
     }
     getRestaurante(id) {
         return this.restauranteService.getRestaurante(id);
@@ -84,8 +85,9 @@ __decorate([
     ])),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFiles)()),
+    __param(2, (0, user_id_decorator_1.UserId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDTO, Object]),
+    __metadata("design:paramtypes", [restaurante_dto_1.RestauranteDTO, Object, Number]),
     __metadata("design:returntype", Promise)
 ], RestauranteController.prototype, "createRestaurante", null);
 __decorate([

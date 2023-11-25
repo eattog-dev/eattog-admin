@@ -1,4 +1,5 @@
 import { EnderecoEntity } from 'src/endereco/endereco.entity';
+import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 export declare class UserEntity {
     id: number;
     nome: string;
@@ -9,6 +10,7 @@ export declare class UserEntity {
     tipo_usuario: number;
     addresses?: EnderecoEntity[];
     senha: string;
+    restaurante: RestauranteEntity[];
     data_criacao: Date;
     data_alteracao: Date;
     isActive: boolean;

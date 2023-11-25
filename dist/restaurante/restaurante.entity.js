@@ -13,6 +13,7 @@ exports.RestauranteEntity = void 0;
 const typeorm_1 = require("typeorm");
 const prato_entity_1 = require("../pratos/prato.entity");
 const class_validator_1 = require("class-validator");
+const user_entity_1 = require("../users/user.entity");
 let RestauranteEntity = class RestauranteEntity {
 };
 exports.RestauranteEntity = RestauranteEntity;
@@ -98,6 +99,16 @@ __decorate([
     __metadata("design:type", String)
 ], RestauranteEntity.prototype, "descricao", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], RestauranteEntity.prototype, "usuario_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, (user) => user.restaurante),
+    (0, typeorm_1.JoinColumn)({ name: 'usuario_id', referencedColumnName: 'id' }),
+    __metadata("design:type", user_entity_1.UserEntity)
+], RestauranteEntity.prototype, "usuario", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => prato_entity_1.PratoEntity, (prato) => prato.restaurante),
     __metadata("design:type", Array)
 ], RestauranteEntity.prototype, "pratos", void 0);
@@ -109,6 +120,11 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], RestauranteEntity.prototype, "data_alteracao", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: true }),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], RestauranteEntity.prototype, "isActive", void 0);
 exports.RestauranteEntity = RestauranteEntity = __decorate([
     (0, typeorm_1.Entity)('restaurantes')
 ], RestauranteEntity);

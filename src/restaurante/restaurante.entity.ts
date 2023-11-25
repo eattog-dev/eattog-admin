@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { PratoEntity } from 'src/pratos/prato.entity';
-import { IsNotEmpty, IsString, IsNumber, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, MaxLength, IsInt, IsBoolean } from 'class-validator';
+import { UserEntity } from 'src/users/user.entity';
 
 @Entity('restaurantes')
 export class RestauranteEntity {
@@ -71,6 +72,14 @@ export class RestauranteEntity {
     @IsString({ message: 'A descrição deve ser uma string' })
     descricao: string;
 
+    @Column({ nullable: false })
+    @IsInt()
+    usuario_id: number;
+
+    @ManyToOne(() => UserEntity, (user) => user.restaurante)
+    @JoinColumn({ name: 'usuario_id', referencedColumnName: 'id' })
+    usuario: UserEntity;
+
     @OneToMany(() => PratoEntity, (prato) => prato.restaurante)
     pratos: PratoEntity[];
 
@@ -79,4 +88,8 @@ export class RestauranteEntity {
 
     @UpdateDateColumn()
     data_alteracao: Date;
+
+    @Column({ default: true })
+    @IsBoolean()
+    isActive: boolean;
 }

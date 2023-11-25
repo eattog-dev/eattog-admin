@@ -13,7 +13,7 @@ export declare class RestauranteController {
         imagem: Express.Multer.File[];
         banner: Express.Multer.File[];
         logo: Express.Multer.File[];
-    }): Promise<RestauranteEntity>;
+    }, usuario_id: number): Promise<RestauranteEntity>;
     getRestaurante(id: number): Promise<RestauranteEntity>;
     editRestaurante(id: number, restaurante: RestauranteDTO, file: {
         banner: Express.Multer.File[];

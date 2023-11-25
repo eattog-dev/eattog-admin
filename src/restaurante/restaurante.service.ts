@@ -1,22 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestauranteEntity } from './restaurante.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, FindOptionsRelations, Repository } from 'typeorm';
 import { RestauranteDTO } from './dto/restaurante.dto';
+import { UserEntity } from 'src/users/user.entity';
 
 @Injectable()
 export class RestauranteService {
     constructor(
         @InjectRepository(RestauranteEntity)
-        private restauranteRepository: Repository<RestauranteEntity>
+        private restauranteRepository: Repository<RestauranteEntity>,
+        @InjectRepository(UserEntity)
+        private readonly usuarioRepository: Repository<UserEntity>,
     ) { }
 
     async getRestaurantes(): Promise<RestauranteEntity[]> {
         return this.restauranteRepository.find();
     }
 
-    async createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string): Promise<RestauranteEntity> {
+    async createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string, usuario_id: number): Promise<RestauranteEntity> {
         let novoRestaurante = new RestauranteEntity();
+        const user = await this.usuarioRepository.findOne({ where: { id: usuario_id } })
         novoRestaurante.imagem = imagemPath;
         novoRestaurante.banner = bannerPath;
         novoRestaurante.logo = logoPath;
@@ -30,6 +34,7 @@ export class RestauranteService {
         novoRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         novoRestaurante.distancia = RestauranteDTO.distancia;
         novoRestaurante.descricao = RestauranteDTO.descricao;
+        novoRestaurante.usuario = user;
         return this.restauranteRepository.save(novoRestaurante);
     }
 

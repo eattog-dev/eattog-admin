@@ -1,4 +1,5 @@
 import { PratoEntity } from 'src/pratos/prato.entity';
+import { UserEntity } from 'src/users/user.entity';
 export declare class RestauranteEntity {
     id: number;
     imagem: string;
@@ -14,7 +15,10 @@ export declare class RestauranteEntity {
     tipo_retirada: string;
     distancia: string;
     descricao: string;
+    usuario_id: number;
+    usuario: UserEntity;
     pratos: PratoEntity[];
     data_criacao: Date;
     data_alteracao: Date;
+    isActive: boolean;
 }

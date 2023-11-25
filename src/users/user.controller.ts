@@ -8,6 +8,7 @@ import { CreateUserDto } from './dto/createUser.dto';
 import { UserType } from './enum/user-type.enum';
 import { ReturnUserDto } from './dto/returnUser.dto';
 import { UserId } from 'src/decorators/user-id.decorator';
+import { ReturnRestauranteUsuarioDTO } from 'src/restaurante/dto/return-restaurante-usuario.dto';
 
 @Controller('')
 export class UsersController {

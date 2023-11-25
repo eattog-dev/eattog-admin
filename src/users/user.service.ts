@@ -1,17 +1,20 @@
 import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './user.entity';
-import { Repository } from 'typeorm';
+import { FindOptionsRelations, Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { createPasswordHashed } from 'src/utils/password';
 import { UserType } from './enum/user-type.enum';
+import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
         private usersRepository: Repository<UserEntity>,
+        @InjectRepository(RestauranteEntity)
+        private restauranteRepository: Repository<RestauranteEntity>,
     ) { }
 
     async criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity> {
@@ -115,3 +118,5 @@ export class UserService {
     }
 
 }
+
+

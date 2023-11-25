@@ -17,15 +17,18 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const restaurante_entity_1 = require("./restaurante.entity");
 const typeorm_2 = require("typeorm");
+const user_entity_1 = require("../users/user.entity");
 let RestauranteService = class RestauranteService {
-    constructor(restauranteRepository) {
+    constructor(restauranteRepository, usuarioRepository) {
         this.restauranteRepository = restauranteRepository;
+        this.usuarioRepository = usuarioRepository;
     }
     async getRestaurantes() {
         return this.restauranteRepository.find();
     }
-    async createRestaurante(RestauranteDTO, imagemPath, bannerPath, logoPath) {
+    async createRestaurante(RestauranteDTO, imagemPath, bannerPath, logoPath, usuario_id) {
         let novoRestaurante = new restaurante_entity_1.RestauranteEntity();
+        const user = await this.usuarioRepository.findOne({ where: { id: usuario_id } });
         novoRestaurante.imagem = imagemPath;
         novoRestaurante.banner = bannerPath;
         novoRestaurante.logo = logoPath;
@@ -39,6 +42,7 @@ let RestauranteService = class RestauranteService {
         novoRestaurante.tipo_retirada = RestauranteDTO.tipo_retirada;
         novoRestaurante.distancia = RestauranteDTO.distancia;
         novoRestaurante.descricao = RestauranteDTO.descricao;
+        novoRestaurante.usuario = user;
         return this.restauranteRepository.save(novoRestaurante);
     }
     async getRestaurante(id) {
@@ -89,6 +93,8 @@ exports.RestauranteService = RestauranteService;
 exports.RestauranteService = RestauranteService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(restaurante_entity_1.RestauranteEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], RestauranteService);
 //# sourceMappingURL=restaurante.service.js.map

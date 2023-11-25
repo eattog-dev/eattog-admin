@@ -19,9 +19,11 @@ const user_entity_1 = require("./user.entity");
 const typeorm_2 = require("typeorm");
 const password_1 = require("../utils/password");
 const user_type_enum_1 = require("./enum/user-type.enum");
+const restaurante_entity_1 = require("../restaurante/restaurante.entity");
 let UserService = class UserService {
-    constructor(usersRepository) {
+    constructor(usersRepository, restauranteRepository) {
         this.usersRepository = usersRepository;
+        this.restauranteRepository = restauranteRepository;
     }
     async criaUsuario(criaUsuario, tipoUsuario) {
         const user = await this.findUserByEmail(criaUsuario.email).catch(() => undefined);
@@ -104,6 +106,8 @@ exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(restaurante_entity_1.RestauranteEntity)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

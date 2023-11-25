@@ -13,12 +13,13 @@ const restaurante_entity_1 = require("./restaurante.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const restaurante_service_1 = require("./restaurante.service");
 const upload_service_1 = require("../users/upload.service");
+const user_entity_1 = require("../users/user.entity");
 let RestauranteModule = class RestauranteModule {
 };
 exports.RestauranteModule = RestauranteModule;
 exports.RestauranteModule = RestauranteModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([restaurante_entity_1.RestauranteEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([restaurante_entity_1.RestauranteEntity, user_entity_1.UserEntity])],
         controllers: [restaurante_controller_1.RestauranteController],
         providers: [restaurante_service_1.RestauranteService, upload_service_1.UploadService],
         exports: [restaurante_service_1.RestauranteService]
