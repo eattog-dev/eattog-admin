@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PratoEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
-const restaurante_entity_1 = require("../restaurante/restaurante.entity");
-const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
-const carrinho_prato_entity_1 = require("../carrinho-produto/entities/carrinho-prato.entity");
+const restaurante_entity_1 = require("../../restaurante/entities/restaurante.entity");
+const categoria_prato_entity_1 = require("../../categoria-prato/entities/categoria-prato.entity");
+const carrinho_prato_entity_1 = require("../../carrinho-produto/entities/carrinho-prato.entity");
 let PratoEntity = class PratoEntity {
 };
 exports.PratoEntity = PratoEntity;

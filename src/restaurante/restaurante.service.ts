@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RestauranteEntity } from './restaurante.entity';
+import { RestauranteEntity } from './entities/restaurante.entity';
 import { DeleteResult, FindOptionsRelations, Repository } from 'typeorm';
 import { RestauranteDTO } from './dto/restaurante.dto';
-import { UserEntity } from 'src/users/user.entity';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class RestauranteService {

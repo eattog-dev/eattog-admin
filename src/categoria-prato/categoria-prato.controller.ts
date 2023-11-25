@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CategoriaPratoService } from './categoria-prato.service';
-import { CategoriaPratoEntity } from './categoria-prato.entity';
+import { CategoriaPratoEntity } from './entities/categoria-prato.entity';
 import { CategoriaPratoDto } from './dto/categoria-prato.dto';
 import { DeleteResult } from 'typeorm';
 

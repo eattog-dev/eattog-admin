@@ -13,7 +13,7 @@ exports.CarrinhoPratoEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const carrinho_compra_entity_1 = require("../../carrinho-compra/entities/carrinho-compra.entity");
-const prato_entity_1 = require("../../pratos/prato.entity");
+const prato_entity_1 = require("../../pratos/entities/prato.entity");
 let CarrinhoPratoEntity = class CarrinhoPratoEntity {
 };
 exports.CarrinhoPratoEntity = CarrinhoPratoEntity;

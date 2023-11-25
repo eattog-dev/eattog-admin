@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CarrinhoCompraEntity } from 'src/carrinho-compra/entities/carrinho-compra.entity';
-import { PratoEntity } from 'src/pratos/prato.entity';
+import { PratoEntity } from 'src/pratos/entities/prato.entity';
 import Stripe from 'stripe';
 
 @Injectable()

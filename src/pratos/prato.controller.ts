@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Param, Put, Delete, Body, UseInterceptors, UploadedFile, UsePipes, ValidationPipe } from '@nestjs/common';
 import { PratoDto } from './dto/prato.dto';
-import { PratoEntity } from './prato.entity';
+import { PratoEntity } from './entities/prato.entity';
 import { PratoService } from './prato.service';
 import { DeleteResult } from 'typeorm';
 import { FileInterceptor } from '@nestjs/platform-express';

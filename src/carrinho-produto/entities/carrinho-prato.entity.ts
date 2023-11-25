@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 import { CarrinhoCompraEntity } from 'src/carrinho-compra/entities/carrinho-compra.entity';
-import { PratoEntity } from 'src/pratos/prato.entity';
+import { PratoEntity } from 'src/pratos/entities/prato.entity';
 
 @Entity('carrinho-prato')
 export class CarrinhoPratoEntity {

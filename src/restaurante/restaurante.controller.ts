@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Param, Put, Delete, Body, UseGuards, UseInterceptors, UploadedFile, UploadedFiles, UsePipes, ValidationPipe } from '@nestjs/common';
 import { RestauranteDTO } from './dto/restaurante.dto';
-import { RestauranteEntity } from './restaurante.entity';
+import { RestauranteEntity } from './entities/restaurante.entity';
 import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';

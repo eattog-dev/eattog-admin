@@ -11,7 +11,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const endereco_controller_1 = require("./endereco.controller");
 const endereco_service_1 = require("./endereco.service");
 const common_1 = require("@nestjs/common");
-const endereco_entity_1 = require("./endereco.entity");
+const endereco_entity_1 = require("./entities/endereco.entity");
 const user_module_1 = require("../users/user.module");
 let EnderecoModule = class EnderecoModule {
 };

@@ -1,5 +1,5 @@
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
-import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { CategoriaPratoEntity } from 'src/categoria-prato/entities/categoria-prato.entity';
 import { CarrinhoPratoEntity } from 'src/carrinho-produto/entities/carrinho-prato.entity';
 export declare class PratoEntity {
     id: number;

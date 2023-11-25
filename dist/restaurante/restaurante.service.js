@@ -15,9 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestauranteService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const restaurante_entity_1 = require("./restaurante.entity");
+const restaurante_entity_1 = require("./entities/restaurante.entity");
 const typeorm_2 = require("typeorm");
-const user_entity_1 = require("../users/user.entity");
+const user_entity_1 = require("../users/entities/user.entity");
 let RestauranteService = class RestauranteService {
     constructor(restauranteRepository, usuarioRepository) {
         this.restauranteRepository = restauranteRepository;

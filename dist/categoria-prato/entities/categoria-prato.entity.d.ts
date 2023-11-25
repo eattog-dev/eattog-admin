@@ -1,4 +1,4 @@
-import { PratoEntity } from 'src/pratos/prato.entity';
+import { PratoEntity } from 'src/pratos/entities/prato.entity';
 export declare class CategoriaPratoEntity {
     slice(arg0: number, arg1: number): CategoriaPratoEntity;
     id: number;

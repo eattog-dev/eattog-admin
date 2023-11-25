@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategoriaPratoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const categoria_prato_entity_1 = require("./categoria-prato.entity");
+const categoria_prato_entity_1 = require("./entities/categoria-prato.entity");
 const typeorm_2 = require("typeorm");
 let CategoriaPratoService = class CategoriaPratoService {
     constructor(categoriaPratoRepository) {

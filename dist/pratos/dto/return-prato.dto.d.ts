@@ -1,4 +1,4 @@
-import { PratoEntity } from '../prato.entity';
+import { PratoEntity } from '../entities/prato.entity';
 export declare class ReturnPrato {
     id: number;
     nome: string;

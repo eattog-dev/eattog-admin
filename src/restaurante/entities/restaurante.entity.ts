@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { PratoEntity } from 'src/pratos/prato.entity';
+import { PratoEntity } from 'src/pratos/entities/prato.entity';
 import { IsNotEmpty, IsString, IsNumber, MaxLength, IsInt, IsBoolean, ValidateIf, IsPhoneNumber } from 'class-validator';
-import { UserEntity } from 'src/users/user.entity';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 @Entity('restaurantes')
 export class RestauranteEntity {

@@ -1,7 +1,7 @@
-import { RestauranteEntity } from './restaurante.entity';
+import { RestauranteEntity } from './entities/restaurante.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { RestauranteDTO } from './dto/restaurante.dto';
-import { UserEntity } from 'src/users/user.entity';
+import { UserEntity } from 'src/users/entities/user.entity';
 export declare class RestauranteService {
     private restauranteRepository;
     private readonly usuarioRepository;

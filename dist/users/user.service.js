@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("./user.entity");
+const user_entity_1 = require("./entities/user.entity");
 const typeorm_2 = require("typeorm");
 const password_1 = require("../utils/password");
 const user_type_enum_1 = require("./enum/user-type.enum");
-const restaurante_entity_1 = require("../restaurante/restaurante.entity");
+const restaurante_entity_1 = require("../restaurante/entities/restaurante.entity");
 let UserService = class UserService {
     constructor(usersRepository, restauranteRepository) {
         this.usersRepository = usersRepository;

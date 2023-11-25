@@ -1,5 +1,5 @@
-import { EnderecoEntity } from 'src/endereco/endereco.entity';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
+import { EnderecoEntity } from 'src/endereco/entities/endereco.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
 export declare class UserEntity {
     id: number;
     nome: string;

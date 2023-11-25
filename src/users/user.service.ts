@@ -1,12 +1,12 @@
 import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './user.entity';
+import { UserEntity } from './entities/user.entity';
 import { FindOptionsRelations, Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { createPasswordHashed } from 'src/utils/password';
 import { UserType } from './enum/user-type.enum';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
 
 @Injectable()
 export class UserService {

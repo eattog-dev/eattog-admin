@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { IsString, IsNumber, IsArray, IsInt, IsIn, IsBoolean, IsNotEmpty } from 'class-validator';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
-import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { CategoriaPratoEntity } from 'src/categoria-prato/entities/categoria-prato.entity';
 import { ItemEntity } from 'src/listaCompras/entities/item.entity';
 import { CarrinhoPratoEntity } from 'src/carrinho-produto/entities/carrinho-prato.entity';
 

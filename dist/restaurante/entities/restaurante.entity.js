@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestauranteEntity = void 0;
 const typeorm_1 = require("typeorm");
-const prato_entity_1 = require("../pratos/prato.entity");
+const prato_entity_1 = require("../../pratos/entities/prato.entity");
 const class_validator_1 = require("class-validator");
-const user_entity_1 = require("../users/user.entity");
+const user_entity_1 = require("../../users/entities/user.entity");
 let RestauranteEntity = class RestauranteEntity {
 };
 exports.RestauranteEntity = RestauranteEntity;

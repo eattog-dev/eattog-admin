@@ -1,5 +1,5 @@
 import { CategoriaPratoService } from './categoria-prato.service';
-import { CategoriaPratoEntity } from './categoria-prato.entity';
+import { CategoriaPratoEntity } from './entities/categoria-prato.entity';
 import { CategoriaPratoDto } from './dto/categoria-prato.dto';
 import { DeleteResult } from 'typeorm';
 export declare class CategoriaPratoController {

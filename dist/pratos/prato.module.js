@@ -9,11 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PratoModule = void 0;
 const common_1 = require("@nestjs/common");
 const prato_controller_1 = require("./prato.controller");
-const prato_entity_1 = require("./prato.entity");
+const prato_entity_1 = require("./entities/prato.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const prato_service_1 = require("./prato.service");
-const restaurante_entity_1 = require("../restaurante/restaurante.entity");
-const categoria_prato_entity_1 = require("../categoria-prato/categoria-prato.entity");
+const restaurante_entity_1 = require("../restaurante/entities/restaurante.entity");
+const categoria_prato_entity_1 = require("../categoria-prato/entities/categoria-prato.entity");
 const upload_service_1 = require("../users/upload.service");
 const stripe_service_1 = require("../stripe/stripe.service");
 let PratoModule = class PratoModule {

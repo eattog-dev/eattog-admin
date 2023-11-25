@@ -18,7 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const lista_entity_1 = require("./entities/lista.entity");
 const typeorm_2 = require("typeorm");
 const item_entity_1 = require("./entities/item.entity");
-const prato_entity_1 = require("../pratos/prato.entity");
+const prato_entity_1 = require("../pratos/entities/prato.entity");
 let ListaService = class ListaService {
     constructor(listaRepository, itemRepository, produtoRepository) {
         this.listaRepository = listaRepository;

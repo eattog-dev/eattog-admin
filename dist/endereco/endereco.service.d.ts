@@ -1,4 +1,4 @@
-import { EnderecoEntity } from './endereco.entity';
+import { EnderecoEntity } from './entities/endereco.entity';
 import { Repository } from 'typeorm';
 import { CriarEnderecoDto } from './dto/criar_endereco.dto';
 import { UserService } from 'src/users/user.service';

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UserEntity } from './user.entity';
+import { UserEntity } from './entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from './user.service';
 import { UsersController } from './user.controller';
 import { JwtService } from '@nestjs/jwt';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
 
 @Module({
   imports: [

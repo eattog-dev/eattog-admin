@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CategoriaPratoEntity } from './categoria-prato.entity';
+import { CategoriaPratoEntity } from './entities/categoria-prato.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { CategoriaPratoDto } from './dto/categoria-prato.dto';
 

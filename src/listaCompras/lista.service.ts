@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ListaEntity } from './entities/lista.entity';
 import { Repository } from 'typeorm';
 import { ItemEntity } from './entities/item.entity';
-import { PratoEntity } from 'src/pratos/prato.entity';
+import { PratoEntity } from 'src/pratos/entities/prato.entity';
 import { ListaDto } from './dtos/lista.dto';
 import { ItemDto } from './dtos/item.dto';
 

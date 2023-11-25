@@ -1,5 +1,5 @@
-import { PratoEntity } from 'src/pratos/prato.entity';
-import { UserEntity } from 'src/users/user.entity';
+import { PratoEntity } from 'src/pratos/entities/prato.entity';
+import { UserEntity } from 'src/users/entities/user.entity';
 export declare class RestauranteEntity {
     id: number;
     imagem: string;

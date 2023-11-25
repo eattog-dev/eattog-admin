@@ -1,4 +1,4 @@
-import { RestauranteEntity } from "../restaurante.entity";
+import { RestauranteEntity } from "../entities/restaurante.entity";
 
 export class ReturnRestauranteDto {
     razao_social: string;

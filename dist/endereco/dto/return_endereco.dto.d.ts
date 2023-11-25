@@ -1,4 +1,4 @@
-import { EnderecoEntity } from "../endereco.entity";
+import { EnderecoEntity } from "../entities/endereco.entity";
 export declare class ReturnEnderecoDto {
     cep: string;
     estado: string;

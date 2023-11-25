@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { PratoController } from './prato.controller';
-import { PratoEntity } from './prato.entity';
+import { PratoEntity } from './entities/prato.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PratoService } from './prato.service';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
-import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { CategoriaPratoEntity } from 'src/categoria-prato/entities/categoria-prato.entity';
 import { UploadService } from 'src/users/upload.service';
 import { StripeService } from 'src/stripe/stripe.service';
 

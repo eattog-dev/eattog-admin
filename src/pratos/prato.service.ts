@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PratoEntity } from './prato.entity';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
-import { CategoriaPratoEntity } from 'src/categoria-prato/categoria-prato.entity';
+import { PratoEntity } from './entities/prato.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { CategoriaPratoEntity } from 'src/categoria-prato/entities/categoria-prato.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { PratoDto } from './dto/prato.dto';
 import { StripeService } from 'src/stripe/stripe.service';

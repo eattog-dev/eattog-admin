@@ -1,6 +1,6 @@
 /// <reference types="multer" />
 import { RestauranteDTO } from './dto/restaurante.dto';
-import { RestauranteEntity } from './restaurante.entity';
+import { RestauranteEntity } from './entities/restaurante.entity';
 import { RestauranteService } from './restaurante.service';
 import { DeleteResult } from 'typeorm';
 import { UploadService } from 'src/users/upload.service';

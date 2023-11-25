@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Put, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Param, Request } from '@nestjs/common/decorators/http';
-import { UserEntity } from './user.entity';
+import { UserEntity } from './entities/user.entity';
 import { AuthGuard as SessionGuard } from '../guards/session.guard';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';

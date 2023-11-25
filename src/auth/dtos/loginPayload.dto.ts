@@ -1,4 +1,4 @@
-import { UserEntity } from '../../users/user.entity';
+import { UserEntity } from '../../users/entities/user.entity';
 
 export class LoginPayload {
     id: number;

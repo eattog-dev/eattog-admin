@@ -1,8 +1,8 @@
-import { UserEntity } from './user.entity';
+import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/createUser.dto';
-import { RestauranteEntity } from 'src/restaurante/restaurante.entity';
+import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
 export declare class UserService {
     private usersRepository;
     private restauranteRepository;

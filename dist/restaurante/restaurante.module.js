@@ -9,11 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RestauranteModule = void 0;
 const common_1 = require("@nestjs/common");
 const restaurante_controller_1 = require("./restaurante.controller");
-const restaurante_entity_1 = require("./restaurante.entity");
+const restaurante_entity_1 = require("./entities/restaurante.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const restaurante_service_1 = require("./restaurante.service");
 const upload_service_1 = require("../users/upload.service");
-const user_entity_1 = require("../users/user.entity");
+const user_entity_1 = require("../users/entities/user.entity");
 let RestauranteModule = class RestauranteModule {
 };
 exports.RestauranteModule = RestauranteModule;

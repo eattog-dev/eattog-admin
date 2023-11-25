@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
-const endereco_entity_1 = require("../endereco/endereco.entity");
-const restaurante_entity_1 = require("../restaurante/restaurante.entity");
+const endereco_entity_1 = require("../../endereco/entities/endereco.entity");
+const restaurante_entity_1 = require("../../restaurante/entities/restaurante.entity");
 let UserEntity = class UserEntity {
 };
 exports.UserEntity = UserEntity;

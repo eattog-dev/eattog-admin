@@ -1,4 +1,4 @@
-import { CategoriaPratoEntity } from './categoria-prato.entity';
+import { CategoriaPratoEntity } from './entities/categoria-prato.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { CategoriaPratoDto } from './dto/categoria-prato.dto';
 export declare class CategoriaPratoService {

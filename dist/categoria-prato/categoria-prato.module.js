@@ -10,7 +10,7 @@ exports.CategoriaPratoModule = void 0;
 const categoria_prato_service_1 = require("./categoria-prato.service");
 const categoria_prato_controller_1 = require("./categoria-prato.controller");
 const common_1 = require("@nestjs/common");
-const categoria_prato_entity_1 = require("./categoria-prato.entity");
+const categoria_prato_entity_1 = require("./entities/categoria-prato.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 let CategoriaPratoModule = class CategoriaPratoModule {
 };

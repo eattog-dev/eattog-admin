@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnderecoService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const endereco_entity_1 = require("./endereco.entity");
+const endereco_entity_1 = require("./entities/endereco.entity");
 const typeorm_2 = require("typeorm");
 const user_service_1 = require("../users/user.service");
 let EnderecoService = class EnderecoService {
