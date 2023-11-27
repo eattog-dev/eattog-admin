@@ -36,6 +36,18 @@ export class StatusPedidoService {
         return statusAtivos;
     }
 
+    async pegarStatusId(id: number): Promise<StatusPedidoEntity> {
+        const status = await this.statusPedidoRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+        if (!status) {
+            throw new NotFoundException('Não foi encontrado nenhum status de pedido')
+        }
+        return status;
+    }
+
     async createStatusPedido(statusPedidoDTO: StatusPedidoDTO): Promise<StatusPedidoEntity> {
         return await this.statusPedidoRepository.save(statusPedidoDTO)
     }

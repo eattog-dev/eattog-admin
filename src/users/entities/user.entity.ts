@@ -51,7 +51,7 @@ export class UserEntity {
     @OneToMany(() => RestauranteEntity, (rest) => rest.usuarios)
     restaurante?: RestauranteEntity[];
 
-    @OneToOne(() => PedidoEntity, (pedido) => pedido.usuario)
+    @OneToMany(() => PedidoEntity, (pedido) => pedido.usuario)
     pedido: PedidoEntity;
 
     @CreateDateColumn()

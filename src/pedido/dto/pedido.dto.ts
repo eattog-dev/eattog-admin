@@ -1,5 +1,9 @@
+import { IsInt, IsNotEmpty } from "class-validator";
+
 export class PedidoDTO {
     id: number;
-    carrinho_compra_id: number;
+
+    // @IsNotEmpty()
+    // @IsInt()
     status_id: number;
 }

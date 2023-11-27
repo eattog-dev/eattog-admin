@@ -43,6 +43,17 @@ let StatusPedidoService = class StatusPedidoService {
         }
         return statusAtivos;
     }
+    async pegarStatusId(id) {
+        const status = await this.statusPedidoRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+        if (!status) {
+            throw new common_1.NotFoundException('Não foi encontrado nenhum status de pedido');
+        }
+        return status;
+    }
     async createStatusPedido(statusPedidoDTO) {
         return await this.statusPedidoRepository.save(statusPedidoDTO);
     }

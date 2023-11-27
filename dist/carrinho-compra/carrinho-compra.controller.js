@@ -29,6 +29,9 @@ let CarrinhoCompraController = class CarrinhoCompraController {
     async findPratoUsuarioId(usuarioId) {
         return await this.carrinhoCompraService.findCarrinhoUsuarioId(usuarioId, true);
     }
+    async pegaCarrinhoId(id) {
+        return this.carrinhoCompraService.findCarrinhoId(id);
+    }
     async limparCarrinho(usuarioId) {
         return this.carrinhoCompraService.limpaCarrinho(usuarioId);
     }
@@ -58,6 +61,13 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CarrinhoCompraController.prototype, "findPratoUsuarioId", null);
+__decorate([
+    (0, common_1.Get)("/:id"),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CarrinhoCompraController.prototype, "pegaCarrinhoId", null);
 __decorate([
     (0, common_1.Delete)(),
     __param(0, (0, user_id_decorator_1.UserId)()),

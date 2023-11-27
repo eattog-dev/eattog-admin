@@ -16,6 +16,11 @@ export class StatusPedidoController {
         return await this.statusPedidoService.todosStatusAtivos()
     }
 
+    @Get('/status/:id')
+    async pegaStatusId(@Param() id: number): Promise<StatusPedidoEntity> {
+        return this.statusPedidoService.pegarStatusId(id)
+    }
+
     @Get('/status-inativos')
     async pegaStatusInativos(): Promise<StatusPedidoEntity[]> {
         return await this.statusPedidoService.todosStatusInativos()

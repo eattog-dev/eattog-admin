@@ -7,6 +7,7 @@ export declare class CarrinhoCompraService {
     private readonly carrinhoPratoService;
     constructor(carrinhoCompraRepository: Repository<CarrinhoCompraEntity>, carrinhoPratoService: CarrinhoPratoService);
     limpaCarrinho(userId: number): Promise<DeleteResult>;
+    findCarrinhoId(id: number): Promise<CarrinhoCompraEntity>;
     findCarrinhoUsuarioId(usuario_id: number, isRelations?: boolean): Promise<CarrinhoCompraEntity>;
     createCart(usuario_id: number): Promise<CarrinhoCompraEntity>;
     inserirProdutoNoCarrinho(inserirCarrinhoDTO: InserirCarrinhoCompraDTO, usuario_id: number): Promise<CarrinhoCompraEntity>;

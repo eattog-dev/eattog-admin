@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:type", Array)
 ], CarrinhoCompraEntity.prototype, "carrinhoProduto", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.carrinho_compra),
+    (0, typeorm_1.OneToMany)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.carrinho_compra),
     __metadata("design:type", pedido_entity_1.PedidoEntity)
 ], CarrinhoCompraEntity.prototype, "pedido", void 0);
 exports.CarrinhoCompraEntity = CarrinhoCompraEntity = __decorate([

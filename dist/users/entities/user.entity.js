@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:type", Array)
 ], UserEntity.prototype, "restaurante", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.usuario),
+    (0, typeorm_1.OneToMany)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.usuario),
     __metadata("design:type", pedido_entity_1.PedidoEntity)
 ], UserEntity.prototype, "pedido", void 0);
 __decorate([

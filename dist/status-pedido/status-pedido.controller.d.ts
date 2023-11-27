@@ -6,6 +6,7 @@ export declare class StatusPedidoController {
     private readonly statusPedidoService;
     constructor(statusPedidoService: StatusPedidoService);
     pegaStatusAtivos(): Promise<StatusPedidoEntity[]>;
+    pegaStatusId(id: number): Promise<StatusPedidoEntity>;
     pegaStatusInativos(): Promise<StatusPedidoEntity[]>;
     criarStatus(statusPedido: StatusPedidoDTO): Promise<StatusPedidoEntity>;
     deletarStatusID(id: number): Promise<DeleteResult>;

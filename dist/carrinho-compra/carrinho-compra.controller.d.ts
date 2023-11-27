@@ -10,6 +10,7 @@ export declare class CarrinhoCompraController {
     constructor(carrinhoCompraService: CarrinhoCompraService, stripeService: StripeService);
     inserirCarrinho(criarCarrinhoCompra: InserirCarrinhoCompraDTO, usuarioId: number): Promise<CarrinhoCompraEntity>;
     findPratoUsuarioId(usuarioId: number): Promise<ReturnCarrinhoCompraDTO>;
+    pegaCarrinhoId(id: number): Promise<CarrinhoCompraEntity>;
     limparCarrinho(usuarioId: number): Promise<DeleteResult>;
     checkout(usuarioId: number): Promise<any>;
 }

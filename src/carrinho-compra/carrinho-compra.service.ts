@@ -32,6 +32,23 @@ export class CarrinhoCompraService {
     }
   }
 
+  async findCarrinhoId(id: number): Promise<CarrinhoCompraEntity> {
+    const carrinho = await this.carrinhoCompraRepository.findOne({
+      where: {
+        id: id
+      }
+    });
+
+    console.log(carrinho);
+    
+
+    if (!carrinho) {
+      throw new NotFoundException('Carrinho não encontrado');
+    }
+
+    return carrinho;
+  }
+
   async findCarrinhoUsuarioId(usuario_id: number, isRelations?: boolean) {
     const relations = isRelations ? {
       carrinhoProduto: {

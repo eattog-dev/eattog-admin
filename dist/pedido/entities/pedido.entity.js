@@ -23,18 +23,33 @@ __decorate([
     __metadata("design:type", Number)
 ], PedidoEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => user_entity_1.UserEntity, (user) => user.pedido),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], PedidoEntity.prototype, "usuario_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, (user) => user.pedido),
+    (0, typeorm_1.JoinColumn)({ name: 'usuario_id', referencedColumnName: 'id' }),
     __metadata("design:type", user_entity_1.UserEntity)
 ], PedidoEntity.prototype, "usuario", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => carrinho_compra_entity_1.CarrinhoCompraEntity, (carrinho_compra) => carrinho_compra.pedido),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], PedidoEntity.prototype, "carrinho_compra_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => carrinho_compra_entity_1.CarrinhoCompraEntity, (carrinho_compra) => carrinho_compra.pedido),
+    (0, typeorm_1.JoinColumn)({ name: 'carrinho_compra_id', referencedColumnName: 'id' }),
     __metadata("design:type", carrinho_compra_entity_1.CarrinhoCompraEntity)
 ], PedidoEntity.prototype, "carrinho_compra", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => status_pedido_entity_1.StatusPedidoEntity, (status) => status.pedido),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], PedidoEntity.prototype, "status_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => status_pedido_entity_1.StatusPedidoEntity, (status) => status.pedido),
+    (0, typeorm_1.JoinColumn)({ name: 'status_id', referencedColumnName: 'id' }),
     __metadata("design:type", status_pedido_entity_1.StatusPedidoEntity)
 ], PedidoEntity.prototype, "status", void 0);
 __decorate([

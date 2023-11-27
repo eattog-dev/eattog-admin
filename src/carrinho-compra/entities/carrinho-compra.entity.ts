@@ -25,6 +25,6 @@ export class CarrinhoCompraEntity {
     @OneToMany(() => CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.carrinhoCompra)
     carrinhoProduto: CarrinhoPratoEntity[];
 
-    @OneToOne(() => PedidoEntity, (pedido) => pedido.carrinho_compra)
+    @OneToMany(() => PedidoEntity, (pedido) => pedido.carrinho_compra)
     pedido: PedidoEntity;
 }

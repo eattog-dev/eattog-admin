@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], StatusPedidoEntity.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.status),
+    (0, typeorm_1.OneToMany)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.status),
     __metadata("design:type", pedido_entity_1.PedidoEntity)
 ], StatusPedidoEntity.prototype, "pedido", void 0);
 __decorate([

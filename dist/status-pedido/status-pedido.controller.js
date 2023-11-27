@@ -23,6 +23,9 @@ let StatusPedidoController = class StatusPedidoController {
     async pegaStatusAtivos() {
         return await this.statusPedidoService.todosStatusAtivos();
     }
+    async pegaStatusId(id) {
+        return this.statusPedidoService.pegarStatusId(id);
+    }
     async pegaStatusInativos() {
         return await this.statusPedidoService.todosStatusInativos();
     }
@@ -40,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], StatusPedidoController.prototype, "pegaStatusAtivos", null);
+__decorate([
+    (0, common_1.Get)('/status/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], StatusPedidoController.prototype, "pegaStatusId", null);
 __decorate([
     (0, common_1.Get)('/status-inativos'),
     __metadata("design:type", Function),

@@ -35,6 +35,18 @@ let CarrinhoCompraService = class CarrinhoCompraService {
             affected: LINE_AFFECTED,
         };
     }
+    async findCarrinhoId(id) {
+        const carrinho = await this.carrinhoCompraRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+        console.log(carrinho);
+        if (!carrinho) {
+            throw new common_1.NotFoundException('Carrinho não encontrado');
+        }
+        return carrinho;
+    }
     async findCarrinhoUsuarioId(usuario_id, isRelations) {
         const relations = isRelations ? {
             carrinhoProduto: {

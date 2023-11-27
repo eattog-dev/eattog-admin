@@ -34,6 +34,11 @@ export class CarrinhoCompraController {
         return await this.carrinhoCompraService.findCarrinhoUsuarioId(usuarioId, true);
     }
 
+    @Get("/:id")
+    async pegaCarrinhoId(@Param() id: number): Promise<CarrinhoCompraEntity> {
+        return this.carrinhoCompraService.findCarrinhoId(id)
+    }
+
     @Delete()
     async limparCarrinho(@UserId() usuarioId: number): Promise<DeleteResult> {
         return this.carrinhoCompraService.limpaCarrinho(usuarioId);

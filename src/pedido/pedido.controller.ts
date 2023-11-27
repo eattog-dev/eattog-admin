@@ -1,7 +1,8 @@
-import { Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { UserId } from 'src/decorators/user-id.decorator';
 import { PedidoDTO } from './dto/pedido.dto';
+import { PedidoEntity } from './entities/pedido.entity';
 
 @Controller()
 export class PedidoController {
@@ -10,8 +11,11 @@ export class PedidoController {
     ) {
     }
 
-    // @Post('/:statusId/:carrinhoId/criar-pedido')
-    // async criarPedido(pedidoDto: PedidoDTO) {
-    //     return this.pedidoService.criaPedido(pedidoDto)
-    // }
+    @Post('/cria-pedido')
+    @UsePipes(ValidationPipe)
+    async criaPedido(@Body() pedidoDTO: PedidoDTO, @UserId() usuario: number): Promise<PedidoEntity> {
+        pedidoDTO.status_id = 3;
+        return this.pedidoService.criarPedido(pedidoDTO, usuario)
+    }
+
 }

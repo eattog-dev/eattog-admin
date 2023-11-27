@@ -15,12 +15,15 @@ const pedido_entity_1 = require("./entities/pedido.entity");
 const user_entity_1 = require("../users/entities/user.entity");
 const status_pedido_entity_1 = require("../status-pedido/entities/status-pedido.entity");
 const carrinho_compra_entity_1 = require("../carrinho-compra/entities/carrinho-compra.entity");
+const carrinho_compra_module_1 = require("../carrinho-compra/carrinho-compra.module");
+const status_pedido_module_1 = require("../status-pedido/status-pedido.module");
+const user_module_1 = require("../users/user.module");
 let PedidoModule = class PedidoModule {
 };
 exports.PedidoModule = PedidoModule;
 exports.PedidoModule = PedidoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([pedido_entity_1.PedidoEntity, user_entity_1.UserEntity, status_pedido_entity_1.StatusPedidoEntity, carrinho_compra_entity_1.CarrinhoCompraEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([pedido_entity_1.PedidoEntity, user_entity_1.UserEntity, status_pedido_entity_1.StatusPedidoEntity, carrinho_compra_entity_1.CarrinhoCompraEntity]), carrinho_compra_module_1.CarrinhoCompraModule, status_pedido_module_1.StatusPedidoModule, user_module_1.UserModule],
         controllers: [
             pedido_controller_1.PedidoController,
         ],

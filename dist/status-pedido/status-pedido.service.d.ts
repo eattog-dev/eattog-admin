@@ -6,6 +6,7 @@ export declare class StatusPedidoService {
     constructor(statusPedidoRepository: Repository<StatusPedidoEntity>);
     todosStatusAtivos(): Promise<StatusPedidoEntity[]>;
     todosStatusInativos(): Promise<StatusPedidoEntity[]>;
+    pegarStatusId(id: number): Promise<StatusPedidoEntity>;
     createStatusPedido(statusPedidoDTO: StatusPedidoDTO): Promise<StatusPedidoEntity>;
     deletarStatusId(id: number): Promise<DeleteResult>;
 }
