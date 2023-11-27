@@ -40,7 +40,7 @@ export class CarrinhoCompraService {
     });
 
     console.log(carrinho);
-    
+
 
     if (!carrinho) {
       throw new NotFoundException('Carrinho não encontrado');

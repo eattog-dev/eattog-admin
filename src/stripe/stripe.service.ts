@@ -50,7 +50,6 @@ export class StripeService {
 
             return checkoutSession;
         } catch (error) {
-            // Lide com o erro de criação da sessão do Stripe aqui
             console.error(error);
             throw new Error('Erro ao criar sessão de checkout');
         }
