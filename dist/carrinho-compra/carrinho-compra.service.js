@@ -18,7 +18,6 @@ const typeorm_1 = require("@nestjs/typeorm");
 const carrinho_compra_entity_1 = require("./entities/carrinho-compra.entity");
 const typeorm_2 = require("typeorm");
 const carrinho_prato_service_1 = require("../carrinho-produto/carrinho-prato.service");
-const status_enum_1 = require("./enum/status.enum");
 const LINE_AFFECTED = 1;
 let CarrinhoCompraService = class CarrinhoCompraService {
     constructor(carrinhoCompraRepository, carrinhoPratoService) {
@@ -58,7 +57,6 @@ let CarrinhoCompraService = class CarrinhoCompraService {
         return this.carrinhoCompraRepository.save({
             isActive: true,
             usuario_id,
-            status: status_enum_1.StatusPedido.EM_PROCESSAMENTO
         });
     }
     async inserirProdutoNoCarrinho(inserirCarrinhoDTO, usuario_id) {

@@ -13,6 +13,7 @@ exports.CarrinhoCompraEntity = void 0;
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const carrinho_prato_entity_1 = require("../../carrinho-produto/entities/carrinho-prato.entity");
+const pedido_entity_1 = require("../../pedido/entities/pedido.entity");
 let CarrinhoCompraEntity = class CarrinhoCompraEntity {
 };
 exports.CarrinhoCompraEntity = CarrinhoCompraEntity;
@@ -25,11 +26,6 @@ __decorate([
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], CarrinhoCompraEntity.prototype, "usuario_id", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ nullable: false }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CarrinhoCompraEntity.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
@@ -47,6 +43,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => carrinho_prato_entity_1.CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.carrinhoCompra),
     __metadata("design:type", Array)
 ], CarrinhoCompraEntity.prototype, "carrinhoProduto", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.carrinho_compra),
+    __metadata("design:type", pedido_entity_1.PedidoEntity)
+], CarrinhoCompraEntity.prototype, "pedido", void 0);
 exports.CarrinhoCompraEntity = CarrinhoCompraEntity = __decorate([
     (0, typeorm_1.Entity)('carrinho-compra')
 ], CarrinhoCompraEntity);

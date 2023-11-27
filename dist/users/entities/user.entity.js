@@ -14,6 +14,7 @@ const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const endereco_entity_1 = require("../../endereco/entities/endereco.entity");
 const restaurante_entity_1 = require("../../restaurante/entities/restaurante.entity");
+const pedido_entity_1 = require("../../pedido/entities/pedido.entity");
 let UserEntity = class UserEntity {
 };
 exports.UserEntity = UserEntity;
@@ -72,6 +73,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => restaurante_entity_1.RestauranteEntity, (rest) => rest.usuarios),
     __metadata("design:type", Array)
 ], UserEntity.prototype, "restaurante", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.usuario),
+    __metadata("design:type", pedido_entity_1.PedidoEntity)
+], UserEntity.prototype, "pedido", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne } from 'typeorm';
 import { IsEmail, IsNotEmpty, IsString, IsBoolean, Length, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
 import { EnderecoEntity } from 'src/endereco/entities/endereco.entity';
 import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { PedidoEntity } from 'src/pedido/entities/pedido.entity';
 
 @Entity('usuarios')
 export class UserEntity {
@@ -49,6 +50,9 @@ export class UserEntity {
 
     @OneToMany(() => RestauranteEntity, (rest) => rest.usuarios)
     restaurante?: RestauranteEntity[];
+
+    @OneToOne(() => PedidoEntity, (pedido) => pedido.usuario)
+    pedido: PedidoEntity;
 
     @CreateDateColumn()
     data_criacao: Date;

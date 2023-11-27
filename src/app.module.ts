@@ -1,3 +1,4 @@
+import { PedidoModule } from './pedido/pedido.module';
 import { StatusPedidoModule } from './status-pedido/status-pedido.module';
 import { CarrinhoPratoModule } from './carrinho-produto/carrinho-prato.module';
 import { CarrinhoCompraModule } from './carrinho-compra/carrinho-compra.module';
@@ -20,6 +21,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    PedidoModule,
     StatusPedidoModule,
     CarrinhoPratoModule,
     CarrinhoCompraModule,

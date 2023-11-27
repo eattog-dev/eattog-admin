@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatusPedidoEntity = void 0;
 const class_validator_1 = require("class-validator");
+const pedido_entity_1 = require("../../pedido/entities/pedido.entity");
 const typeorm_1 = require("typeorm");
 let StatusPedidoEntity = class StatusPedidoEntity {
 };
@@ -25,6 +26,10 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], StatusPedidoEntity.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => pedido_entity_1.PedidoEntity, (pedido) => pedido.status),
+    __metadata("design:type", pedido_entity_1.PedidoEntity)
+], StatusPedidoEntity.prototype, "pedido", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

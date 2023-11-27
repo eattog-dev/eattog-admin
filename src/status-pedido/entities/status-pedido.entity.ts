@@ -1,5 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { PedidoEntity } from "src/pedido/entities/pedido.entity";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('status-pedido')
 export class StatusPedidoEntity {
@@ -10,6 +11,9 @@ export class StatusPedidoEntity {
     @IsString()
     @IsNotEmpty()
     status: string;
+
+    @OneToOne(() => PedidoEntity, (pedido) => pedido.status)
+    pedido: PedidoEntity;
 
     @CreateDateColumn()
     data_criacao: Date;

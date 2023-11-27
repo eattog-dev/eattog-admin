@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne } from 'typeorm';
 import { IsBoolean, IsInt, IsString } from 'class-validator';
 import { CarrinhoPratoEntity } from 'src/carrinho-produto/entities/carrinho-prato.entity';
+import { PedidoEntity } from 'src/pedido/entities/pedido.entity';
 
 @Entity('carrinho-compra')
 export class CarrinhoCompraEntity {
@@ -10,10 +11,6 @@ export class CarrinhoCompraEntity {
     @Column({ nullable: false })
     @IsInt()
     usuario_id: number;
-
-    @Column({ nullable: false })
-    @IsString()
-    status: string;
 
     @CreateDateColumn()
     data_criacao: Date;
@@ -27,4 +24,7 @@ export class CarrinhoCompraEntity {
 
     @OneToMany(() => CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.carrinhoCompra)
     carrinhoProduto: CarrinhoPratoEntity[];
+
+    @OneToOne(() => PedidoEntity, (pedido) => pedido.carrinho_compra)
+    pedido: PedidoEntity;
 }
