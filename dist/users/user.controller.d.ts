@@ -11,7 +11,7 @@ export declare class UsersController {
     getUsuarioId(usuarioId: number): Promise<ReturnUserDto>;
     getUsuarioRestauranteId(usuarioId: number): Promise<ReturnRestauranteUserDto>;
     getTodosUsuariosAdmin(): Promise<UserEntity[]>;
-    update(id: number, updateUser: UserDto): Promise<UserEntity>;
+    update(usuarioId: number, updateUser: UserDto): Promise<UserEntity>;
     createAdmin(createUser: CreateUserDto): Promise<UserEntity>;
     createUser(createUser: CreateUserDto): Promise<UserEntity>;
 }

@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const http_1 = require("@nestjs/common/decorators/http");
 const session_guard_1 = require("../guards/session.guard");
 const user_service_1 = require("./user.service");
 const user_dto_1 = require("./dto/user.dto");
@@ -40,8 +39,8 @@ let UsersController = class UsersController {
     async getTodosUsuariosAdmin() {
         return this.userService.getAllAdminUsers();
     }
-    update(id, updateUser) {
-        return this.userService.update(id, updateUser);
+    update(usuarioId, updateUser) {
+        return this.userService.update(usuarioId, updateUser);
     }
     async createAdmin(createUser) {
         return this.userService.criaUsuario(createUser, user_type_enum_1.UserType.Admin);
@@ -82,8 +81,8 @@ __decorate([
 ], UsersController.prototype, "getTodosUsuariosAdmin", null);
 __decorate([
     (0, common_1.UseGuards)(session_guard_1.AuthGuard),
-    (0, common_1.Put)('/atualizar-usuario/:id'),
-    __param(0, (0, http_1.Param)('id')),
+    (0, common_1.Put)('/atualizar-usuario'),
+    __param(0, (0, user_id_decorator_1.UserId)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, user_dto_1.UserDto]),

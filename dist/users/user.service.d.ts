@@ -1,14 +1,14 @@
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/createUser.dto';
 import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { UpdateUserDto } from './dto/updateUser.dto';
 export declare class UserService {
     private usersRepository;
     private restauranteRepository;
     constructor(usersRepository: Repository<UserEntity>, restauranteRepository: Repository<RestauranteEntity>);
     criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity>;
-    update(id: number, userDto: UserDto): Promise<UserEntity>;
+    update(id: number, updateDto: UpdateUserDto): Promise<UserEntity>;
     getAllNormalUsers(): Promise<UserEntity[]>;
     getAllAdminUsers(): Promise<UserEntity[]>;
     getUserByIdUsingRelations(usuarioId: number): Promise<UserEntity>;

@@ -49,14 +49,14 @@ export class UsersController {
   }
 
   @UseGuards(SessionGuard)
-  @Put('/atualizar-usuario/:id')
+  @Put('/atualizar-usuario')
   update(
-    @Param('id') id: number,
+    @UserId() usuarioId: number,
     @Body() updateUser: UserDto
   ): Promise<UserEntity> {
-    return this.userService.update(id, updateUser);
+    return this.userService.update(usuarioId, updateUser);
   }
-  
+
   @Post('/cadastrar/admin')
   @UsePipes(ValidationPipe)
   async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {

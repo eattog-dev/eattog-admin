@@ -54,8 +54,7 @@ export class CarrinhoCompraController {
             throw new NotFoundException('Carrinho não encontrado');
         }
         const pedidoDTO: PedidoDTO = {
-            // Preencha os campos necessários do PedidoDTO
-            status_id: 1, // Exemplo, substitua pelo valor apropriado
+            status_id: 1, 
         };
     
         // Chame a função criarPedido do serviço pedidoService

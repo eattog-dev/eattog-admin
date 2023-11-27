@@ -37,17 +37,10 @@ let UserService = class UserService {
             senha: passwordHashed,
         });
     }
-    async update(id, userDto) {
+    async update(id, updateDto) {
         let user = await this.usersRepository.findOneBy({ id: id });
-        user.nome = userDto.nome;
-        user.email = userDto.email;
-        user.cpf = userDto.cpf;
-        user.data_aniversario = userDto.data_aniversario;
-        user.numero_celular = userDto.numero_celular;
-        if (userDto.senha) {
-            const passwordHashed = await (0, password_1.createPasswordHashed)(userDto.senha);
-            user.senha = passwordHashed;
-        }
+        user.nome = updateDto.nome;
+        user.numero_celular = updateDto.numero_celular;
         return this.usersRepository.save(user);
     }
     async getAllNormalUsers() {

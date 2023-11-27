@@ -7,6 +7,7 @@ import { CreateUserDto } from './dto/createUser.dto';
 import { createPasswordHashed } from 'src/utils/password';
 import { UserType } from './enum/user-type.enum';
 import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,7 @@ export class UserService {
         @InjectRepository(RestauranteEntity)
         private restauranteRepository: Repository<RestauranteEntity>,
     ) { }
-    
+
     async criaUsuario(criaUsuario: CreateUserDto, tipoUsuario?: number): Promise<UserEntity> {
         const user = await this.findUserByEmail(criaUsuario.email).catch(
             () => undefined,
@@ -35,18 +36,10 @@ export class UserService {
 
     }
 
-    async update(id: number, userDto: UserDto): Promise<UserEntity> {
+    async update(id: number, updateDto: UpdateUserDto): Promise<UserEntity> {
         let user = await this.usersRepository.findOneBy({ id: id });
-        user.nome = userDto.nome;
-        user.email = userDto.email;
-        user.cpf = userDto.cpf;
-        user.data_aniversario = userDto.data_aniversario;
-        user.numero_celular = userDto.numero_celular;
-        if (userDto.senha) {
-            const passwordHashed = await createPasswordHashed(userDto.senha);
-            user.senha = passwordHashed;
-        }
-
+        user.nome = updateDto.nome;
+        user.numero_celular = updateDto.numero_celular;
         return this.usersRepository.save(user);
     }
 
