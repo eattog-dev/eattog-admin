@@ -14,7 +14,7 @@ export class PedidoController {
     @Post('/cria-pedido')
     @UsePipes(ValidationPipe)
     async criaPedido(@Body() pedidoDTO: PedidoDTO, @UserId() usuario: number): Promise<PedidoEntity> {
-        pedidoDTO.status_id = 3;
+        pedidoDTO.status_id = 2;
         return this.pedidoService.criarPedido(pedidoDTO, usuario)
     }
 

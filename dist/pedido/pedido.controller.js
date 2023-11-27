@@ -22,7 +22,7 @@ let PedidoController = class PedidoController {
         this.pedidoService = pedidoService;
     }
     async criaPedido(pedidoDTO, usuario) {
-        pedidoDTO.status_id = 3;
+        pedidoDTO.status_id = 2;
         return this.pedidoService.criarPedido(pedidoDTO, usuario);
     }
 };
