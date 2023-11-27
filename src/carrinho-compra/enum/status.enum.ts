@@ -3,5 +3,5 @@ export enum StatusPedido {
     EM_ABERTO = 'EM ABERTO',
     EM_PRODUÇÃO = 'EM PRODUÇÃO',
     EM_TRANSPORTE = 'EM TRANSPORTE',
-    EM_CONCLUIDO = 'EM CONCLUIDO',
+    EM_CONCLUIDO = 'CONCLUIDO',
 }

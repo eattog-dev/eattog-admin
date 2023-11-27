@@ -24,7 +24,7 @@ let RestauranteService = class RestauranteService {
         this.usuarioRepository = usuarioRepository;
     }
     async getRestaurantes() {
-        return this.restauranteRepository.find();
+        return await this.restauranteRepository.find();
     }
     async createRestaurante(RestauranteDTO, imagemPath, bannerPath, logoPath, usuario_id) {
         let novoRestaurante = new restaurante_entity_1.RestauranteEntity();

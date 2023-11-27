@@ -7,6 +7,6 @@ var StatusPedido;
     StatusPedido["EM_ABERTO"] = "EM ABERTO";
     StatusPedido["EM_PRODU\u00C7\u00C3O"] = "EM PRODU\u00C7\u00C3O";
     StatusPedido["EM_TRANSPORTE"] = "EM TRANSPORTE";
-    StatusPedido["EM_CONCLUIDO"] = "EM CONCLUIDO";
+    StatusPedido["EM_CONCLUIDO"] = "CONCLUIDO";
 })(StatusPedido || (exports.StatusPedido = StatusPedido = {}));
 //# sourceMappingURL=status.enum.js.map

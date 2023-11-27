@@ -15,7 +15,7 @@ export class RestauranteService {
     ) { }
 
     async getRestaurantes(): Promise<RestauranteEntity[]> {
-        return this.restauranteRepository.find();
+        return await this.restauranteRepository.find();
     }
 
     async createRestaurante(RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string, usuario_id: number): Promise<RestauranteEntity> {
