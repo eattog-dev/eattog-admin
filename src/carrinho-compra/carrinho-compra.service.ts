@@ -12,8 +12,7 @@ export class CarrinhoCompraService {
   constructor(
     @InjectRepository(CarrinhoCompraEntity)
     private readonly carrinhoCompraRepository: Repository<CarrinhoCompraEntity>,
-    private readonly carrinhoPratoService: CarrinhoPratoService
-
+    private readonly carrinhoPratoService: CarrinhoPratoService,
   ) { }
 
   // detalhes(id: number): Promise<ListaEntity> {

@@ -8,6 +8,8 @@ import { UserId } from 'src/decorators/user-id.decorator';
 import { ReturnCarrinhoCompraDTO } from './dto/return-carrinho-compra.dto';
 import { DeleteResult } from 'typeorm';
 import { StripeService } from 'src/stripe/stripe.service';
+import { PedidoService } from 'src/pedido/pedido.service';
+import { PedidoDTO } from 'src/pedido/dto/pedido.dto';
 
 // @Roles(UserType.User)
 @Controller('carrinho-compra')
@@ -16,6 +18,7 @@ export class CarrinhoCompraController {
     constructor(
         private readonly carrinhoCompraService: CarrinhoCompraService,
         private readonly stripeService: StripeService,
+        private readonly pedidoService: PedidoService
     ) {
 
     }
@@ -50,6 +53,13 @@ export class CarrinhoCompraController {
         if (!lista) {
             throw new NotFoundException('Carrinho não encontrado');
         }
+        const pedidoDTO: PedidoDTO = {
+            // Preencha os campos necessários do PedidoDTO
+            status_id: 1, // Exemplo, substitua pelo valor apropriado
+        };
+    
+        // Chame a função criarPedido do serviço pedidoService
+        await this.pedidoService.criarPedido(pedidoDTO, usuarioId);
         const sessaoCheckout = await this.stripeService.criarSessaoCompra(lista);
         return sessaoCheckout;
     }

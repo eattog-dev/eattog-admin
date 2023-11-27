@@ -1,4 +1,4 @@
 export class PedidoDTO {
-    id: number;
+    // id: number;
     status_id: number;
 }

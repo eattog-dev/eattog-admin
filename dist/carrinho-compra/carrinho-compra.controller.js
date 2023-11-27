@@ -18,10 +18,12 @@ const inserir_carrinho_compra_dto_1 = require("./dto/inserir-carrinho-compra.dto
 const carrinho_compra_service_1 = require("./carrinho-compra.service");
 const user_id_decorator_1 = require("../decorators/user-id.decorator");
 const stripe_service_1 = require("../stripe/stripe.service");
+const pedido_service_1 = require("../pedido/pedido.service");
 let CarrinhoCompraController = class CarrinhoCompraController {
-    constructor(carrinhoCompraService, stripeService) {
+    constructor(carrinhoCompraService, stripeService, pedidoService) {
         this.carrinhoCompraService = carrinhoCompraService;
         this.stripeService = stripeService;
+        this.pedidoService = pedidoService;
     }
     async inserirCarrinho(criarCarrinhoCompra, usuarioId) {
         return this.carrinhoCompraService.inserirProdutoNoCarrinho(criarCarrinhoCompra, usuarioId);
@@ -37,6 +39,10 @@ let CarrinhoCompraController = class CarrinhoCompraController {
         if (!lista) {
             throw new common_1.NotFoundException('Carrinho não encontrado');
         }
+        const pedidoDTO = {
+            status_id: 1,
+        };
+        await this.pedidoService.criarPedido(pedidoDTO, usuarioId);
         const sessaoCheckout = await this.stripeService.criarSessaoCompra(lista);
         return sessaoCheckout;
     }
@@ -75,6 +81,7 @@ __decorate([
 exports.CarrinhoCompraController = CarrinhoCompraController = __decorate([
     (0, common_1.Controller)('carrinho-compra'),
     __metadata("design:paramtypes", [carrinho_compra_service_1.CarrinhoCompraService,
-        stripe_service_1.StripeService])
+        stripe_service_1.StripeService,
+        pedido_service_1.PedidoService])
 ], CarrinhoCompraController);
 //# sourceMappingURL=carrinho-compra.controller.js.map
