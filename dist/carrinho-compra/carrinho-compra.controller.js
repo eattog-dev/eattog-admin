@@ -14,8 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarrinhoCompraController = void 0;
 const common_1 = require("@nestjs/common");
-const roles_decorator_1 = require("../decorators/roles.decorator");
-const user_type_enum_1 = require("../users/enum/user-type.enum");
 const inserir_carrinho_compra_dto_1 = require("./dto/inserir-carrinho-compra.dto");
 const carrinho_compra_service_1 = require("./carrinho-compra.service");
 const user_id_decorator_1 = require("../decorators/user-id.decorator");
@@ -75,7 +73,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CarrinhoCompraController.prototype, "checkout", null);
 exports.CarrinhoCompraController = CarrinhoCompraController = __decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.User),
     (0, common_1.Controller)('carrinho-compra'),
     __metadata("design:paramtypes", [carrinho_compra_service_1.CarrinhoCompraService,
         stripe_service_1.StripeService])

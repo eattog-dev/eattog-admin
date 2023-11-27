@@ -9,7 +9,7 @@ import { ReturnCarrinhoCompraDTO } from './dto/return-carrinho-compra.dto';
 import { DeleteResult } from 'typeorm';
 import { StripeService } from 'src/stripe/stripe.service';
 
-@Roles(UserType.User)
+// @Roles(UserType.User)
 @Controller('carrinho-compra')
 export class CarrinhoCompraController {
 

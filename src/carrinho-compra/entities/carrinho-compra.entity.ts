@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { IsBoolean, IsInt } from 'class-validator';
+import { IsBoolean, IsInt, IsString } from 'class-validator';
 import { CarrinhoPratoEntity } from 'src/carrinho-produto/entities/carrinho-prato.entity';
 
 @Entity('carrinho-compra')
@@ -10,6 +10,10 @@ export class CarrinhoCompraEntity {
     @Column({ nullable: false })
     @IsInt()
     usuario_id: number;
+
+    @Column({ nullable: false })
+    @IsString()
+    status: string;
 
     @CreateDateColumn()
     data_criacao: Date;

@@ -26,6 +26,11 @@ __decorate([
     __metadata("design:type", Number)
 ], CarrinhoCompraEntity.prototype, "usuario_id", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: false }),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CarrinhoCompraEntity.prototype, "status", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], CarrinhoCompraEntity.prototype, "data_criacao", void 0);

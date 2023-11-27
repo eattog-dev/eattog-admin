@@ -1,0 +1,7 @@
+export enum StatusPedido {
+    EM_PROCESSAMENTO = 'EM PROCESSAMENTO',
+    EM_ABERTO = 'EM ABERTO',
+    EM_PRODUÇÃO = 'EM PRODUÇÃO',
+    EM_TRANSPORTE = 'EM TRANSPORTE',
+    EM_CONCLUIDO = 'EM CONCLUIDO',
+}

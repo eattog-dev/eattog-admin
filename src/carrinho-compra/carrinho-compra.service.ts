@@ -4,6 +4,7 @@ import { CarrinhoCompraEntity } from './entities/carrinho-compra.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { InserirCarrinhoCompraDTO } from './dto/inserir-carrinho-compra.dto';
 import { CarrinhoPratoService } from 'src/carrinho-produto/carrinho-prato.service';
+import { StatusPedido } from './enum/status.enum';
 
 const LINE_AFFECTED = 1;
 
@@ -57,6 +58,7 @@ export class CarrinhoCompraService {
     return this.carrinhoCompraRepository.save({
       isActive: true,
       usuario_id,
+      status: StatusPedido.EM_PROCESSAMENTO
     });
   }
 
