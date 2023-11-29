@@ -24,7 +24,7 @@ export declare class PratoService {
     verificaPaginacaoPratos(restauranteId: number, pagina: number): Promise<Boolean>;
     getCategoriasComPratoPagina(categoriaID: number, pagina: number): Promise<CategoriaPratoEntity[]>;
     getPratosPorCategoria(): Promise<CategoriaPratoEntity[]>;
-    getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity | undefined>;
+    getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity>;
     qtdCategorias(categoriaID: number): Promise<number>;
     verificaPaginacaoCategorias(categoriaID: number, pagina: number): Promise<Boolean>;
 }

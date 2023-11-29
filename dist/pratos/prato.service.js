@@ -152,19 +152,10 @@ let PratoService = class PratoService {
         return this.getPratosPorCategoria();
     }
     async getPratosPorCategoria() {
-        const categoriasAtivas = await this.categoriaPratoRepository
-            .createQueryBuilder('categoria')
-            .innerJoin('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
-            .getMany();
-        return categoriasAtivas;
+        return this.categoriaPratoRepository.find();
     }
     async getPratosUmaCategoria(id) {
-        const categoriaPrato = await this.categoriaPratoRepository
-            .createQueryBuilder('categoria')
-            .leftJoinAndSelect('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
-            .where('categoria.id = :id', { id })
-            .getOne();
-        return categoriaPrato;
+        return await this.categoriaPratoRepository.findOneBy({ id: id });
     }
     async qtdCategorias(categoriaID) {
         const itens = await this.categoriaPratoRepository

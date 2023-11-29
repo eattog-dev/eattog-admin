@@ -186,26 +186,13 @@ export class PratoService {
 
     //retorna todos pratos de todas categorias separadamente 
     async getPratosPorCategoria(): Promise<CategoriaPratoEntity[]> {
-        const categoriasAtivas = await this.categoriaPratoRepository
-            .createQueryBuilder('categoria')
-            .innerJoin('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
-            .getMany();
-
-        return categoriasAtivas;
+        return this.categoriaPratoRepository.find();
     }
-
 
     //retorna todos os pratos de uma categoria especifica 
-    async getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity | undefined> {
-        const categoriaPrato = await this.categoriaPratoRepository
-            .createQueryBuilder('categoria')
-            .leftJoinAndSelect('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
-            .where('categoria.id = :id', { id })
-            .getOne();
-
-        return categoriaPrato;
+    async getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity> {
+        return await this.categoriaPratoRepository.findOneBy({ id: id });
     }
-
 
     //retorna a quantidade de categorias
     async qtdCategorias(categoriaID: number): Promise<number> {
