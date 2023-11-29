@@ -79,7 +79,37 @@ let RestauranteService = class RestauranteService {
         return this.restauranteRepository.save(atualizarRestaurante);
     }
     async deleteRestaurante(id) {
-        return this.restauranteRepository.delete(id);
+        const restaurante = await this.getRestaurante(id);
+        await this.restauranteRepository.save({
+            ...restaurante,
+            isActive: false
+        });
+        return {
+            raw: [],
+            affected: 1,
+        };
+    }
+    async restaurantesAtivos() {
+        const restaurante = this.restauranteRepository.find({
+            where: {
+                isActive: true
+            }
+        });
+        if (!restaurante) {
+            throw new common_1.NotFoundException('Não encontramos restaurantes ativos no momento');
+        }
+        return restaurante;
+    }
+    async restaurantesInativos() {
+        const restaurante = this.restauranteRepository.find({
+            where: {
+                isActive: false
+            }
+        });
+        if (!restaurante) {
+            throw new common_1.NotFoundException('Não encontramos restaurantes inativos no momento');
+        }
+        return restaurante;
     }
     async qtdRestaurantes() {
         return await this.restauranteRepository.count();

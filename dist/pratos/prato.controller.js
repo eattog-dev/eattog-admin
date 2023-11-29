@@ -26,7 +26,10 @@ let PratoController = class PratoController {
         this.uploadService = uploadService;
     }
     async getPratos() {
-        return this.pratoService.getPratosComCategorias();
+        return this.pratoService.pratoAtivo();
+    }
+    async getPratosInativos() {
+        return this.pratoService.pratoInativo();
     }
     async createPrato(pratoDto, file) {
         let filePath = '';
@@ -77,6 +80,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PratoController.prototype, "getPratos", null);
+__decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
+    (0, common_1.Get)('/pratos-inativos'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PratoController.prototype, "getPratosInativos", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('/criar/prato'),

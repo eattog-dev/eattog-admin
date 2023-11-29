@@ -72,9 +72,8 @@ export class PratoEntity {
     @IsBoolean()
     isActive: boolean;
 
-    // @OneToMany(() => ItemEntity, (item) => item.prato)
-    // items: ItemEntity[];
-
     @OneToMany(() => CarrinhoPratoEntity, carrinhoProduto => carrinhoProduto.prato)
     carrinhoPrato: CarrinhoPratoEntity[];
+    
+    
 }

@@ -26,8 +26,11 @@ let RestauranteController = class RestauranteController {
         this.restauranteService = restauranteService;
         this.uploadService = uploadService;
     }
-    getRestaurantes() {
-        return this.restauranteService.getRestaurantes();
+    getRestaurantesAtivos() {
+        return this.restauranteService.restaurantesAtivos();
+    }
+    getRestaurantesInativos() {
+        return this.restauranteService.restaurantesInativos();
     }
     async createRestaurante(restaurante, file, usuario_id) {
         let imagemPath = '';
@@ -73,7 +76,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], RestauranteController.prototype, "getRestaurantes", null);
+], RestauranteController.prototype, "getRestaurantesAtivos", null);
+__decorate([
+    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
+    (0, common_1.Get)('/restaurantes-inativos'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RestauranteController.prototype, "getRestaurantesInativos", null);
 __decorate([
     (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('/criar/restaurante'),

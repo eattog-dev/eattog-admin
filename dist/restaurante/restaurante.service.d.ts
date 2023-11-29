@@ -11,6 +11,8 @@ export declare class RestauranteService {
     getRestaurante(id: number): Promise<RestauranteEntity | undefined>;
     editRestaurante(id: number, RestauranteDTO: RestauranteDTO, imagemPath: string, bannerPath: string, logoPath: string, usuario_id: number): Promise<RestauranteEntity>;
     deleteRestaurante(id: number): Promise<DeleteResult>;
+    restaurantesAtivos(): Promise<RestauranteEntity[]>;
+    restaurantesInativos(): Promise<RestauranteEntity[]>;
     qtdRestaurantes(): Promise<number>;
     restaurantesPorPagina(pagina: number): Promise<RestauranteEntity[]>;
     verificaPaginacaoRestaurante(pagina: number): Promise<Boolean>;

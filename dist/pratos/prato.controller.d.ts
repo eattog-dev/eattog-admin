@@ -9,6 +9,7 @@ export declare class PratoController {
     private readonly uploadService;
     constructor(pratoService: PratoService, uploadService: UploadService);
     getPratos(): Promise<PratoEntity[]>;
+    getPratosInativos(): Promise<PratoEntity[]>;
     createPrato(pratoDto: PratoDto, file: Express.Multer.File): Promise<PratoEntity>;
     getPrato(id: number): Promise<PratoEntity>;
     editPrato(id: number, pratoDto: PratoDto, file: Express.Multer.File): Promise<PratoEntity>;

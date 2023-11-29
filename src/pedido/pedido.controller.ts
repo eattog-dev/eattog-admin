@@ -10,7 +10,6 @@ export class PedidoController {
         private readonly pedidoService: PedidoService
     ) {
     }
-
     @Post('/cria-pedido')
     @UsePipes(ValidationPipe)
     async criaPedido(@Body() pedidoDTO: PedidoDTO, @UserId() usuario: number): Promise<PedidoEntity> {

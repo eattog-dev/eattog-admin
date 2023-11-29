@@ -72,20 +72,53 @@ let PratoService = class PratoService {
         return this.pratosRepository.save(atualizarPrato);
     }
     async deletePrato(id) {
-        return this.pratosRepository.delete(id);
+        const prato = await this.getPrato(id);
+        await this.pratosRepository.save({
+            ...prato,
+            isActive: false
+        });
+        return {
+            raw: [],
+            affected: 1,
+        };
+    }
+    async pratoAtivo() {
+        const pratosAtivos = await this.pratosRepository
+            .createQueryBuilder('prato')
+            .leftJoinAndSelect('prato.prato_categoria', 'categoria')
+            .where('prato.isActive = :isActive', { isActive: true })
+            .limit(6)
+            .getMany();
+        if (!pratosAtivos || pratosAtivos.length === 0) {
+            throw new common_1.NotFoundException("Não há pratos ativos");
+        }
+        return pratosAtivos;
+    }
+    async pratoInativo() {
+        const pratoAtivo = await this.pratosRepository.find({ where: { isActive: false } });
+        if (!pratoAtivo) {
+            throw new common_1.NotFoundException("Não possui pratos inativos");
+        }
+        return pratoAtivo;
     }
     async getPratosPorRestaurante(restauranteId) {
-        return this.pratosRepository
+        const pratoPorRestaurante = await this.pratosRepository
             .createQueryBuilder('prato')
             .innerJoin('prato.restaurante', 'restaurante')
-            .where('restaurante.id = :restauranteId', { restauranteId })
+            .where('prato.isActive = :isActive', { isActive: true })
+            .andWhere('restaurante.id = :restauranteId', { restauranteId })
             .getMany();
+        if (!pratoPorRestaurante || pratoPorRestaurante.length === 0) {
+            throw new common_1.NotFoundException("Não há pratos ativos para este restaurante");
+        }
+        return pratoPorRestaurante;
     }
     async getPratosComCategorias() {
         return this.pratosRepository
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
             .limit(6)
+            .where('prato.isActive = :isActive', { isActive: true })
             .getMany();
     }
     async pratosPorPagina(restauranteId, pagina) {
@@ -94,15 +127,17 @@ let PratoService = class PratoService {
             .createQueryBuilder('pratos')
             .innerJoin('pratos.restaurante', 'restaurante')
             .where('restaurante.id = :restauranteId ', { restauranteId })
+            .andWhere('prato.isActive = :isActive', { isActive: true })
             .offset((pagina - 1) * perPage)
             .limit(perPage)
             .getMany();
     }
-    async qtdPratosRestaurante(restauranteId) {
+    async qtdPratosAtivosRestaurante(restauranteId) {
         const itens = await this.pratosRepository
             .createQueryBuilder('prato')
             .innerJoin('prato.restaurante', 'restaurante')
             .where('restaurante.id = :restauranteId ', { restauranteId })
+            .andWhere('prato.isActive = :isActive', { isActive: true })
             .select("COUNT(prato.id)", "count")
             .getRawOne();
         return itens.count;
@@ -110,7 +145,7 @@ let PratoService = class PratoService {
     async verificaPaginacaoPratos(restauranteId, pagina) {
         const perPage = 2;
         const qtdItensExibidos = (pagina - 1) * perPage;
-        const qtdItens = await this.qtdPratosRestaurante(restauranteId);
+        const qtdItens = await this.qtdPratosAtivosRestaurante(restauranteId);
         return qtdItens > qtdItensExibidos;
     }
     async getCategoriasComPratoPagina(categoriaID, pagina) {

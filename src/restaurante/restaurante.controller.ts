@@ -14,8 +14,13 @@ export class RestauranteController {
   constructor(private readonly restauranteService: RestauranteService, private readonly uploadService: UploadService) { }
 
   @Get('/restaurantes')
-  getRestaurantes(): Promise<RestauranteEntity[]> {
-    return this.restauranteService.getRestaurantes();
+  getRestaurantesAtivos(): Promise<RestauranteEntity[]> {
+    return this.restauranteService.restaurantesAtivos();
+  }
+  @Roles(UserType.Admin)
+  @Get('/restaurantes-inativos')
+  getRestaurantesInativos(): Promise<RestauranteEntity[]> {
+    return this.restauranteService.restaurantesInativos();
   }
 
   @Roles(UserType.Admin)

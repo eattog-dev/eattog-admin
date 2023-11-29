@@ -15,7 +15,18 @@ export class PratoController {
 
     @Get('/pratos')
     async getPratos(): Promise<PratoEntity[]> {
-        return this.pratoService.getPratosComCategorias();
+        return this.pratoService.pratoAtivo();
+    }
+
+    // @Get('/pratos-ativos')
+    // async getPratosAtivos(): Promise<PratoEntity[]> {
+    //     return this.pratoService.pratoAtivo();
+    // }
+
+    @Roles(UserType.Admin)
+    @Get('/pratos-inativos')
+    async getPratosInativos(): Promise<PratoEntity[]> {
+        return this.pratoService.pratoInativo();
     }
 
     @Roles(UserType.Admin)

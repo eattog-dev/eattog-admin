@@ -8,7 +8,8 @@ export declare class RestauranteController {
     private readonly restauranteService;
     private readonly uploadService;
     constructor(restauranteService: RestauranteService, uploadService: UploadService);
-    getRestaurantes(): Promise<RestauranteEntity[]>;
+    getRestaurantesAtivos(): Promise<RestauranteEntity[]>;
+    getRestaurantesInativos(): Promise<RestauranteEntity[]>;
     createRestaurante(restaurante: RestauranteDTO, file: {
         imagem: Express.Multer.File[];
         banner: Express.Multer.File[];

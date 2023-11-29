@@ -74,7 +74,39 @@ export class RestauranteService {
     }
 
     async deleteRestaurante(id: number): Promise<DeleteResult> {
-        return this.restauranteRepository.delete(id);
+        const restaurante = await this.getRestaurante(id);
+        await this.restauranteRepository.save({
+            ...restaurante,
+            isActive: false
+        });
+        return {
+            raw: [],
+            affected: 1,
+        }
+    }
+
+    async restaurantesAtivos(): Promise<RestauranteEntity[]> {
+        const restaurante = this.restauranteRepository.find({
+            where: {
+                isActive: true
+            }
+        });
+        if (!restaurante) {
+            throw new NotFoundException('Não encontramos restaurantes ativos no momento');
+        }
+        return restaurante;
+    }
+
+    async restaurantesInativos(): Promise<RestauranteEntity[]> {
+        const restaurante = this.restauranteRepository.find({
+            where: {
+                isActive: false
+            }
+        });
+        if (!restaurante) {
+            throw new NotFoundException('Não encontramos restaurantes inativos no momento');
+        }
+        return restaurante;
     }
 
     //conta a quantidade de restaurantes
