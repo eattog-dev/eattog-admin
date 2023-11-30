@@ -123,14 +123,22 @@ let PratoService = class PratoService {
     }
     async pratosPorPagina(restauranteId, pagina) {
         const perPage = 2;
-        return await this.pratosRepository
-            .createQueryBuilder('pratos')
-            .innerJoin('pratos.restaurante', 'restaurante')
-            .where('restaurante.id = :restauranteId ', { restauranteId })
-            .andWhere('prato.isActive = :isActive', { isActive: true })
-            .offset((pagina - 1) * perPage)
-            .limit(perPage)
-            .getMany();
+        try {
+            const pratos = await this.pratosRepository
+                .createQueryBuilder('pratos')
+                .innerJoin('pratos.restaurante', 'restaurante')
+                .where('restaurante.id = :restauranteId', { restauranteId })
+                .andWhere('pratos.isActive = :isActive', { isActive: true })
+                .offset((pagina - 1) * perPage)
+                .limit(perPage)
+                .getMany();
+            console.log('Pratos recuperados:', pratos);
+            return pratos;
+        }
+        catch (error) {
+            console.error('Erro ao recuperar pratos:', error);
+            throw error;
+        }
     }
     async qtdPratosAtivosRestaurante(restauranteId) {
         const itens = await this.pratosRepository
