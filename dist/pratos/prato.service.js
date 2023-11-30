@@ -160,7 +160,18 @@ let PratoService = class PratoService {
         return this.getPratosPorCategoria();
     }
     async getPratosPorCategoria() {
-        return this.categoriaPratoRepository.find();
+        try {
+            const categoriasComPratos = await this.categoriaPratoRepository
+                .createQueryBuilder('categoria')
+                .leftJoinAndSelect('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
+                .getMany();
+            console.log('Categorias com pratos ativos:', categoriasComPratos);
+            return categoriasComPratos;
+        }
+        catch (error) {
+            console.error('Erro ao recuperar pratos por categoria:', error);
+            throw error;
+        }
     }
     async getPratosUmaCategoria(id) {
         return await this.categoriaPratoRepository.findOneBy({ id: id });
