@@ -43,6 +43,10 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], CategoriaPratoEntity.prototype, "data_alteracao", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => prato_entity_1.PratoEntity, prato => prato.prato_categoria),
+    __metadata("design:type", Array)
+], CategoriaPratoEntity.prototype, "pratos", void 0);
 exports.CategoriaPratoEntity = CategoriaPratoEntity = __decorate([
     (0, typeorm_1.Entity)('categoria_prato')
 ], CategoriaPratoEntity);

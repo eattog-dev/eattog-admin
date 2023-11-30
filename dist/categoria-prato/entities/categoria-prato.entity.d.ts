@@ -6,4 +6,5 @@ export declare class CategoriaPratoEntity {
     categoria_prato: PratoEntity[];
     data_criacao: Date;
     data_alteracao: Date;
+    pratos: PratoEntity[];
 }

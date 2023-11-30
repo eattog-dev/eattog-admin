@@ -26,4 +26,6 @@ export class CategoriaPratoEntity {
     @UpdateDateColumn()
     data_alteracao: Date;
 
+    @OneToMany(() => PratoEntity, prato => prato.prato_categoria)
+    pratos: PratoEntity[];
 }
