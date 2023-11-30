@@ -9,11 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UploadService = void 0;
 const common_1 = require("@nestjs/common");
 const aws_sdk_1 = require("aws-sdk");
+const dotenv = require("dotenv");
+dotenv.config();
 let UploadService = class UploadService {
     constructor() {
         this.s3 = new aws_sdk_1.S3({
-            accessKeyId: 'AKIAWOOMTXE6NLKXZJVM',
-            secretAccessKey: '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',
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         });
     }
     async uploadFile(file) {

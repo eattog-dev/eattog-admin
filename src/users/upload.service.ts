@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { S3 } from 'aws-sdk';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Injectable()
 export class UploadService {
     s3 = new S3({
-        accessKeyId: 'AKIAWOOMTXE6NLKXZJVM',
-        secretAccessKey: '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',
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     });
 
     async uploadFile(file) {
