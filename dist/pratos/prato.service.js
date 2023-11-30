@@ -165,7 +165,6 @@ let PratoService = class PratoService {
                 .createQueryBuilder('categoria')
                 .leftJoinAndSelect('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
                 .getMany();
-            console.log('Categorias com pratos ativos:', categoriasComPratos);
             return categoriasComPratos;
         }
         catch (error) {
