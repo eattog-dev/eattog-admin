@@ -130,16 +130,26 @@ export class PratoService {
 
     async pratosPorPagina(restauranteId: number, pagina: number) {
         const perPage = 2;
+        try {
+            const pratos = await this.pratosRepository
+                .createQueryBuilder('pratos')
+                .innerJoin('pratos.restaurante', 'restaurante')
+                .where('restaurante.id = :restauranteId', { restauranteId })
+                .andWhere('pratos.isActive = :isActive', { isActive: true })
+                .offset((pagina - 1) * perPage)
+                .limit(perPage)
+                .getMany();
 
-        return await this.pratosRepository
-            .createQueryBuilder('pratos')
-            .innerJoin('pratos.restaurante', 'restaurante')
-            .where('restaurante.id = :restauranteId ', { restauranteId })
-            .andWhere('prato.isActive = :isActive', { isActive: true })
-            .offset((pagina - 1) * perPage)
-            .limit(perPage)
-            .getMany()
+            console.log('Pratos recuperados:', pratos);
+
+            return pratos;
+        } catch (error) {
+            console.error('Erro ao recuperar pratos:', error);
+            throw error;
+        }
     }
+
+
 
     //retorna a quantidade de pratos do restaurante
     async qtdPratosAtivosRestaurante(restauranteId: number): Promise<number> {
