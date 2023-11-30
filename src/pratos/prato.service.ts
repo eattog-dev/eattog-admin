@@ -196,19 +196,8 @@ export class PratoService {
 
     //retorna todos pratos de todas categorias separadamente 
     async getPratosPorCategoria(): Promise<CategoriaPratoEntity[]> {
-        try {
-            const categoriasComPratos = await this.categoriaPratoRepository
-                .createQueryBuilder('categoria')
-                .leftJoinAndSelect('categoria.pratos', 'prato', 'prato.isActive = :isActive', { isActive: true })
-                .getMany();
-
-            return categoriasComPratos;
-        } catch (error) {
-            console.error('Erro ao recuperar pratos por categoria:', error);
-            throw error;
-        }
+        return this.categoriaPratoRepository.find();
     }
-
 
     //retorna todos os pratos de uma categoria especifica 
     async getPratosUmaCategoria(id: number): Promise<CategoriaPratoEntity> {
