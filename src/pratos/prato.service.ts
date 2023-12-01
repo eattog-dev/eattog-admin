@@ -85,7 +85,6 @@ export class PratoService {
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
             .where('prato.isActive = :isActive', { isActive: true })
-            .limit(6)
             .getMany();
 
         if (!pratosAtivos || pratosAtivos.length === 0) {
@@ -123,7 +122,6 @@ export class PratoService {
         return this.pratosRepository
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
-            .limit(6)
             .where('prato.isActive = :isActive', { isActive: true })
             .getMany();
     }
