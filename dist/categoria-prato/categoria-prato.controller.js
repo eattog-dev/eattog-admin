@@ -16,8 +16,6 @@ exports.CategoriaPratoController = void 0;
 const common_1 = require("@nestjs/common");
 const categoria_prato_service_1 = require("./categoria-prato.service");
 const categoria_prato_dto_1 = require("./dto/categoria-prato.dto");
-const user_type_enum_1 = require("../users/enum/user-type.enum");
-const roles_decorator_1 = require("../decorators/roles.decorator");
 let CategoriaPratoController = class CategoriaPratoController {
     constructor(categoriaPratoService) {
         this.categoriaPratoService = categoriaPratoService;
@@ -46,7 +44,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "getCategorias", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Post)('/criar/categoria'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -61,7 +58,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "getCategoria", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Put)('/atualizar/categoria-prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -70,7 +66,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoriaPratoController.prototype, "editCategoria", null);
 __decorate([
-    (0, roles_decorator_1.Roles)(user_type_enum_1.UserType.Admin),
     (0, common_1.Delete)('/deletar/categoria-prato/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
