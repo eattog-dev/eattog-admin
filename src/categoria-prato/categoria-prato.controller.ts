@@ -15,7 +15,6 @@ export class CategoriaPratoController {
         return this.categoriaPratoService.getCategorias();
     }
 
-    @Roles(UserType.Admin)
     @Post('/criar/categoria')
     async createCategoria(@Body() categoriaPratoDto: CategoriaPratoDto): Promise<CategoriaPratoEntity> {
         return this.categoriaPratoService.createCategoria(categoriaPratoDto);
@@ -26,7 +25,6 @@ export class CategoriaPratoController {
         return this.categoriaPratoService.getCategoria(id);
     }
 
-    @Roles(UserType.Admin)
     @Put('/atualizar/categoria-prato/:id')
     async editCategoria(
         @Param('id') id: number,
@@ -35,7 +33,6 @@ export class CategoriaPratoController {
         return this.categoriaPratoService.editCategoria(id, categoriaPratoDto);
     }
 
-    @Roles(UserType.Admin)
     @Delete('/deletar/categoria-prato/:id')
     async deleteCategoria(@Param('id') id: number): Promise<DeleteResult> {
         return this.categoriaPratoService.deleteCategoria(id);
