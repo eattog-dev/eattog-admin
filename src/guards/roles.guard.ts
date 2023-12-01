@@ -21,7 +21,7 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const authorization = this.extractTokenFromHeader(context.switchToHttp().getRequest());
+    const { authorization } = context.switchToHttp().getRequest().headers;
     const loginPayload: LoginPayload | undefined = await this.jwtService.verifyAsync(authorization,
       { secret: jwtConstants.secret }).catch(() => undefined)
 
@@ -32,11 +32,4 @@ export class RolesGuard implements CanActivate {
     const { user } = context.switchToHttp().getRequest();
     return requiredRoles.some((role) => role === loginPayload.tipo_usuario);
   }
-
-  private extractTokenFromHeader(request: Request): string | undefined {
-    const authorizationHeader = request.headers.get('authorization');
-    const [type, token] = authorizationHeader?.split(' ') ?? [];
-    return type === 'Bearer' ? token : undefined;
-  }
-
 }
