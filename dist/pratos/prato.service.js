@@ -87,7 +87,6 @@ let PratoService = class PratoService {
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
             .where('prato.isActive = :isActive', { isActive: true })
-            .limit(6)
             .getMany();
         if (!pratosAtivos || pratosAtivos.length === 0) {
             throw new common_1.NotFoundException("Não há pratos ativos");
@@ -117,7 +116,6 @@ let PratoService = class PratoService {
         return this.pratosRepository
             .createQueryBuilder('prato')
             .leftJoinAndSelect('prato.prato_categoria', 'categoria')
-            .limit(6)
             .where('prato.isActive = :isActive', { isActive: true })
             .getMany();
     }
