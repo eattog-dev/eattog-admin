@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReturnRestauranteDto = void 0;
 class ReturnRestauranteDto {
     constructor(restaurante) {
+        this.id = restaurante.id;
         this.razao_social = restaurante.razao_social;
         this.imagem = restaurante.imagem;
         this.logo = restaurante.logo;

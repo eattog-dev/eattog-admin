@@ -28,13 +28,18 @@ let RolesGuard = class RolesGuard {
         if (!requiredRoles) {
             return true;
         }
-        const { authorization } = context.switchToHttp().getRequest().headers;
+        const authorization = this.extractTokenFromHeader(context.switchToHttp().getRequest());
         const loginPayload = await this.jwtService.verifyAsync(authorization, { secret: constantes_1.jwtConstants.secret }).catch(() => undefined);
         if (!loginPayload) {
             return false;
         }
         const { user } = context.switchToHttp().getRequest();
         return requiredRoles.some((role) => role === loginPayload.tipo_usuario);
+    }
+    extractTokenFromHeader(request) {
+        const authorizationHeader = request.headers.get('authorization');
+        const [type, token] = authorizationHeader?.split(' ') ?? [];
+        return type === 'Bearer' ? token : undefined;
     }
 };
 exports.RolesGuard = RolesGuard;

@@ -1,5 +1,6 @@
 import { RestauranteEntity } from "../entities/restaurante.entity";
 export declare class ReturnRestauranteDto {
+    id: number;
     razao_social: string;
     imagem: string;
     logo: string;
