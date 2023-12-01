@@ -1,6 +1,7 @@
 import { RestauranteEntity } from "../entities/restaurante.entity";
 
 export class ReturnRestauranteDto {
+    id: number;
     razao_social: string;
     imagem: string;
     logo: string;
@@ -16,6 +17,7 @@ export class ReturnRestauranteDto {
 
  
     constructor(restaurante: RestauranteEntity) {
+        this.id = restaurante.id;
         this.razao_social = restaurante.razao_social;
         this.imagem = restaurante.imagem;
         this.logo = restaurante.logo;
