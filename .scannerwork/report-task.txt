@@ -2,5 +2,5 @@ projectKey=eattog
 serverUrl=https://sonar.owphiyr.com.br
 serverVersion=10.3.0.82913
 dashboardUrl=https://sonar.owphiyr.com.br/dashboard?id=eattog
-ceTaskId=AYw6Rq0jO8gpzHpnBF8l
-ceTaskUrl=https://sonar.owphiyr.com.br/api/ce/task?id=AYw6Rq0jO8gpzHpnBF8l
+ceTaskId=AYw6S1ZiO8gpzHpnBF8m
+ceTaskUrl=https://sonar.owphiyr.com.br/api/ce/task?id=AYw6S1ZiO8gpzHpnBF8m
