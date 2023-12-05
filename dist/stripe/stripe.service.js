@@ -30,7 +30,7 @@ let StripeService = class StripeService {
     }
     async criarSessaoCompra(carrinhoCompra) {
         const lineItems = carrinhoCompra.carrinhoProduto?.map((carrinho) => {
-            if (carrinho && carrinho.prato) {
+            if (carrinho?.prato) {
                 return {
                     price: carrinho.prato.valorStripe,
                     quantity: carrinho.quantidade

@@ -26,7 +26,7 @@ export class StripeService {
 
     async criarSessaoCompra(carrinhoCompra: CarrinhoCompraEntity) {
         const lineItems = carrinhoCompra.carrinhoProduto?.map((carrinho) => {
-            if (carrinho && carrinho.prato) {
+            if (carrinho?.prato) {
                 return {
                     price: carrinho.prato.valorStripe,
                     quantity: carrinho.quantidade
