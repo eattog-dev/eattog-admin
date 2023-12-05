@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, JoinColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { IsString, IsNumber, IsArray, IsInt, IsNotEmpty } from 'class-validator';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { IsString, IsNotEmpty } from 'class-validator';
 import { PratoEntity } from 'src/pratos/entities/prato.entity';
 
 @Entity('categoria_prato')

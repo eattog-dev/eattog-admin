@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { IsEmail, IsNotEmpty, IsString, IsBoolean, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsBoolean, ValidateIf, IsPhoneNumber } from 'class-validator';
 import { EnderecoEntity } from 'src/endereco/entities/endereco.entity';
 import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
 import { PedidoEntity } from 'src/pedido/entities/pedido.entity';
@@ -22,9 +22,6 @@ export class UserEntity {
     @Column({ length: 14 })
     @IsNotEmpty()
     @IsString()
-    @Matches(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/, {
-        message: 'O CPF deve estar no formato 999.999.999-99'
-    })
     cpf: string;
 
     @Column({ type: 'date' })
