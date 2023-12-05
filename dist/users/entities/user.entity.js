@@ -38,9 +38,6 @@ __decorate([
     (0, typeorm_1.Column)({ length: 14 }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Matches)(/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/, {
-        message: 'O CPF deve estar no formato 999.999.999-99'
-    }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "cpf", void 0);
 __decorate([
