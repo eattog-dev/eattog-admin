@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne } from 'typeorm';
-import { IsEmail, IsNotEmpty, IsString, IsBoolean, Length, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { IsEmail, IsNotEmpty, IsString, IsBoolean, Matches, ValidateIf, IsPhoneNumber } from 'class-validator';
 import { EnderecoEntity } from 'src/endereco/entities/endereco.entity';
 import { RestauranteEntity } from 'src/restaurante/entities/restaurante.entity';
 import { PedidoEntity } from 'src/pedido/entities/pedido.entity';

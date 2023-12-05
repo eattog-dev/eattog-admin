@@ -1,8 +1,8 @@
-import { IsBoolean, IsInt, IsNotEmpty } from "class-validator";
+import { IsBoolean, IsInt } from "class-validator";
 import { CarrinhoCompraEntity } from "src/carrinho-compra/entities/carrinho-compra.entity";
 import { StatusPedidoEntity } from "src/status-pedido/entities/status-pedido.entity";
 import { UserEntity } from "src/users/entities/user.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('pedido')
 export class PedidoEntity {

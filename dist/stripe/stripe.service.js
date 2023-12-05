@@ -28,12 +28,12 @@ let StripeService = class StripeService {
         };
         return this.stripe.products.create(stripeProduto);
     }
-    async criarSessaoCompra(lista) {
-        const lineItems = lista.carrinhoProduto?.map((item) => {
-            if (item && item.prato) {
+    async criarSessaoCompra(carrinhoCompra) {
+        const lineItems = carrinhoCompra.carrinhoProduto?.map((carrinho) => {
+            if (carrinho && carrinho.prato) {
                 return {
-                    price: item.prato.valorStripe,
-                    quantity: item.quantidade
+                    price: carrinho.prato.valorStripe,
+                    quantity: carrinho.quantidade
                 };
             }
             return null;
@@ -46,8 +46,8 @@ let StripeService = class StripeService {
                 payment_method_types: ['card'],
                 mode: 'payment',
                 line_items: lineItems,
-                success_url: `http://localhost:5173/sucesso/${lista.id}`,
-                cancel_url: `http://localhost:5173/falha/${lista.id}`,
+                success_url: `http://localhost:5173/sucesso/${carrinhoCompra.id}`,
+                cancel_url: `http://localhost:5173/falha/${carrinhoCompra.id}`,
             });
             return checkoutSession;
         }

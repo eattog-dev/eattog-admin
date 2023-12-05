@@ -4,5 +4,5 @@ export declare class StripeService {
     private stripe;
     constructor();
     criarProduto(prato: PratoEntity): Promise<any>;
-    criarSessaoCompra(lista: CarrinhoCompraEntity): Promise<any>;
+    criarSessaoCompra(carrinhoCompra: CarrinhoCompraEntity): Promise<any>;
 }

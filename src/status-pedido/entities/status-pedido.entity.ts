@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
 import { PedidoEntity } from "src/pedido/entities/pedido.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('status-pedido')
 export class StatusPedidoEntity {
