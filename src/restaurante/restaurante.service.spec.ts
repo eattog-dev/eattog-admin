@@ -1,5 +1,5 @@
 // restaurante.service.spec.ts
-/*
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { RestauranteService } from './restaurante.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -103,4 +103,4 @@ describe('RestauranteService', () => {
 
     // Add more test cases for other methods as needed
 });
-*/
+
